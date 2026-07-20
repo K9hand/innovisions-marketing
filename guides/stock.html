@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock &amp; Inventory Guide — InnoVisions ERP</title>
+  <meta name="description" content="Step-by-step guide to managing inventory in InnoVisions ERP: multi-warehouse stock, transfers, cycle counts, reorder alerts, batch tracking, and valuation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <meta name="theme-color" content="#00349A">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2300349A'/><text x='50' y='68' font-size='48' font-weight='900' text-anchor='middle' fill='white' font-family='Inter'>IV</text></svg>">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <div class="logo-mark">IV</div>
+        <span class="logo-text">InnoVisions<span class="erp-badge">ERP</span></span>
+      </a>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+      <nav class="nav" id="nav">
+        <a href="../features.html">Features</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../compare.html">Compare</a>
+        <a href="../about.html">About</a>
+        <a href="index.html">Guides</a>
+        <a href="../contact.html">Contact</a>
+        <a href="https://app.innvisions.co.za/login" class="btn btn-primary">Sign In</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+
+  <section class="page-header">
+    <div class="dot-grid"></div>
+    <h1 class="animate-fade-up">Stock &amp; Inventory</h1>
+    <p class="animate-fade-up delay-2">Step-by-step guide to managing inventory in InnoVisions ERP: multi-warehouse stock, transfers, cycle counts, reorder alerts, batch tracking, and valuation.</p>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="guide-layout">
+
+        <aside class="guide-sidebar">
+          <h4>All Guides</h4>
+          <ul>
+            <li><a href="financials.html">Financial Management</a></li>
+            <li><a href="stock.html" class="active">Stock &amp; Inventory</a></li>
+            <li><a href="production.html">Production &amp; Manufacturing</a></li>
+            <li><a href="hr-payroll.html">HR &amp; Payroll</a></li>
+            <li><a href="crm-sales.html">CRM &amp; Sales</a></li>
+            <li><a href="procurement.html">Procurement &amp; Supply Chain</a></li>
+            <li><a href="job-costing.html">Projects &amp; Job Costing</a></li>
+            <li><a href="compliance.html">Compliance &amp; Governance</a></li>
+            <li><a href="platform.html">Platform &amp; Technology</a></li>
+          </ul>
+        </aside>
+
+        <div class="guide-content">
+
+          <div class="guide-meta">
+            <span class="guide-meta-item"><strong>Module:</strong> Stock &amp; Inventory</span>
+            <span class="guide-meta-item"><strong>Difficulty:</strong> Advanced</span>
+            <span class="guide-meta-item"><strong>Prerequisites:</strong> At least one warehouse configured, stock items created with costing method assigned</span>
+          </div>
+
+          <p>The Stock &amp; Inventory module provides comprehensive inventory management across multi-warehouse, multi-bin environments with full serial and batch traceability, consignment stock handling, and landed cost integration. The system supports multiple valuation methods simultaneously — FIFO layer management, weighted average recalculation, and standard cost variance posting — with real-time inventory valuation reconciliation to the general ledger. Advanced warehouse management features include zone-based pick optimization, cross-docking, wave picking, and ABC-driven cycle counting with KPI tracking.</p>
+
+          <h2>Configure Advanced Warehouse Management</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Set up zones and aisles for pick optimization</strong>
+              <p>Define warehouse zones (bulk storage, fast-moving,冷藏, QA hold) and configure aisle-rack-shelf hierarchies within each zone. Assign pick sequence priorities per zone to optimize pick-path routing. The system uses zone-based slotting to recommend bin assignments for new stock receipts based on item velocity and dimensions.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Configure put-away rules by product category</strong>
+              <p>Define put-away strategies per item category — hazardous materials route to designated zones, fast-moving items to forward pick locations, bulk items to reserve storage. Rules can be based on item attributes (weight, volume, storage condition) or ABC classification. The system suggests the optimal bin on receipt.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Set warehouse role permissions</strong>
+              <p>Configure granular permissions per warehouse — assign users or roles to specific functions: receiving, put-away, picking, dispatching, cycle counting, and transfers. Role-based dashboards show only relevant warehouse operations. Audit trail captures all warehouse operations with user attribution.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Configure cross-docking</strong>
+              <p>Enable cross-docking for items that bypass put-away and move directly from receiving to dispatch. Set up cross-docking rules based on customer orders, item categories, or supplier agreements. The system identifies cross-dock eligible receipts at goods receipt entry and generates put-away-to-dispatch instructions.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Set up wave picking</strong>
+              <p>Configure wave picking parameters — order grouping rules (by carrier, shipping zone, delivery route), wave release schedules, and pick cart assignment. Waves consolidate multiple orders into a single pick run to minimize travel time. The system generates pick lists sorted by bin sequence and validates pick accuracy.</p>
+            </div>
+          </div>
+
+          <h2>Implement Serial Number Tracking</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Define serial number assignment rules</strong>
+              <p>Configure when serial numbers are assigned — on receipt (pre-printed labels or system-generated), on sale (assigned at point of dispatch), or on production completion. Define the serial number format with prefix, length, and check digit rules. Serial numbers can be scanned via barcode or RFID for accuracy.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Implement serial number validation</strong>
+              <p>Configure validation rules to prevent duplicate serial number entry across warehouses and items. Set up format validation using regex patterns. Enable serial number reservation at sales order entry to prevent double-allocation. The system validates serial numbers against the item master and existing stock.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Use serial number inquiry and traceability</strong>
+              <p>Access the serial number inquiry screen to look up any serial number and see its full lifecycle — receipt date, supplier, warehouse bin history, sales order, customer, warranty status, and service history. The inquiry supports both forward tracing (from component to finished good) and backward tracing (from finished good to supplier batch).</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Track warranty by serial number</strong>
+              <p>Configure warranty terms per item (duration, coverage type, service level). The system calculates warranty expiry dates from the sale date or production date stamped on the serial record. Generate warranty expiry reports and integrate with the service module for warranty claim processing.</p>
+            </div>
+          </div>
+
+          <div class="guide-callout guide-callout--info">
+            <strong>Info</strong>
+            <p>Serial number traceability supports full forward and backward tracing — from finished good back to supplier batch, or from component lot to all shipped products.</p>
+          </div>
+
+          <h2>Set Up Batch/Lot Tracking</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Create batches on receipt</strong>
+              <p>For batch-tracked items, the system prompts for batch entry at goods receipt. Batches can be auto-generated (sequential or date-based format) or manually entered from supplier documentation. Each batch record stores the receipt date, supplier, PO reference, and initial quantity.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Configure batch attribute tracking</strong>
+              <p>Define custom attributes per item category — manufacturing date, expiry date, best-before date, country of origin, supplier batch reference, quality grade, and test results. Attributes are captured at batch creation and used for allocation rule evaluation (e.g., FEFO picks nearest expiry first).</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Set up FIFO/FEFO allocation rules</strong>
+              <p>Configure allocation strategies per item — FIFO (oldest receipt first), FEFO (nearest expiry first), or LIFO (newest receipt first). The system applies the allocation rule at picking and reservation time. Override options allow manual batch selection with supervisory approval for non-standard picks.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Implement batch hold and release for quality</strong>
+              <p>When quality issues are identified, place affected batches on hold — stock is blocked from picking and dispatch. The hold can be partial (specific quantity) or full (entire batch). Quality control users inspect and release batches, or initiate a return to supplier. The batch hold log provides full audit trail.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Generate batch traceability reports</strong>
+              <p>Run the batch traceability report to trace a batch through the supply chain — from raw material receipt through production consumption to finished good dispatch to customer. The report supports lot genealogy views showing parent-child batch relationships. Export for regulatory compliance submissions.</p>
+            </div>
+          </div>
+
+          <h2>Manage Consignment Stock</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Set up consignment supplier</strong>
+              <p>Configure suppliers as consignment suppliers in the supplier master — this enables consignment-specific transaction types and valuation rules. Define the consignment agreement terms, including payment trigger (on consumption), minimum stock commitments, and return authorization rules.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Process consignment receipt without ownership transfer</strong>
+              <p>Receive consignment stock using the consignment receipt transaction — stock is added to available quantity but ownership remains with the supplier. The system tracks consignment stock separately from owned stock in inventory reports. No GL posting is made for consignment receipts as no ownership transfer has occurred.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Record consignment consumption and invoicing</strong>
+              <p>When consignment stock is consumed (sold to a customer or used in production), the system triggers a consumption event. The consumption generates a purchase invoice from the consignment supplier at the agreed price and posts the corresponding inventory and COGS entries. The supplier can be paid on a consumption summary basis.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Run consignment stock valuation</strong>
+              <p>Generate the consignment stock valuation report showing consignment stock on hand by supplier, item, and warehouse with agreed unit costs. This report is used for balance sheet disclosure — consignment stock is not recognized as owned inventory but disclosed as a commitment. Reconcile consignment quantities with supplier statements.</p>
+            </div>
+          </div>
+
+          <div class="guide-callout guide-callout--warn">
+            <strong>Warning</strong>
+            <p>Consignment stock is not owned by your company until consumed. It must be tracked separately from owned inventory for accurate balance sheet reporting.</p>
+          </div>
+
+          <h2>Configure Landed Costs</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Define landed cost types</strong>
+              <p>Set up landed cost categories — freight, insurance, customs duties, handling fees, inspection costs, and port charges. For each cost type, define the GL account for cost accrual and the allocation method (by value, weight, volume, or quantity). Configure whether the cost is estimated at PO creation or entered after receipt.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Configure allocation basis</strong>
+              <p>Select the allocation basis per landed cost type — by value (distribute proportionally to item line value), by weight (per kilogram), by volume (per cubic meter), or by quantity (per unit). For mixed containers, the system can use a weighted combination of bases. The allocation basis is applied across the items in the shipment.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Post landed costs to inventory value</strong>
+              <p>When landed costs are entered against a goods receipt, the system posts to a landed cost clearing account and automatically allocates the costs to the inventory value of the received items. The average cost of each item is updated to include the allocated landed costs. The GL impact shows the debit to inventory and credit to the cost accrual account.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Handle estimated vs actual cost</strong>
+              <p>Landed costs can be estimated at PO creation based on expected freight rates and customs percentages. When actual costs are known (after receipt), enter the actual amounts and the system revalues the inventory and posts the variance to a landed cost variance account. The variance analysis report compares estimated vs actual landed costs per shipment.</p>
+            </div>
+          </div>
+
+          <div class="guide-callout guide-callout--info">
+            <strong>Info</strong>
+            <p>Landed costs can be estimated at PO creation and adjusted when actual costs are known. The system revalues the average cost automatically.</p>
+          </div>
+
+          <h2>Perform Cycle Counting Program</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Configure count frequency by ABC classification</strong>
+              <p>Perform ABC analysis on inventory — A-class items (top 80% of value) count monthly, B-class (next 15%) quarterly, C-class (remaining 5%) annually. Configure the system to auto-generate count schedules based on classification. Count frequency can be overridden for items with high shrinkage risk or regulatory requirements.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Choose blind count vs system-count methods</strong>
+              <p>Select between blind count (counter sees no system quantity — prevents bias) and system-count (system quantity displayed for verification). Blind counts reduce counting bias but may require recounting for large variances. Configure the method per item category or count schedule. The system records count method for audit trail.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Set up count approval workflow</strong>
+              <p>Configure variance thresholds that trigger approval — counts with variance under 2% auto-approve, variances 2-5% require supervisor review, over 5% require manager investigation and root cause documentation. The approval workflow captures comments and corrective actions before adjustment posting.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Post adjustments with GL impact</strong>
+              <p>Approved count adjustments post to inventory with automatic GL journal entries — inventory increase debits the inventory account and credits a count adjustment account; decreases reverse the entry. The GL impact is calculated at the item's current average cost. Unapproved adjustments are held in a pending adjustments queue.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Track count accuracy KPIs</strong>
+              <p>Monitor cycle count performance through the count accuracy dashboard — KPI metrics include count accuracy percentage (matches / total counted), inventory record accuracy, count variance value, and count completion rate vs schedule. Trend analysis shows accuracy improvement over time and identifies problem areas requiring process improvement.</p>
+            </div>
+          </div>
+
+          <div class="guide-callout guide-callout--tip">
+            <strong>Tip</strong>
+            <p>Use ABC analysis reports to classify inventory by value. Focus cycle counting resources on A-class items (80% of value).</p>
+          </div>
+
+          <h2>Run Inventory Forecasting</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Select forecast models</strong>
+              <p>Choose from forecasting models — moving average (simple or weighted), trend-adjusted (Holt's method), seasonal (Holt-Winters), or demand-driven (using sales history with promotional uplift). Configure the historical period length (12-24 months recommended) and the forecast horizon. The system evaluates model fit using MAPE (Mean Absolute Percentage Error).</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Track forecast vs actual</strong>
+              <p>Run the forecast accuracy report to compare forecasted demand against actual sales. The report shows forecast error metrics — bias, MAPE, MAD, and tracking signal. Items with consistently high forecast error are flagged for manual review. Use the accuracy feedback loop to adjust model parameters or switch models for specific item groups.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Calculate safety stock based on service level</strong>
+              <p>Configure target service levels per item (95% for A-class, 90% for B-class, 85% for C-class). The system calculates safety stock using the formula: safety stock = Z-score × standard deviation of demand during lead time. Lead time variability is factored in for items with unreliable supply. Recalculate safety stock after each forecast update.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Enable demand-driven replenishment</strong>
+              <p>Configure demand-driven replenishment parameters — dynamic reorder point (forecast-based), order-up-to level, and review period. The system generates replenishment suggestions calculated as: order quantity = (forecast demand during lead time + safety stock) - current stock on hand. Suggestions can be converted to purchase requisitions or transfer orders.</p>
+            </div>
+          </div>
+
+          <h2>Set Up Automated Reorder Rules</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Configure dynamic reorder points</strong>
+              <p>Set up reorder points that adjust automatically based on lead time variability and demand trends. The dynamic reorder point formula: reorder point = (average daily demand x average lead time) + safety stock. Lead time variability is calculated from actual supplier performance data. Reorder points are recalculated daily or weekly depending on item velocity.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Calculate economic order quantity</strong>
+              <p>Enable EOQ calculation for order quantity optimization: EOQ = sqrt((2 x annual demand x ordering cost) / holding cost per unit per year). Enter ordering costs (processing, freight minimums) and holding costs (storage, insurance, obsolescence) per item or category. The system suggests order quantities that minimize total inventory costs.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Choose min-max vs reorder point methods</strong>
+              <p>Select the replenishment method per item — min-max (order up to max when stock falls below min) for stable demand items, or reorder point (order fixed quantity when stock hits reorder point) for variable demand. The system supports hybrid approaches where seasonality-driven items use reorder point with seasonal adjustment factors.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Configure supplier-specific lead times</strong>
+              <p>Maintain supplier-specific lead times per item — some suppliers may have longer or more variable lead times than others. The system uses the preferred supplier's lead time for reorder point calculation. Lead time performance is tracked against actual delivery dates and feeds back into the lead time database for continuous improvement.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Convert auto-suggestions to purchase orders</strong>
+              <p>Review the auto-suggestion report showing items below reorder point with calculated order quantities, preferred suppliers, and expected delivery dates. Select items and convert to purchase orders with a single action — the system creates POs with supplier, items, quantities, and requested delivery dates pre-populated. Unconfirmed suggestions are retained for next review cycle.</p>
+            </div>
+          </div>
+
+          <h2>Handle Negative Stock Controls</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Configure negative stock prevention rules</strong>
+              <p>Set inventory control policies — prevent negative stock entirely (hard block), allow with warnings (soft block), or allow with manager override. Configure the prevention rules per warehouse or item category. High-value or serial-tracked items are typically hard-blocked, while low-value bulk items may allow soft-block with automatic reorder trigger.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Configure backflushing for manufacturing</strong>
+              <p>Enable backflushing for manufacturing environments where components are automatically consumed from inventory when the finished good is produced. Configure backflushing at work order completion or at specific production steps. Backflushed quantities use the BOM component ratio. Negative stock caused by backflushing is flagged and reported separately.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Investigate negative stock events</strong>
+              <p>Run the negative stock investigation report to identify items with negative balances, the transactions that caused them, and the date/time of occurrence. Common causes include unregistered goods receipts, incorrect backflushing, data entry errors, and missing purchase order receipts. Assign root cause categories for trend analysis.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Process correction journals</strong>
+              <p>When negative stock is identified, create inventory correction journals to adjust quantities and values. The correction journal posts the offsetting entry to bring stock back to zero or positive. All correction journals require a root cause code and managerial approval. The system prevents correction journals from creating negative stock in other items.</p>
+            </div>
+          </div>
+
+          <div class="guide-callout guide-callout--warn">
+            <strong>Warning</strong>
+            <p>Changing the costing method on an item with existing stock requires a full inventory revaluation. Test the impact in a sandbox environment first.</p>
+          </div>
+
+          <h2>Configure Stock Valuation Methods</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Manage FIFO layers</strong>
+              <p>When using FIFO, each receipt creates a cost layer with quantity and unit cost. Outbound transactions consume layers in chronological order. View the FIFO layer report showing all open layers by item and warehouse with remaining quantity and cost. The system validates that the total value of all layers equals the inventory GL account balance.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Configure weighted average recalculation frequency</strong>
+              <p>Set the weighted average recalculation trigger — on every receipt (continuous average), daily, weekly, or monthly. The system recalculates the average cost as: (current inventory value + receipt value) / (current quantity + receipt quantity). Choose period-end recalculation for month-end closing or real-time for more current valuation.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Post standard cost variances</strong>
+              <p>When using standard costing, the system tracks purchase price variances (difference between PO price and standard cost) and usage variances (difference between actual and expected usage). Variance accounts are pre-configured in the GL mapping. Run the variance analysis report to understand cost drivers and update standards based on actual trends.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Handle valuation method changes</strong>
+              <p>Changing an item's costing method (e.g., from weighted average to FIFO) triggers a full inventory revaluation. The system calculates the value under the new method and posts the adjustment to a revaluation reserve account. Run the revaluation impact report before committing the change. Method changes are date-effective and audited.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Reconcile stock valuation to GL</strong>
+              <p>Generate the stock valuation reconciliation report comparing inventory value per the Stock module against the GL inventory account balance. The report breaks down reconciling items — goods received not yet invoiced, invoiced not yet received, WIP valuation, and count adjustment differences. Investigate and clear reconciling items before period close.</p>
+            </div>
+          </div>
+
+          <h2>Related Modules</h2>
+          <div class="guide-grid">
+            <a href="production.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Production &amp; Manufacturing</h4>
+              <p>BOM components are reserved at work order release and consumed at production posting. Backflushing automates component issue based on output quantity.</p>
+            </a>
+            <a href="procurement.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Procurement &amp; Supply Chain</h4>
+              <p>Goods receipt triggers automated serial number assignment and bin put-away suggestions based on product category routing rules.</p>
+            </a>
+            <a href="crm-sales.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>CRM &amp; Sales</h4>
+              <p>Pick-pack-dispatch workflow allocates serial/batch-specific stock to sales orders and validates availability before delivery note generation.</p>
+            </a>
+            <a href="financials.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Financial Management</h4>
+              <p>Inventory valuation impacts COGS at point of sale via configured costing method. WIP valuation tracks production stock in real-time.</p>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="dot-grid"></div>
+    <div class="cta-orb cta-orb--blue"></div>
+    <div class="cta-orb cta-orb--teal"></div>
+    <div class="container cta-content">
+      <h2 class="reveal">Need more help?</h2>
+      <p class="reveal delay-2">Get in touch with our team. We're here to help you get the most out of InnoVisions.</p>
+      <a href="../contact.html" class="btn btn-primary reveal delay-3">Contact Support →</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+            <div class="logo-mark">IV</div>
+            <span class="logo-text" style="color:#fff">InnoVisions</span>
+          </a>
+          <p>One platform for your entire business. Customers, inventory, jobs, finance, and support — deeply integrated.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="../features.html">Features</a>
+          <a href="../pricing.html">Pricing</a>
+          <a href="../compare.html">Compare</a>
+          <a href="../about.html">About</a>
+          <a href="index.html">Guides</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="https://app.innvisions.co.za/register">Get Started</a>
+          <a href="https://app.innvisions.co.za/login">Sign In</a>
+          <a href="index.html">Documentation</a>
+          <a href="../contact.html">Support</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms of Service</a>
+          <a href="../data-processing.html">Data Processing</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 InnoVisions ERP. All rights reserved.</span>
+        <span>Built in South Africa 🇿🇦</span>
+      </div>
+    </div>
+  </main>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

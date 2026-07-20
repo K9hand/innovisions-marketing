@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM &amp; Sales Guide — InnoVisions ERP</title>
+  <meta name="description" content="Step-by-step guide to managing customer relationships and sales in InnoVisions ERP: leads, opportunities, quotes, sales orders, customer portal, and pipeline tracking.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <meta name="theme-color" content="#00349A">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2300349A'/><text x='50' y='68' font-size='48' font-weight='900' text-anchor='middle' fill='white' font-family='Inter'>IV</text></svg>">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <div class="logo-mark">IV</div>
+        <span class="logo-text">InnoVisions<span class="erp-badge">ERP</span></span>
+      </a>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+      <nav class="nav" id="nav">
+        <a href="../features.html">Features</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../compare.html">Compare</a>
+        <a href="../about.html">About</a>
+        <a href="index.html">Guides</a>
+        <a href="../contact.html">Contact</a>
+        <a href="https://app.innvisions.co.za/login" class="btn btn-primary">Sign In</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+
+  <section class="page-header">
+    <div class="dot-grid"></div>
+    <h1 class="animate-fade-up">CRM &amp; Sales</h1>
+    <p class="animate-fade-up delay-2">Step-by-step guide to managing customer relationships and sales in InnoVisions ERP: leads, opportunities, quotes, sales orders, customer portal, and pipeline tracking.</p>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="guide-layout">
+
+        <aside class="guide-sidebar">
+          <h4>All Guides</h4>
+          <ul>
+            <li><a href="financials.html">Financial Management</a></li>
+            <li><a href="stock.html">Stock &amp; Inventory</a></li>
+            <li><a href="production.html">Production &amp; Manufacturing</a></li>
+            <li><a href="hr-payroll.html">HR &amp; Payroll</a></li>
+            <li><a href="crm-sales.html" class="active">CRM &amp; Sales</a></li>
+            <li><a href="procurement.html">Procurement &amp; Supply Chain</a></li>
+            <li><a href="job-costing.html">Projects &amp; Job Costing</a></li>
+            <li><a href="compliance.html">Compliance &amp; Governance</a></li>
+            <li><a href="platform.html">Platform &amp; Technology</a></li>
+          </ul>
+        </aside>
+
+        <div class="guide-content">
+
+          <div class="guide-meta">
+            <span class="guide-meta-item"><strong>Module:</strong> CRM &amp; Sales</span>
+            <span class="guide-meta-item"><strong>Difficulty:</strong> Advanced</span>
+            <span class="guide-meta-item"><strong>Prerequisites:</strong> Customers created, product catalogue populated, email server configured</span>
+          </div>
+
+          <p>The CRM &amp; Sales module covers the full customer lifecycle — from lead generation and opportunity management through quoting, order processing, fulfilment, invoicing, and post-sale support. Features include multi-stage pipeline tracking with drag-and-drop, configurable sales workflows, automated quote-to-cash, customer portal with self-service, email campaign management, territory assignment, and revenue forecasting. Integration with Stock, Financials, and Job Costing creates a seamless order-to-cash process.</p>
+
+          <div class="guide-callout guide-callout--warn">
+            <strong>Warning</strong>
+            <p>Always verify stock availability before converting a quote to a sales order. If stock is insufficient, the order will be flagged and may delay fulfilment. Use the allocation report before committing to delivery dates.</p>
+          </div>
+
+          <h2>Configure Pipeline Stages and Sales Workflows</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Set up pipeline stages</strong>
+              <p>Navigate to CRM → Settings → Pipeline Stages. Define your sales stages — Prospecting, Qualification, Needs Analysis, Proposal, Negotiation, Closed Won, Closed Lost. Each stage has a probability percentage used for weighted forecasting. Configure expected days in stage for pipeline velocity tracking.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Configure stage transition rules</strong>
+              <p>Set mandatory fields and actions per transition. For example, moving to "Proposal" requires a minimum deal value and product selection. Moving to "Closed Won" requires a signed document upload. Transitions that violate rules are blocked with a clear explanation shown to the user.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Create sales workflows</strong>
+              <p>Define workflow automations: auto-assign leads by territory or product line, send follow-up email sequences after a stage remains stagnant for 7 days, escalate high-value deals approaching close date to sales manager. Workflows run on a schedule and log actions to the opportunity timeline.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Set up territory and team assignment</strong>
+              <p>Define sales territories by region, industry, or account size. Configure team hierarchies with managers overseeing multiple reps. Opportunities are auto-routed to the correct territory owner based on customer attributes. Territory managers can view pipeline and forecast for their region.</p>
+            </div>
+          </div>
+
+          <h2>Manage Leads and Opportunities</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Import leads from multiple sources</strong>
+              <p>Navigate to CRM → Leads → Import. Upload CSV files with lead data — the system matches against existing contacts to prevent duplicates. Use lead source tracking (website, referral, trade show, cold call, inbound) to measure marketing ROI. Auto-assign leads via round-robin or territory-based rules.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Qualify leads with scoring</strong>
+              <p>Configure lead scoring rules based on BANT criteria (Budget, Authority, Need, Timeline). Points accumulate from company size, industry fit, engagement (email opens, website visits), and demographic match. Leads above the threshold auto-qualify and prompt conversion to opportunity.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Convert leads to opportunities</strong>
+              <p>When a lead is qualified, convert to an opportunity. The system carries forward all lead information and interaction history. Set expected deal value, close date, and assign the sales rep. Choose the appropriate pipeline — new business, upsell, renewal — each with its own stage set and probability model.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Track opportunity activities</strong>
+              <p>Each opportunity has a timeline showing all logged interactions: calls, emails, meetings, quotes sent, document uploads. Log activities manually or use the email integration to auto-capture. Schedule follow-up tasks with reminders. The activity history is visible to the full sales team for handover transparency.</p>
+            </div>
+          </div>
+
+          <div class="guide-callout guide-callout--tip">
+            <strong>Tip</strong>
+            <p>Lead scoring rules should be reviewed quarterly. Historical win data can be analysed to identify which lead attributes correlate most strongly with closed-won deals, and scores adjusted accordingly.</p>
+          </div>
+
+          <h2>Configure Pricing and Discount Rules</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Set up price lists</strong>
+              <p>Navigate to Sales → Settings → Price Lists. Create multiple price lists — standard, wholesale, promotional, partner. Each price list defines unit prices per product. You can set effective date ranges for seasonal pricing or promotional periods. Price lists can be assigned to specific customer groups.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Configure discount approval tiers</strong>
+              <p>Set discount thresholds that trigger approval workflows. For example: discounts up to 10% auto-approved by sales rep, 10–20% requires manager approval, above 20% requires director approval. The system blocks quote finalisation until the required approval is obtained. Approval requests include deal context and margin impact analysis.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Set up promotional pricing</strong>
+              <p>Create promotional campaigns with date ranges, eligible products, and special pricing. Promotions override the standard price list during the campaign period. Limit promotions to specific customer segments or territories. The system applies promotional pricing automatically when a quote is created within the valid period.</p>
+            </div>
+          </div>
+
+          <h2>Manage Quote-to-Cash Process</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Create quotes with approval workflows</strong>
+              <p>Navigate to Sales → Quotes → New. Select customer, choose price list, add line items from product catalogue. The system validates discount approval requirements in real-time. Add payment terms, delivery terms, validity period, and notes. Quotes can be saved as draft, sent for internal approval, or sent directly to the customer.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Send quotes with e-signature</strong>
+              <p>Email quotes as PDF with a secure customer portal link for e-signature. The portal shows the quote summary, terms, and a digital signature field. When the customer signs, the system records the signature with timestamp and IP address, and the quote status updates to Accepted. This triggers the conversion process.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Convert accepted quote to sales order</strong>
+              <p>When a quote is accepted, convert it to a sales order. Configure what carries over — line items, pricing, delivery instructions, special terms — and what must be reconfirmed. The system checks stock availability and flags any items below reorder point. Partial fulfilment can be set if stock is insufficient for the full order.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Process fulfilment and invoicing</strong>
+              <p>Sales orders flow through fulfilment — pick, pack, ship. Generate pick lists for warehouse, pack slips for dispatch, and delivery notes for proof of delivery. Once goods are dispatched, generate invoices automatically or on confirmation. The invoice posts to Accounts Receivable and triggers the cash collection workflow.</p>
+            </div>
+          </div>
+
+          <h2>Manage Recurring Revenue</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Set up subscription products</strong>
+              <p>Navigate to Sales → Settings → Subscriptions. Define subscription products with billing frequency (monthly, quarterly, annual), billing model (fixed, usage-based, tiered), and contract terms. Subscription products can include setup fees, minimum terms, and auto-renewal settings.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Create subscription contracts</strong>
+              <p>Convert a sales order with subscription products into a contract. Set start date, initial term, renewal behaviour, and cancellation notice period. The system generates recurring invoices on the billing schedule. Subscription amendments (upgrades, downgrades, add-ons) are handled via contract change orders with pro-rata billing.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Track recurring revenue metrics</strong>
+              <p>Run the subscription analytics report showing MRR/ARR, churn rate, customer lifetime value, and renewal forecasts. The report segments by customer cohort, subscription tier, and territory. Use the churn analysis to identify at-risk accounts and trigger retention workflows.</p>
+            </div>
+          </div>
+
+          <h2>Configure Email Campaigns</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Create email templates</strong>
+              <p>Navigate to CRM → Settings → Email Templates. Design templates for quote follow-ups, abandoned quote recovery, renewal reminders, welcome sequences, and re-engagement campaigns. Use placeholders for customer name, quote number, expiry date, and personalised links. Templates are responsive and render consistently across email clients.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Set up automated sequences</strong>
+              <p>Define email sequences triggered by pipeline events: send a follow-up 3 days after sending a quote, a reminder 2 days before quote expiry, and a "we're here to help" 7 days after no response. Sequences can be paused if the opportunity moves stage. Track open rates, click rates, and reply rates per sequence.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Analyse campaign performance</strong>
+              <p>Run campaign performance reports: total sent, delivered, opened, clicked, replied, unsubscribed. Compare conversion rates for opportunities that received campaign emails vs those that didn't. Use A/B testing on subject lines and send times to optimise engagement. Campaign costs can be tracked against attributed revenue for ROI analysis.</p>
+            </div>
+          </div>
+
+          <h2>Manage Sales Analytics and Forecasting</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Configure sales dashboards</strong>
+              <p>Navigate to Reports → Sales Dashboards. Configure widgets: pipeline value by stage, won/lost ratio, average deal size, sales cycle length, win rate by rep, lead conversion funnel. Dashboards update in real-time as opportunities progress. Create personal dashboards per sales rep and team dashboards for management.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Generate revenue forecast</strong>
+              <p>Run the forecasting engine which calculates weighted pipeline revenue using stage probabilities. Forecast by rep, team, territory, or product line. Compare forecast against quota and historical performance. Commit, best-case, and pipeline scenarios provide a range. Forecast accuracy is tracked and reported monthly.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Run win/loss analysis</strong>
+              <p>Track win/loss reasons per opportunity with reason codes: price, competitor, feature gap, relationship, timing. Run reports to identify patterns — are you losing deals to specific competitors? In specific territories? With specific product configurations? Use insights to refine sales strategy and product roadmap priorities.</p>
+            </div>
+          </div>
+
+          <h2>Configure Customer Portal</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Enable and brand the portal</strong>
+              <p>Navigate to Settings → Customer Portal → Configuration. Toggle portal access and upload your company logo, set brand colours, and customise the portal welcome message. Configure which document types customers can view: quotes, sales orders, invoices, credit notes, statements. Set visibility to current and historical periods.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Configure portal permissions</strong>
+              <p>Set granular permissions per customer group — some customers can view prices, others see only quantities. Enable self-service actions: place repeat orders from previous invoices, raise support tickets, update contact details, download tax invoices. All customer actions are logged in the audit trail.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Send portal invitations</strong>
+              <p>Invite customers via email with a secure activation link. The invitation includes a temporary password and QR code for mobile access. Customers set their own password on first login. Single Sign-On can be configured for enterprise customers using SAML or OAuth. Track portal adoption with the usage report.</p>
+            </div>
+          </div>
+
+          <div class="guide-callout guide-callout--info">
+            <strong>Info</strong>
+            <p>The pipeline forecast uses weighted probabilities based on stage — make sure probabilities are calibrated against historical close rates. Review and adjust them quarterly for the most accurate revenue predictions.</p>
+          </div>
+
+          <h2>Related Modules</h2>
+          <div class="guide-grid">
+            <a href="stock.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Stock &amp; Inventory</h4>
+              <p>Sales orders reserve and deduct stock, trigger reorder alerts, and generate pick lists for warehouse fulfilment. Real-time stock availability checks prevent overselling.</p>
+            </a>
+            <a href="financials.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Financial Management</h4>
+              <p>Invoices from sales orders flow directly into Accounts Receivable. Payment allocation, credit control, and dunning run from financials with full audit trail from quote to cash.</p>
+            </a>
+            <a href="job-costing.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Projects &amp; Job Costing</h4>
+              <p>Service and installation sales orders convert into job cards with budget baselines. Labour and material costs are tracked against quoted margins for profitability analysis.</p>
+            </a>
+            <a href="platform.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Platform &amp; Technology</h4>
+              <p>REST API enables CRM integrations with external marketing tools. Customer portal, SSO, and webhook-based event notifications are managed from platform settings.</p>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="dot-grid"></div>
+    <div class="cta-orb cta-orb--blue"></div>
+    <div class="cta-orb cta-orb--teal"></div>
+    <div class="container cta-content">
+      <h2 class="reveal">Need more help?</h2>
+      <p class="reveal delay-2">Get in touch with our team. We're here to help you get the most out of InnoVisions.</p>
+      <a href="../contact.html" class="btn btn-primary reveal delay-3">Contact Support →</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+            <div class="logo-mark">IV</div>
+            <span class="logo-text" style="color:#fff">InnoVisions</span>
+          </a>
+          <p>One platform for your entire business. Customers, inventory, jobs, finance, and support — deeply integrated.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="../features.html">Features</a>
+          <a href="../pricing.html">Pricing</a>
+          <a href="../compare.html">Compare</a>
+          <a href="../about.html">About</a>
+          <a href="index.html">Guides</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="https://app.innvisions.co.za/register">Get Started</a>
+          <a href="https://app.innvisions.co.za/login">Sign In</a>
+          <a href="index.html">Documentation</a>
+          <a href="../contact.html">Support</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms of Service</a>
+          <a href="../data-processing.html">Data Processing</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 InnoVisions ERP. All rights reserved.</span>
+        <span>Built in South Africa 🇿🇦</span>
+      </div>
+    </div>
+  </main>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

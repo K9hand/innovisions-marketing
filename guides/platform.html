@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platform &amp; Technology Guide — InnoVisions ERP</title>
+  <meta name="description" content="Step-by-step guide to deploying and managing InnoVisions ERP: cloud vs on-premise deployment, REST API usage, security configuration, data export, and mobile access.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <meta name="theme-color" content="#00349A">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2300349A'/><text x='50' y='68' font-size='48' font-weight='900' text-anchor='middle' fill='white' font-family='Inter'>IV</text></svg>">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <div class="logo-mark">IV</div>
+        <span class="logo-text">InnoVisions<span class="erp-badge">ERP</span></span>
+      </a>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+      <nav class="nav" id="nav">
+        <a href="../features.html">Features</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../compare.html">Compare</a>
+        <a href="../about.html">About</a>
+        <a href="index.html">Guides</a>
+        <a href="../contact.html">Contact</a>
+        <a href="https://app.innvisions.co.za/login" class="btn btn-primary">Sign In</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+
+  <section class="page-header">
+    <div class="dot-grid"></div>
+    <h1 class="animate-fade-up">Platform &amp; Technology</h1>
+    <p class="animate-fade-up delay-2">Step-by-step guide to deploying and managing InnoVisions ERP: cloud vs on-premise deployment, REST API usage, security configuration, data export, and mobile access.</p>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="guide-layout">
+
+        <aside class="guide-sidebar">
+          <h4>All Guides</h4>
+          <ul>
+            <li><a href="financials.html">Financial Management</a></li>
+            <li><a href="stock.html">Stock &amp; Inventory</a></li>
+            <li><a href="production.html">Production &amp; Manufacturing</a></li>
+            <li><a href="hr-payroll.html">HR &amp; Payroll</a></li>
+            <li><a href="crm-sales.html">CRM &amp; Sales</a></li>
+            <li><a href="procurement.html">Procurement &amp; Supply Chain</a></li>
+            <li><a href="job-costing.html">Projects &amp; Job Costing</a></li>
+            <li><a href="compliance.html">Compliance &amp; Governance</a></li>
+            <li><a href="platform.html" class="active">Platform &amp; Technology</a></li>
+          </ul>
+        </aside>
+
+        <div class="guide-content">
+
+          <div class="guide-meta">
+            <span class="guide-meta-item"><strong>Module:</strong> Platform &amp; Technology</span>
+            <span class="guide-meta-item"><strong>Difficulty:</strong> Advanced</span>
+            <span class="guide-meta-item"><strong>Prerequisites:</strong> Server/infrastructure access, Docker experience for self-hosted deployments</span>
+          </div>
+
+          <h2>Overview</h2>
+          <p>The Platform &amp; Technology guide covers DevOps and platform engineering for InnoVisions ERP — production deployment architecture with Docker and reverse proxy configuration, CI/CD pipeline setup with automated testing and rollback, database backup and disaster recovery, monitoring and alerting with Grafana and Loki, SSO integration with SAML and OIDC, security hardening including WAF and vulnerability scanning, API lifecycle management with versioning and rate limiting, webhooks and event-driven integrations, mobile app and offline sync architecture, and comprehensive security hardening following CIS benchmarks.</p>
+
+          <h2>Configure Production Deployment</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Plan deployment architecture</strong>
+              <p>The production stack consists of: Application (Python/FastAPI backend, React frontend), Database (PostgreSQL 15+), Cache (Redis 7+), Queue (Celery with RabbitMQ), and Object Storage (MinIO or S3-compatible). For high availability, run two instances of the application behind a load balancer, a PostgreSQL primary with a hot standby replica, and Redis with sentinel. Minimum production specifications: 8 vCPU, 32 GB RAM, 200 GB SSD for the application server; 16 vCPU, 64 GB RAM, 500 GB SSD for the database server.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Choose container orchestration</strong>
+              <p>For single-server deployments, use Docker Compose with the provided docker-compose.yml. For multi-server production, deploy on Docker Swarm or Kubernetes. Docker Swarm is simpler — deploy with docker stack deploy. Kubernetes (K3s or EKS) offers advanced auto-scaling, rolling updates, and self-healing. The Helm chart is available in the deployment repository. Whichever you choose, ensure resource limits are set per container to prevent one service from starving others.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Set up reverse proxy with SSL termination</strong>
+              <p>Deploy nginx as the reverse proxy. Configure SSL termination with Let's Encrypt certificates using certbot or the nginx-certbot Docker image. Example nginx config: proxy_pass http://app:8000, set_header X-Forwarded-For $proxy_add_x_forwarded_for, set_header X-Forwarded-Proto $scheme. Enable HTTP/2 for performance, set HSTS headers, and configure rate limiting at the proxy level. Redirect all HTTP traffic to HTTPS using a 301 redirect.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Manage environment-specific configuration</strong>
+              <p>Use environment files (.env) per environment: .env.development, .env.staging, .env.production. Configuration items: database URL, Redis URL, secret key, API rate limits, log level, and external service URLs. Never commit .env files to version control — use .env.example as a template. For Kubernetes, store configuration in ConfigMaps and secrets in Secrets (base64 encoded at minimum, encrypted at rest with Sealed Secrets or External Secrets Operator).</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Implement blue-green deployment</strong>
+              <p>Blue-green deployment reduces downtime during releases. Maintain two identical environments: Blue (current live) and Green (new version). Deploy to Green, run smoke tests, then switch the load balancer to Green. If issues arise, switch back to Blue immediately. The deployment script: build new images, push to registry, deploy to Green, run health checks, update load balancer target group, and decommission Blue after 24 hours if no rollback is needed.</p>
+            </div>
+          </div>
+
+          <h2>Set Up CI/CD Pipeline</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Adopt version control branching strategy</strong>
+              <p>Use GitFlow branching: main (production-ready), develop (integration branch), feature/* (new features), release/* (release candidates), hotfix/* (emergency production fixes). Feature branches are merged to develop via pull requests with required approvals. Develop is merged to a release branch for staging testing. Release branches are merged to main and tagged with a version number (semantic versioning: v2.5.0). Hotfix branches are created from main and merged to both main and develop.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Configure automated testing in CI</strong>
+              <p>The CI pipeline runs on every push to any branch. Stages: lint (ruff, flake8, mypy for Python; ESLint for React), type checking (pyright), unit tests (pytest with 80% coverage threshold), integration tests (pytest with database), build (Docker image), and security scan (trivy for container vulnerabilities). The pipeline fails if any stage fails. Use GitHub Actions or GitLab CI with caching for faster runs — layer caching for Docker builds reduces build time by 60%.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Build Docker images and push to registry</strong>
+              <p>Each CI run that passes tests builds a Docker image tagged with the commit SHA and branch name. For main branch builds, also tag as latest and with the semantic version. Push to your container registry (Docker Hub, GitHub Container Registry, or AWS ECR). Use multi-stage builds to keep images small — the production image contains only the application binary and its runtime dependencies, not the build tools. Target image size: under 200 MB.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Automate database migration deployment</strong>
+              <p>Database migrations use Alembic. The CI/CD pipeline runs alembic upgrade head as part of the deployment, before the new application version starts. Safe deployment order: run migrations first (backward-compatible only — never drop columns), then deploy the new application code. If a migration needs to add a NOT NULL column, add it as nullable first, backfill data, then add the NOT NULL constraint in a second migration. Rollback procedure: alembic downgrade -1 followed by deploying the previous application version.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Run smoke tests post-deployment</strong>
+              <p>After deployment, run automated smoke tests against the production environment: health check endpoint returns 200, login flow works, key API endpoints respond, database connection is live, and background task queue is processing. If any smoke test fails, the pipeline triggers an automatic rollback to the previous version. The smoke test report is sent to the deployment channel (Slack/Teams). Manual verification by the QA team follows within 30 minutes.</p>
+            </div>
+          </div>
+
+          <h2>Manage Database Backups and DR</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Configure automated backup schedule</strong>
+              <p>Set up pg_dump for PostgreSQL backups: full backup daily at 01:00, incremental WAL archiving every 15 minutes. Backup retention: daily backups for 30 days, weekly for 12 weeks, monthly for 12 months. Use pgBackRest or barman for enterprise-grade backup management with parallel backup and restore. Store backups in a different location from the database server — ideally a different region (cross-region S3 bucket). Test backup integrity with a weekly automated restore to a staging database.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Configure point-in-time recovery</strong>
+              <p>Enable WAL archiving to support point-in-time recovery (PITR). Configure wal_level = replica and archive_command to copy WAL segments to S3. With 15-minute WAL intervals, you can recover to any point within 15 minutes of the incident. Recovery procedure: restore the latest full backup, apply WAL segments up to the desired point in time, and verify data consistency. Document the PITR procedure and test it quarterly — the RTO (recovery time objective) should be under 4 hours.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Set up cross-region backup replication</strong>
+              <p>For disaster recovery, replicate backups to a secondary region. Use S3 cross-region replication for backup files. In the secondary region, maintain a standby database that receives streaming replication from the primary. If the primary region fails, promote the standby to primary. The DR site should have identical infrastructure (load balancer, app servers, cache) ready to start. Automate the failover procedure with a runbook that takes under 30 minutes to execute.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Conduct disaster recovery drills</strong>
+              <p>Run DR drills quarterly: simulate a primary database failure, invoke the failover procedure, and measure RTO vs target. Steps: stop the primary database, trigger the failover script, verify the standby has been promoted, start the application pointing to the new primary, and run smoke tests. Document the actual RTO and any issues encountered. After the drill, fail back to the primary region and document lessons learned. The DR drill log is required for compliance audits (ISO 27001, SOC 2).</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Validate backup restores</strong>
+              <p>A backup is only useful if it can be restored. Automate a weekly restore test: restore the latest backup to a staging environment, run data integrity checks (row counts match, foreign keys valid, no missing indexes), and execute a subset of integration tests against the restored database. The restore test report is emailed to the infrastructure team. If a restore fails, incident response is triggered — the backup may be corrupted and needs investigation before the next full backup.</p>
+            </div>
+          </div>
+
+          <h2>Configure Monitoring and Alerting</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Expose application health check endpoints</strong>
+              <p>The application provides three health check endpoints: /health (basic — returns 200 if the app is running), /health/ready (readiness — checks database and Redis connectivity), and /health/live (liveness — checks all dependencies including queue and storage). Configure your load balancer to use /health/ready for target group health checks. The health check page shows each dependency's status (up/down) and response time. Monitor health check failures in your alerting system.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Collect metrics with Prometheus</strong>
+              <p>The application exposes metrics at /metrics in Prometheus format: HTTP request count and duration (by endpoint, method, and status), database query count and duration, cache hit/miss ratio, queue size and processing time, and active user sessions. Configure Prometheus to scrape metrics every 15 seconds. Set retention to 30 days for high-resolution metrics and 12 months for downsampled data. Create a Grafana dashboard for each service: Application Overview, Database Performance, Queue Health, and Infrastructure.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Implement structured logging with correlation IDs</strong>
+              <p>All application logs are structured JSON: {"timestamp": "2026-06-30T10:00:00Z", "level": "INFO", "logger": "api.purchase_order", "message": "PO created", "correlation_id": "abc-123-def", "user_id": 42, "po_id": 1001, "duration_ms": 150}. Every HTTP request generates a unique correlation ID (UUID) that flows through all related log entries, database queries, and external calls. This enables end-to-end tracing of a single transaction. Configure log level per service: DEBUG for development, INFO for staging, WARN for production.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Aggregate logs with Loki or Elasticsearch</strong>
+              <p>Deploy Loki (lighter weight, native Grafana integration) or Elasticsearch for log aggregation. Use Promtail (Loki) or Filebeat (Elasticsearch) as the log shipper. Configure log retention: 7 days for searchable hot storage, 30 days for warm storage, 12 months for cold/archive storage. Create log-based alerts: ERROR log rate exceeds 100/hour triggers a warning; FATAL log triggers an immediate critical alert. The log explorer allows searching by correlation_id, user_id, or module.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Configure alert rules and notification channels</strong>
+              <p>Define alert rules in Prometheus/Alertmanager: CPU > 80% for 5 minutes, memory > 85%, disk > 90%, 5xx error rate > 1%, p95 response time > 2s, queue depth > 1000, and database connections > 80% of max. Alert severity: Warning (email, Slack), Critical (PagerDuty, SMS), and Info (dashboard only). Set up notification routing: infrastructure alerts go to DevOps, application alerts go to the development team, business alerts (e.g., payment failures) go to support.</p>
+            </div>
+          </div>
+
+          <h2>Implement Single Sign-On (SSO)</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Configure SAML 2.0 identity provider</strong>
+              <p>Navigate to Settings → Security → SSO → SAML. Enter the IdP metadata URL or upload the metadata XML. Configure: Entity ID (your subdomain), Assertion Consumer Service URL (https://yourcompany.innvisions.app/auth/saml/callback), and Name ID format (email). Map IdP attributes to system fields: givenName → first_name, sn → last_name, mail → email, and memberOf → role. Test the SAML flow by clicking Test Connection — the system attempts a full SAML authentication flow and reports any errors.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Set up OAuth 2.0 / OpenID Connect</strong>
+              <p>For OIDC, configure the provider (Azure AD, Google Workspace, Okta). Enter the Client ID, Client Secret, and Discovery URL (https://accounts.example.com/.well-known/openid-configuration). Configure scopes: openid, profile, email, and roles. Map the sub claim to the user ID and the email claim to the user's email address. Enable JWT validation — the system verifies the token signature, expiry, and issuer. OIDC is recommended for new integrations due to its simpler token management compared to SAML.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Integrate with LDAP directory</strong>
+              <p>For on-premise deployments, configure LDAP authentication. Navigate to Settings → Security → LDAP. Enter: LDAP server (ldaps://ldap.company.com:636), base DN (dc=company,dc=com), bind DN and password, user search filter ((uid={username})), and group membership attribute (memberOf). Test the connection by searching for a known user. LDAP sync can be scheduled to import users and group memberships daily. LDAPS (port 636) is mandatory — plain LDAP (port 389) is not supported for security reasons.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Configure SCIM user provisioning</strong>
+              <p>SCIM (System for Cross-domain Identity Management) automates user provisioning and de-provisioning. The system supports SCIM 2.0 as both a provider and a consumer. Configure the SCIM base URL (https://yourcompany.innvisions.app/api/scim/v2) and generate a SCIM bearer token. User lifecycle events (Create, Update, Deactivate) are pushed from the identity provider to the system. When a user is deactivated in the IdP, the system revokes all sessions and marks the user as inactive. Schedule a daily SCIM sync to reconcile any discrepancies.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Manage sessions and timeouts</strong>
+              <p>Configure session policies: idle timeout (30 minutes), absolute session timeout (8 hours), remember-me timeout (7 days), and concurrent session limit (1 session per user enforced). Session invalidation on password change — all existing sessions are terminated when a user changes their password. Single logout (SLO) is supported for SAML — when a user logs out of the system, the IdP also terminates their session. The session management dashboard shows active sessions with the ability to force-terminate suspicious sessions.</p>
+            </div>
+          </div>
+
+          <h2>Secure the Platform</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Manage TLS certificates with auto-renewal</strong>
+              <p>Use Let's Encrypt with certbot for automated TLS certificate issuance and renewal. Configure certbot with the webroot or DNS challenge. For DNS challenge, set up the appropriate DNS provider plugin (Route53, Cloudflare, DigitalOcean). Renewal runs automatically 30 days before expiry. Monitor certificate expiry dates — Grafana dashboard with a Prometheus blackbox exporter that alerts when a certificate is within 14 days of expiry. Never let a certificate expire in production — it will cause immediate service disruption.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Configure Web Application Firewall</strong>
+              <p>Deploy ModSecurity with the OWASP Core Rule Set (CRS) in front of the application. Enable rules for SQL injection, XSS, CSRF, path traversal, and remote file inclusion. Configure WAF logging to a separate log file for incident analysis. Set the WAF to Detection Only mode initially — monitor false positives for 2 weeks, then switch to Prevention mode. Create custom rules for business logic: block requests to /admin from non-office IP ranges, and rate-limit login attempts to 5 per minute per IP.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Implement rate limiting</strong>
+              <p>Rate limiting is enforced at two levels: nginx (per IP) and application (per API key). Standard tier: 1 000 requests/minute per API key. Enterprise tier: 10 000 requests/minute. Unauthenticated endpoints (login, password reset): 10 requests/minute per IP. Exceeded limits return HTTP 429 with a Retry-After header. The rate limit dashboard shows top consumers and throttled requests. Configure rate limit by endpoint sensitivity — /api/reports endpoints have stricter limits than /api/customers.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Set up IP whitelisting for admin access</strong>
+              <p>Restrict access to /admin/* and /api/admin/* to whitelisted IP ranges only. Configure this at the nginx level: allow 192.168.0.0/16; allow 10.0.0.0/8; deny all. For cloud deployments, use the security group to restrict access to the admin load balancer to office IPs or VPN IPs. Remote administrators must connect via the corporate VPN to access the admin interface. Block all direct database port access (5432) from the internet — only application servers should reach the database.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Set security headers and vulnerability scanning</strong>
+              <p>Configure security headers in nginx: Content-Security-Policy (restrict script sources), Strict-Transport-Security (max-age=31536000; includeSubDomains), X-Content-Type-Options (nosniff), X-Frame-Options (DENY), and Referrer-Policy (strict-origin-when-cross-origin). Schedule weekly vulnerability scanning with Trivy or OWASP ZAP. Critical vulnerabilities must be patched within 48 hours, high within 7 days, medium within 30 days. The vulnerability scan report is reviewed in the monthly security committee meeting.</p>
+            </div>
+          </div>
+
+          <h2>Manage API Lifecycle</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Define API versioning strategy</strong>
+              <p>The API uses URL path versioning: /api/v1/... and /api/v2/... When a breaking change is required, create a new version (v2) while maintaining v1 for existing integrations. Non-breaking changes (adding fields, new endpoints) do not require a version bump. Each API version is documented separately in Swagger (docs/v1, docs/v2). Maintain backward compatibility for a minimum of 12 months after a new version is released. The deprecation header (Sunset) informs clients when a version will be removed.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Implement deprecation policy with sunset headers</strong>
+              <p>When an API version is deprecated, the system includes a Sunset HTTP header: Sunset: Sat, 31 Dec 2027 23:59:59 GMT. Additionally, a Warning header is returned: Warning: 299 - "API version 1 is deprecated. Upgrade to v2 before Dec 2027." All deprecated endpoints are logged to a deprecation dashboard that shows which API keys are still using the old version. 6 months before sunset, send an email notification to the API key owner. After the sunset date, the old version returns 410 Gone.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Maintain API changelog documentation</strong>
+              <p>Every API change is documented in the Changelog (available at /api/changelog). Entries include: version, date, change type (added, changed, deprecated, removed), description, and migration notes for breaking changes. The changelog is published as a machine-readable JSON file and a human-readable Markdown page. API consumers are encouraged to subscribe to the changelog RSS feed. The changelog is automatically updated when a new API version is deployed.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Configure API key rotation policy</strong>
+              <p>API keys should be rotated regularly: standard keys every 90 days, admin keys every 30 days. The system supports two active keys per integration — generate a new key before the old one expires, update the integration, then revoke the old key. The API key dashboard shows key age, last used date, and rotation status. Keys older than 180 days are flagged as non-compliant. Automatically revoke keys that have not been used for 12 months. Key rotation audit trail records every change.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Track API usage analytics and billing</strong>
+              <p>The API Usage Dashboard shows: requests per day, endpoint popularity, average response time, error rate, and top consumers by request volume. Usage data is used for billing (per-API-call pricing tiers) and capacity planning. Set usage quotas per API key — when 80% of the quota is reached, send a warning notification. When the quota is exceeded, the API returns 429 (Too Many Requests) or 403 (Quota Exceeded). Export monthly usage reports for customer billing.</p>
+            </div>
+          </div>
+
+          <h2>Configure Webhooks and Integrations</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Subscribe to webhook events</strong>
+              <p>Navigate to Settings → Integrations → Webhooks → New Subscription. Select the event to subscribe to: order.created, order.updated, payment.received, invoice.created, user.created, stock.updated. Each event has a specific payload schema documented in the API docs. Enter the target URL (your endpoint that will receive the webhook). Test the subscription by clicking Send Test Event — the system sends a sample payload to your endpoint and displays the response. Enable retry on failure.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Verify webhook payload signing</strong>
+              <p>Each webhook payload is signed with HMAC-SHA256 using your webhook secret. The signature is sent in the X-Webhook-Signature header. Your endpoint must compute HMAC-SHA256 of the raw request body using the shared secret and compare it to the header value. Never verify the signature against the parsed JSON — whitespace differences will cause mismatches. The webhook also includes X-Webhook-Event (event type) and X-Webhook-ID (unique delivery ID for idempotency). Reject requests without a valid signature.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Configure retry policy with exponential backoff</strong>
+              <p>If your endpoint returns a non-2xx status or doesn't respond within 10 seconds, the system retries with exponential backoff: 1 minute, 5 minutes, 15 minutes, 1 hour, 4 hours, 12 hours, 24 hours. After 7 failed attempts, the webhook subscription is marked as Failing and the integration owner is notified. The Failing status does not stop delivery — the system continues retrying daily until successful or manually disabled. Idempotency is critical — your endpoint may receive the same webhook multiple times.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Monitor webhook delivery</strong>
+              <p>The Webhook Dashboard shows delivery metrics: total deliveries, successful deliveries, failed deliveries, average response time, and retry rate. Each delivery has a log entry with request URL, payload size, response status, response body (first 1KB), and duration. Filter by webhook subscription or event type. Set up an alert when the failure rate exceeds 5% in a 1-hour window. The dashboard also shows pending retries and their next attempt time.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Manage dead letter queue</strong>
+              <p>Webhooks that have permanently failed (exceeded all retries) are moved to the Dead Letter Queue (DLQ). The DLQ stores the webhook payload, delivery history, and the last error message. Review the DLQ weekly — manually replay events by clicking Resend, or skip/delete events that are no longer relevant. Set a DLQ alert when the queue depth exceeds 100 messages — this indicates a systemic integration issue. DLQ messages older than 30 days are automatically purged.</p>
+            </div>
+          </div>
+
+          <h2>Set Up Mobile App and Offline Sync</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Optimise mobile API endpoints</strong>
+              <p>Mobile endpoints are batched and compressed to minimise data usage. Use GraphQL for mobile queries — the client requests only the fields it needs. Enable response compression (gzip) at the nginx level. Batch requests: send multiple API operations in a single HTTP request to reduce round trips. The mobile API base URL (https://yourcompany.innvisions.app/api/mobile/v1) has separate rate limits (higher per-minute but lower per-day) optimised for mobile usage patterns.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Design offline data store strategy</strong>
+              <p>The mobile app uses a local SQLite database for offline data storage. Synchronised data includes: customer records, stock items, job cards, and lookup tables (categories, statuses). Each record has a sync_status field: synced, pending_create, pending_update, pending_delete. The sync engine syncs the most recently accessed 500 records and all high-priority tables (lookup data). Total local storage typically uses 50–200 MB. The user can manually select records for offline access before entering a low-connectivity area.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Configure sync conflict resolution</strong>
+              <p>When the same record is modified offline and online, a sync conflict occurs. The default resolution strategy is Last-Write-Wins (LWW) based on the updated_at timestamp. For critical fields (stock quantity, order status), use a Merge strategy: the system tries to reconcile non-conflicting field changes. If fields conflict, the server version wins and the offline change is stored in a conflict log for manual review. The conflict dashboard shows unresolved conflicts — review and resolve within 24 hours.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Monitor sync status dashboard</strong>
+              <p>The Sync Dashboard shows: total devices, last sync time per device, pending uploads per device, sync success rate, and average sync duration. Devices that have not synced in more than 7 days are flagged as Stale. Devices with a sync success rate below 90% trigger a support ticket. The dashboard also shows sync volume (records uploaded and downloaded) to identify unusual activity. Export the sync report for monthly capacity planning.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Configure push notifications</strong>
+              <p>Push notifications are delivered via Firebase Cloud Messaging (Android) and Apple Push Notification Service (iOS). Configure the FCM server key and APNS certificate in Settings → Mobile → Push Notifications. Notification types: approval requests (PO approval, timesheet approval), task assignments, overdue reminders, and system announcements. Each device registers a push token with the system — tokens are refreshed automatically. The push notification dashboard shows delivery rates, open rates, and undelivered notifications.</p>
+            </div>
+          </div>
+
+          <h2>Perform Security Hardening</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Harden Linux servers with CIS benchmarks</strong>
+              <p>Apply the CIS Benchmark for Ubuntu/Debian servers: disable root SSH login, use key-based authentication only, configure Fail2ban for SSH brute-force protection, set umask to 027, enable auditd for system call auditing, disable unused services (cups, avahi, bluetooth), configure kernel parameters (sysctl) for network hardening (disable IP forwarding, enable TCP SYN cookies), and set password policies (min length 14, complexity requirements, expiry 90 days). Run CIS-CAT or OpenSCAP to scan compliance — target 90%+ score.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Secure Docker containers</strong>
+              <p>Run containers as non-root users — define USER in the Dockerfile. Use read-only root filesystem (read_only: true in Docker Compose). Drop all Linux capabilities (cap_drop: ALL) and add only required ones (cap_add: NET_BIND_SERVICE for port binding). Enable Docker Content Trust for image signing. Scan images with Trivy in the CI pipeline — fail builds with critical vulnerabilities. Use Docker Bench Security to audit the Docker host configuration monthly. Never mount the Docker socket into a container.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Encrypt database at rest and in transit</strong>
+              <p>Enable Transparent Data Encryption (TDE) in PostgreSQL using pg_tde extension or filesystem-level encryption (LUKS). All database connections require TLS — configure ssl = on in postgresql.conf and reject non-TLS connections with hostssl entries in pg_hba.conf. Backup files are encrypted with AES-256 using GPG or AWS KMS. Application secrets (DB password, API keys) are stored in environment variables encrypted at rest by Docker secrets or HashiCorp Vault. Never hardcode secrets in application code.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Scan for secrets in CI/CD</strong>
+              <p>Use git-secrets or truffleHog to scan the repository for accidentally committed secrets before every push. The CI/CD pipeline includes a secrets scan stage that checks all files (including binaries with truffleHog). If a secret is found, the pipeline fails and the commit is blocked. If a secret was committed before the scan was implemented, the security team is notified, the secret is rotated, and the commit history is purged using git filter-branch or BFG Repo-Cleaner.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Develop security incident response plan</strong>
+              <p>Document the incident response plan: Identification (alert from monitoring or user report), Containment (isolate affected systems, revoke compromised credentials), Eradication (remove malware, patch vulnerability), Recovery (restore from clean backup, verify system integrity), and Lessons Learned (root cause analysis, update procedures). Conduct tabletop exercises quarterly — simulate a breach scenario and walk through the response procedure. The incident response runbook is stored in the document repository and reviewed annually.</p>
+            </div>
+          </div>
+
+          <div class="guide-callout guide-callout--warn">
+            <strong>Warning</strong>
+            <p>Never store secrets in environment files committed to version control. Use Docker secrets, HashiCorp Vault, or the secrets manager of your cloud provider. A single committed secret can lead to a full system compromise.</p>
+          </div>
+
+          <div class="guide-callout guide-callout--info">
+            <strong>Info</strong>
+            <p>The platform supports both SAML 2.0 and OAuth 2.0/OpenID Connect for SSO. OIDC is recommended for new integrations due to simpler token management and native mobile app support via PKCE flow.</p>
+          </div>
+
+          <div class="guide-callout guide-callout--tip">
+            <strong>Tip</strong>
+            <p>Configure database point-in-time recovery with 15-minute granularity using WAL archiving. This limits data loss to at most 15 minutes in a disaster scenario. Test PITR quarterly.</p>
+          </div>
+
+          <div class="guide-callout guide-callout--info">
+            <strong>Info</strong>
+            <p>API rate limits are 1 000 requests/minute per key for standard plans and 10 000/minute for enterprise. Exceeded limits return HTTP 429 with a Retry-After header indicating when the client can retry.</p>
+          </div>
+
+          <div class="guide-callout guide-callout--tip">
+            <strong>Tip</strong>
+            <p>Test your disaster recovery plan quarterly by performing a full restore to a staging environment. Document the RTO achieved and identify areas for improvement in the recovery procedure.</p>
+          </div>
+
+          <h2>Related Modules</h2>
+          <div class="guide-grid">
+            <a href="financials.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Financial Management</h4>
+              <p>Scheduled report exports and API-based GL integration are configured through platform endpoints. API keys with finance scope have read/write access to GL data for external system integration.</p>
+            </a>
+            <a href="compliance.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Compliance &amp; Governance</h4>
+              <p>Audit trail immutability relies on database-level safeguards configured during deployment. Backup retention must align with regulatory record-keeping requirements for financial and HR data.</p>
+            </a>
+            <a href="stock.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Stock &amp; Inventory</h4>
+              <p>Mobile barcode scanning and offline stock counting depend on the platform's sync engine. Conflict resolution rules handle concurrent stock updates from multiple warehouse devices.</p>
+            </a>
+            <a href="crm-sales.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>CRM &amp; Sales</h4>
+              <p>Customer portal SSO uses the platform authentication infrastructure. Portal API access is managed through the same API key framework used for third-party integrations.</p>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="dot-grid"></div>
+    <div class="cta-orb cta-orb--blue"></div>
+    <div class="cta-orb cta-orb--teal"></div>
+    <div class="container cta-content">
+      <h2 class="reveal">Need more help?</h2>
+      <p class="reveal delay-2">Get in touch with our team. We're here to help you get the most out of InnoVisions.</p>
+      <a href="../contact.html" class="btn btn-primary reveal delay-3">Contact Support →</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+            <div class="logo-mark">IV</div>
+            <span class="logo-text" style="color:#fff">InnoVisions</span>
+          </a>
+          <p>One platform for your entire business. Customers, inventory, jobs, finance, and support — deeply integrated.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="../features.html">Features</a>
+          <a href="../pricing.html">Pricing</a>
+          <a href="../compare.html">Compare</a>
+          <a href="../about.html">About</a>
+          <a href="index.html">Guides</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="https://app.innvisions.co.za/register">Get Started</a>
+          <a href="https://app.innvisions.co.za/login">Sign In</a>
+          <a href="index.html">Documentation</a>
+          <a href="../contact.html">Support</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms of Service</a>
+          <a href="../data-processing.html">Data Processing</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 InnoVisions ERP. All rights reserved.</span>
+        <span>Built in South Africa 🇿🇦</span>
+      </div>
+    </div>
+  </main>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
