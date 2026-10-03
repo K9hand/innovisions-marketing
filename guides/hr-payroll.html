@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HR &amp; Payroll Guide — InnoVisions ERP</title>
-  <meta name="description" content="Step-by-step guide to managing HR and payroll in InnoVisions ERP: employee management, payroll runs, PAYE/UIF calculations, leave tracking, ESS portal, and IRP5 certificates.">
+  <title>HR &amp; Payroll Guide — InnoVisions</title>
+  <meta name="description" content="Employees, clocking and timesheets, how the payroll engine applies the SARS tables, issuing payslips and what they post, leave, and the EMP201 and EMP501 / IRP5 file.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -16,21 +16,17 @@
 
   <header class="header">
     <div class="container header-inner">
-      <a href="/" class="logo">
-        <div class="logo-mark">IV</div>
-        <span class="logo-text">InnoVisions<span class="erp-badge">ERP</span></span>
+      <a href="../index.html" class="logo">
+        <span class="logo-text">InnoVisions</span>
+        <span class="logo-slogan">From Vision to Innovation</span>
       </a>
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
       </button>
       <nav class="nav" id="nav">
         <a href="../features.html">Features</a>
-        <a href="../pricing.html">Pricing</a>
         <a href="../compare.html">Compare</a>
-        <a href="../about.html">About</a>
         <a href="index.html">Guides</a>
-        <a href="../contact.html">Contact</a>
-        <a href="https://app.innvisions.co.za/login" class="btn btn-primary">Sign In</a>
       </nav>
     </div>
   </header>
@@ -39,7 +35,7 @@
   <section class="page-header">
     <div class="dot-grid"></div>
     <h1 class="animate-fade-up">HR &amp; Payroll</h1>
-    <p class="animate-fade-up delay-2">Step-by-step guide to managing HR and payroll in InnoVisions ERP: employee management, payroll runs, PAYE/UIF calculations, leave tracking, ESS portal, and IRP5 certificates.</p>
+    <p class="animate-fade-up delay-2">Employees, clocking and timesheets, how the payroll engine applies the SARS tables, issuing payslips and what they post, leave, and the EMP201 and EMP501 / IRP5 file.</p>
   </section>
 
   <section class="section">
@@ -49,6 +45,7 @@
         <aside class="guide-sidebar">
           <h4>All Guides</h4>
           <ul>
+            <li><a href="accounting-rules.html">Accounting Policies &amp; Tax Treatment</a></li>
             <li><a href="financials.html">Financial Management</a></li>
             <li><a href="stock.html">Stock &amp; Inventory</a></li>
             <li><a href="production.html">Production &amp; Manufacturing</a></li>
@@ -65,280 +62,230 @@
 
           <div class="guide-meta">
             <span class="guide-meta-item"><strong>Module:</strong> HR &amp; Payroll</span>
-            <span class="guide-meta-item"><strong>Difficulty:</strong> Advanced</span>
-            <span class="guide-meta-item"><strong>Prerequisites:</strong> Company tax settings configured with SARS rates, employee records created</span>
+            <span class="guide-meta-item"><strong>Prerequisites:</strong> Chart of accounts set up (accounts 1000, 6000, 6010, 2300–2340); company registered for PAYE, UIF and, where it applies, SDL</span>
           </div>
 
-          <p>The HR &amp; Payroll module manages the full employee lifecycle — from hire to termination. It handles complex payroll calculations (overtime, shift differentials, commissions), SARS-compliant PAYE/UIF/SDL deductions, leave accrual and tracking, employee self-service, and year-end IRP5 generation. Every payroll run posts to the GL with cost centre allocation for accurate departmental P&amp;L reporting.</p>
+          <h2>Overview</h2>
+          <p>Payroll in InnoVisions is part of the main system, not a separate package. You keep employees under <strong>Resources → Employees</strong>, create a payslip for each employee, and issue it. Issuing posts the journal to the general ledger. The issued payslips then feed the EMP201 and the EMP501 / IRP5 file for SARS. Leave and the PAYE tables sit under the <strong>HR</strong> menu.</p>
 
-          <div class="guide-callout guide-callout--warn">
-            <strong>Warning</strong>
-            <p>Payroll runs should always be previewed and verified before posting. Run the pre-payroll validation report to check for missing data — unverified timesheets, unallocated earnings, and GL mapping errors.</p>
-          </div>
-
-          <h2>Configure Advanced Payroll Settings</h2>
+          <h2>Set Up Employees</h2>
           <div class="guide-step">
             <div class="guide-step-number">1</div>
             <div class="guide-step-body">
-              <strong>Set up earnings and deduction codes</strong>
-              <p>Navigate to Payroll → Settings → Earnings/Deductions. Define all earning types (basic salary, overtime, commission, bonus, allowance) and deduction types (PAYE, UIF, pension fund, medical aid, garnishee, union dues). Each code maps to a GL account and has a tax treatment classification.</p>
+              <strong>Add the employee</strong>
+              <p>Go to <strong>Resources → Employees</strong> and add the employee. Capture the full name, SA ID number, tax number, UIF number, department, position, start date, employment type (full time, part time or contractor) and monthly salary or hourly rate.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">2</div>
             <div class="guide-step-body">
-              <strong>Configure pay groups</strong>
-              <p>Create pay groups for different employee categories — monthly salaried, weekly wage, expatriate, contractors. Each group has a payroll frequency, default earnings, and processing calendar. Pay groups can be processed independently on different schedules.</p>
+              <strong>Capture the payroll details</strong>
+              <p>On the employee's <strong>Edit</strong> tab, capture the residential address, how salary is paid and the bank details, the retirement fund type (pension, provident or retirement annuity) with the employee and employer percentages, the medical aid contribution per month and the number of medical aid members (including the employee). Date of birth is taken from the SA ID if you leave it blank; age sets the rebate.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">3</div>
             <div class="guide-step-body">
-              <strong>Set SARS tax table version</strong>
-              <p>Tax tables are updated annually by SARS. Configure the current tax year's tables including tax brackets, rebates (primary, secondary, tertiary), and tax thresholds. The system auto-calculates PAYE using the active table version. Set a reminder for annual table updates.</p>
-            </div>
-          </div>
-
-          <h2>Process Payroll with Complex Earnings</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Configure overtime rules</strong>
-              <p>Navigate to Payroll → Settings → Overtime Rules. Define overtime multipliers: 1.5x for normal overtime, 2x for Sundays, 2.5x for public holidays. Set daily and weekly overtime thresholds. Overtime can be calculated automatically from approved timesheets or entered manually.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Create a payroll run</strong>
-              <p>Navigate to Payroll → Payroll Runs → New. Select the pay group, period, and month. The system loads all active employees. Verify timesheet data, ad-hoc adjustments, overtime, commissions, and deductions. Run the pre-payroll validation to flag issues before processing.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Handle retroactive adjustments</strong>
-              <p>For late timesheets or salary corrections, use retroactive adjustment entries. The system recalculates PAYE for the adjusted period and shows the net adjustment on the current payslip. Retroactive entries are flagged in the audit trail and on the payslip for employee transparency.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Preview and post</strong>
-              <p>Generate payslip previews for all employees. Verify gross-to-net calculations. Run the payroll validation report checking: GL account mapping completeness, zero net pay exceptions, high-value adjustment flags. Post to finalise — this makes payslips available on ESS and creates the GL journal.</p>
-            </div>
-          </div>
-
-          <div class="guide-callout guide-callout--tip">
-            <strong>Tip</strong>
-            <p>Set up pay groups to run payroll for different employee categories separately — monthly salaried vs weekly wage staff can have different processing schedules.</p>
-          </div>
-
-          <h2>Manage PAYE, UIF, and SDL</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Review SARS calculations</strong>
-              <p>After each payroll run, navigate to Payroll → SARS Returns. The system calculates PAYE using current tax tables with correct rebates. Verify UIF at 1% employee + 1% employer (capped at the annual threshold). SDL is calculated at 1% if the employer's annual payroll exceeds the R500,000 threshold.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Generate and reconcile EMP201</strong>
-              <p>The EMP201 return aggregates PAYE, UIF, and SDL for the month. Run the EMP201 reconciliation report comparing the return totals against GL liability accounts. Any discrepancy must be investigated before submission. Schedule EMP201 generation as part of the month-end checklist.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Submit to SARS eFiling</strong>
-              <p>Export the EMP201 file in SARS XML format. Upload via eFiling and record the submission reference number in the system. Track payment due dates — EMP201 is due by the 7th of the following month. Late submissions incur penalties of 10% of the amount due plus interest.</p>
-            </div>
-          </div>
-
-          <h2>Handle Third-Party Payments</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Configure deduction codes</strong>
-              <p>Set up third-party deduction codes for garnishee orders, union membership fees, pension fund contributions, and medical aid. Each code requires a third-party reference (garnishee order number, union code, fund membership number).</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Process deductions in payroll</strong>
-              <p>Deductions are automatically calculated during payroll based on employee deduction profiles. Garnishee deductions follow the prescribed percentage or fixed amount per the court order. Pension fund deductions can be fixed amount, fixed percentage, or percentage of pensionable earnings.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Generate payment batches</strong>
-              <p>After payroll posting, generate third-party payment batches per deduction type. The system aggregates all employee deductions for each third party and creates a payment file. Include remittance advice with employee-level breakdown. Schedule payments in line with each third party's terms.</p>
-            </div>
-          </div>
-
-          <h2>Configure GL Integration for Payroll</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Map earnings and deductions to GL accounts</strong>
-              <p>Navigate to Payroll → Settings → GL Mapping. Map each earning code to the appropriate expense GL account (e.g., Salaries — 6100, Overtime — 6110, Employer Pension — 6150). Map deduction codes to liability accounts (e.g., PAYE Liability — 2200, Pension Fund Payable — 2250).</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Configure cost centre allocation</strong>
-              <p>Set up payroll cost allocation rules by department or employee. For example, production department salaries allocate to 80% Cost Centre A (Manufacturing) and 20% Cost Centre B (Maintenance). The allocation split is applied automatically during payroll GL posting.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Run month-end payroll accrual</strong>
-              <p>If payroll crosses month-end, run the payroll accrual journal to match costs to the correct period. The accrual estimates salary costs based on the prior run and reverses when the actual payroll posts. This ensures accurate monthly P&amp;L even with payroll timing differences.</p>
-            </div>
-          </div>
-
-          <h2>Manage Employee Lifecycle Automations</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Configure onboarding workflow</strong>
-              <p>Navigate to HR → Settings → Onboarding. Create a checklist of tasks triggered on employee creation: IT system access provisioning, benefits enrolment, document collection (contract, ID, tax certificate), mandatory training assignment. HR admins track completion status per new hire.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Set up offboarding process</strong>
-              <p>Configure the termination workflow triggered when an employee's status changes to terminated. Tasks include: final payslip calculation (leave payout, severance pay), asset return tracking, IT access revocation, exit interview scheduling, certificate of service generation.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Manage transfers and promotions</strong>
-              <p>Employee transfer/promotion events update: department assignment, cost centre allocation, salary and grade, manager reporting line. The system retains the employee's history and job change audit trail. Transfer effective date controls payroll allocation for partial periods.</p>
-            </div>
-          </div>
-
-          <h2>Configure Leave Management</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Set up leave types and policies</strong>
-              <p>Navigate to HR → Leave → Settings. Define annual leave (minimum 15 days per year per BCEA), sick leave (30 days per 36-month cycle), family responsibility leave (3 days per year), and study leave. Set accrual method: once-off annual allocation or monthly pro-rata accrual.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Configure leave approval workflow</strong>
-              <p>Set up leave request routing: employee submits → manager approves → HR notified. Configure automatic delegation when managers are on leave. Set escalation if not approved within 48 hours. Leave requests that would exceed available balance require director-level approval.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Track leave liability</strong>
-              <p>Run the leave liability report to calculate the accrued leave cost at month-end. The report shows each employee's leave balance at their current hourly rate. The liability value posts to a leave accrual GL account and reverses as leave is taken.</p>
-            </div>
-          </div>
-
-          <h2>Run Payroll Analytics and Reporting</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Configure payroll dashboards</strong>
-              <p>Navigate to Reports → Payroll Dashboards. Configure widgets: headcount by department, payroll cost trend (monthly/quarterly), overtime as % of total payroll, leave utilisation by type, PAYE/UIF/SDL summary. Dashboards refresh after each payroll run.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Run employee cost analysis</strong>
-              <p>Generate the employee cost analysis report showing total cost per employee (salary, bonuses, employer taxes, benefits). Compare against budget or prior periods. Calculate cost-to-company and total employment cost per FTE. Export for annual budgeting and headcount planning.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Run year-end procedures</strong>
-              <p>Navigate to Payroll → Tax Year-End. Verify year-to-date payroll data. Run IRP5 generation — the system creates certificates for all employees with earnings in the tax year. Distribute IRP5s via ESS and submit EMP501 reconciliation to SARS by the deadline (31 May for manual, 31 July for electronic).</p>
+              <strong>Set up departments</strong>
+              <p>Go to <strong>HR → Departments</strong> to add departments with a code, manager and cost-centre code.</p>
             </div>
           </div>
 
           <div class="guide-callout guide-callout--info">
-            <strong>Info</strong>
-            <p>Retroactive adjustments create additional payslip lines with the correct tax calculation for the adjusted period. The system recalculates PAYE automatically using the SARS tax table in effect for the adjusted period.</p>
+            <strong>Personal information</strong>
+            <p>ID numbers, tax numbers, bank details and salaries are personal information under POPIA. Give HR permissions only to staff who need them, under <strong>Settings → Access</strong>.</p>
+          </div>
+
+          <h2>Time: Clocking and Timesheets</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Clock in and out</strong>
+              <p>The employee's <strong>Clocking</strong> tab records clock-in and clock-out events and shows the last one.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Capture and approve timesheets</strong>
+              <p>On the <strong>Timesheets</strong> tab, add a timesheet with lines for regular and overtime hours. Approve it, then mark it paid once it has been through payroll.</p>
+            </div>
+          </div>
+
+          <h2>How the Payroll Engine Calculates</h2>
+          <p>The payroll engine follows the SARS tables for the tax year of the pay date. Tables for the 2026 and 2027 tax years are built in. Each new tax year is added from the official SARS pages before 1 March.</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead>
+                <tr><th>Item</th><th>Rule used</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>PAYE</td><td>Monthly remuneration less deductible retirement contributions, × 12; tax per the SARS tables less the age-based rebates; less medical tax credits; ÷ 12</td></tr>
+                <tr><td>Medical tax credits</td><td>R376 a month for the main member and first dependant, R254 for each additional dependant (2027)</td></tr>
+                <tr><td>UIF</td><td>1% employee and 1% employer; ceiling R17&nbsp;712 a month, so at most R177.12 each</td></tr>
+                <tr><td>SDL</td><td>1% of the leviable amount; not levied where annual payroll will not exceed R500&nbsp;000</td></tr>
+                <tr><td>Retirement funds (s11F)</td><td>Deductible up to 27.5% of remuneration, annual cap R350&nbsp;000 (2026) / R430&nbsp;000 (2027), spread per pay period; employer contributions are a taxable fringe benefit and a deemed employee contribution</td></tr>
+                <tr><td>ETI</td><td>Set off against PAYE only; excess carried forward within the reconciliation period and reset on 1 March and 1 September; not claimed below the national minimum wage; pro-rated below 160 hours</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Create and Issue a Payslip</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Generate the payslip</strong>
+              <p>Open the employee and go to the <strong>Payslips</strong> tab. Click <strong>Generate Payslip</strong>. Enter the period start and end dates and the gross pay (the monthly salary fills in by default).</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Enter PAYE, UIF and other deductions</strong>
+              <p>On this screen you enter the PAYE and employee UIF amounts, and any other deductions. The screen shows a net pay preview. The system adds employer UIF, SDL, ETI, retirement fund and medical aid from the tables and the employee record. The payslip is saved as a draft.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Issue the payslip</strong>
+              <p>Click <strong>Issue</strong>. The payslip and its journal are saved together, or not at all. Once issued, the amounts can no longer be changed.</p>
+            </div>
+          </div>
+
+          <div class="guide-callout guide-callout--warn">
+            <strong>PAYE on the screen</strong>
+            <p>If you leave the PAYE or UIF box blank on the payslip screen, it is saved as zero. Work out the figure first. The full engine calculation (PAYE, UIF, SDL, ETI) is available through the API preview <code>POST /employees/{id}/payslips/calculate</code>; see <code>/api/docs</code>.</p>
+          </div>
+
+          <h2>What Issuing Posts to the Ledger</h2>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead>
+                <tr><th>Account</th><th>Debit</th><th>Credit</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>6000 Salaries and wages</td><td>Gross pay</td><td></td></tr>
+                <tr><td>2300 PAYE payable</td><td></td><td>PAYE</td></tr>
+                <tr><td>2310 UIF payable</td><td></td><td>Employee and employer UIF</td></tr>
+                <tr><td>2320 SDL payable</td><td></td><td>SDL</td></tr>
+                <tr><td>2330 Retirement funds payable</td><td></td><td>Employee and employer contributions</td></tr>
+                <tr><td>2340 Medical aid payable</td><td></td><td>Medical aid</td></tr>
+                <tr><td>6010 Employer payroll contributions</td><td>Employer UIF, SDL, retirement</td><td></td></tr>
+                <tr><td>1000 Bank</td><td></td><td>Net pay</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Where ETI applies, it is posted Dr 2300 / Cr 6010, which lowers PAYE payable and employer cost. Net pay is credited straight to Bank on the payslip date. There is no separate salaries-payable account.</p>
+
+          <h2>PAYE Tables and Calculator</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Maintain the tables</strong>
+              <p>Go to <strong>HR → PAYE</strong>. Here you keep tax brackets, rebates and medical credits per tax year.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Run the calculator</strong>
+              <p>Enter a gross annual income, age and number of medical aid dependants to see the tax breakdown, monthly PAYE and effective rate.</p>
+            </div>
+          </div>
+
+          <div class="guide-callout guide-callout--info">
+            <strong>Two sets of tables</strong>
+            <p>The HR → PAYE calculator uses the brackets entered on that screen. Payslips use the SARS tables built into the payroll engine. Keep the screen's tables in line with SARS so the two agree.</p>
+          </div>
+
+          <h2>Leave</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Set up leave types</strong>
+              <p>Go to <strong>HR → Leave</strong>. Add each leave type with a code, accrual days per year, maximum carry-over days and whether it is paid.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Handle requests</strong>
+              <p>Capture a leave request with the dates, days and reason. A pending request can be approved, rejected (with a reason) or cancelled. Approving deducts the days from the employee's leave balance for that year, where a balance has been set up.</p>
+            </div>
+          </div>
+
+          <h2>SARS Declarations</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>EMP201 each month</strong>
+              <p>Go to <strong>Finance → Financial Reports → EMP201 Declaration</strong>. It totals PAYE, SDL, UIF (employee and employer) and ETI from issued payslips whose period ends in the month. It is due on the 7th of the next month, or the last business day before it when the 7th is on a weekend.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>EMP501 and IRP5 / IT3(a)</strong>
+              <p>Go to <strong>Finance → Financial Reports → EMP501 &amp; IRP5 (e@syFile)</strong>. Pick the interim (March–August) or annual (March–February) period. The screen checks that the certificates agree with the monthly EMP201 totals and lists errors to fix. Then download the TEST or LIVE file to import into SARS e@syFile.</p>
+            </div>
+          </div>
+
+          <div class="guide-callout guide-callout--warn">
+            <strong>Scope and checks</strong>
+            <p>The e@syFile file covers monthly-paid employees with an SA identity number. Anything outside that scope shows as an error, not in the file. The EMP201 due date does not yet move for public holidays. Payroll cents are rounded by the platform's standard rounding, which can be one cent low on an exact half cent; the SARS rounding rule is still being confirmed. Check figures before you submit.</p>
+          </div>
+
+          <h2>Employee Reports</h2>
+          <p>Under <strong>Resources → Employees</strong>, the reports page shows headcount by department and employment type, a salary and rate summary with estimated monthly cost, the employee directory and inactive employees.</p>
+
+          <div class="guide-callout guide-callout--tip">
+            <strong>Tip</strong>
+            <p>Check the ETI rules for your sector. The file uses the national minimum wage; a higher sectoral or bargaining-council wage must be handled by you.</p>
           </div>
 
           <h2>Related Modules</h2>
           <div class="guide-grid">
+            <a href="accounting-rules.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Accounting Policies &amp; Tax Treatment</h4>
+              <p>Section 9 sets out the payroll rules, a worked payslip and the journal in full.</p>
+            </a>
             <a href="financials.html" class="guide-card" style="text-decoration:none;color:inherit">
               <h4>Financial Management</h4>
-              <p>Payroll costs post to GL accounts by department and cost centre allocation. The payroll accrual ensures costs match the correct accounting period when pay dates cross month-end.</p>
+              <p>Issued payslips post to the general ledger; EMP201 and EMP501 sit with the financial reports.</p>
             </a>
             <a href="compliance.html" class="guide-card" style="text-decoration:none;color:inherit">
               <h4>Compliance &amp; Governance</h4>
-              <p>POPIA employee data management, IRP5 audit trail, and EMP201 submission records are auditable from the compliance module with full before/after change tracking.</p>
-            </a>
-            <a href="job-costing.html" class="guide-card" style="text-decoration:none;color:inherit">
-              <h4>Projects &amp; Job Costing</h4>
-              <p>Labour hours captured against job cards during timesheet entry feed into job costing at actual pay rates including overtime, providing real-time labour cost tracking per job.</p>
+              <p>Role permissions and the audit trail control and record who works with payroll data.</p>
             </a>
             <a href="platform.html" class="guide-card" style="text-decoration:none;color:inherit">
               <h4>Platform &amp; Technology</h4>
-              <p>Employee SSO integration, ESS portal permissions, API-based employee data sync, and mobile payslip access are configured from platform-level settings.</p>
+              <p>Users, access rights and the REST API, including the payslip calculation preview.</p>
             </a>
           </div>
 
         </div>
-
       </div>
     </div>
   </section>
 
-  <section class="cta-section">
-    <div class="dot-grid"></div>
-    <div class="cta-orb cta-orb--blue"></div>
-    <div class="cta-orb cta-orb--teal"></div>
-    <div class="container cta-content">
-      <h2 class="reveal">Need more help?</h2>
-      <p class="reveal delay-2">Get in touch with our team. We're here to help you get the most out of InnoVisions.</p>
-      <a href="../contact.html" class="btn btn-primary reveal delay-3">Contact Support →</a>
-    </div>
-  </section>
+  </main>
 
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="/" class="logo">
-            <div class="logo-mark">IV</div>
+          <a href="../index.html" class="logo">
             <span class="logo-text" style="color:#fff">InnoVisions</span>
+            <span class="logo-slogan">From Vision to Innovation</span>
           </a>
-          <p>One platform for your entire business. Customers, inventory, jobs, finance, and support — deeply integrated.</p>
+          <p>Accounting, stock, jobs and payroll in one ledger, built for South African tax rules.</p>
         </div>
         <div class="footer-col">
           <h4>Platform</h4>
           <a href="../features.html">Features</a>
-          <a href="../pricing.html">Pricing</a>
           <a href="../compare.html">Compare</a>
-          <a href="../about.html">About</a>
           <a href="index.html">Guides</a>
-          <a href="../contact.html">Contact</a>
-        </div>
-        <div class="footer-col">
-          <h4>Product</h4>
-          <a href="https://app.innvisions.co.za/register">Get Started</a>
-          <a href="https://app.innvisions.co.za/login">Sign In</a>
-          <a href="index.html">Documentation</a>
-          <a href="../contact.html">Support</a>
         </div>
         <div class="footer-col">
           <h4>Legal</h4>
@@ -348,11 +295,10 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2026 InnoVisions ERP. All rights reserved.</span>
+        <span>&copy; 2026 InnoVisions. All rights reserved.</span>
         <span>Built in South Africa 🇿🇦</span>
       </div>
     </div>
-  </main>
   </footer>
 
   <script src="../js/main.js"></script>

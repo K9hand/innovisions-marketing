@@ -1,3 +1,6 @@
+// Mark that the script runs, so content hidden for the reveal animation can appear.
+document.documentElement.classList.add('js');
+
 document.addEventListener('DOMContentLoaded', () => {
   // ── Mobile Nav ──
   const toggle = document.getElementById('mobile-toggle');

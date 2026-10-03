@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Procurement &amp; Supply Chain Guide — InnoVisions ERP</title>
-  <meta name="description" content="Step-by-step guide to procurement in InnoVisions ERP: purchase orders, supplier management, RFQs, goods receiving, 3-way matching, and spend analytics.">
+  <title>Procurement &amp; Supply Chain Guide — InnoVisions</title>
+  <meta name="description" content="Purchase orders, approvals, goods received, supplier bills from orders, GRN-to-bill matching, supplier notes, reorder planning and payment runs.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -16,21 +16,17 @@
 
   <header class="header">
     <div class="container header-inner">
-      <a href="/" class="logo">
-        <div class="logo-mark">IV</div>
-        <span class="logo-text">InnoVisions<span class="erp-badge">ERP</span></span>
+      <a href="../index.html" class="logo">
+        <span class="logo-text">InnoVisions</span>
+        <span class="logo-slogan">From Vision to Innovation</span>
       </a>
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
       </button>
       <nav class="nav" id="nav">
         <a href="../features.html">Features</a>
-        <a href="../pricing.html">Pricing</a>
         <a href="../compare.html">Compare</a>
-        <a href="../about.html">About</a>
         <a href="index.html">Guides</a>
-        <a href="../contact.html">Contact</a>
-        <a href="https://app.innvisions.co.za/login" class="btn btn-primary">Sign In</a>
       </nav>
     </div>
   </header>
@@ -39,7 +35,7 @@
   <section class="page-header">
     <div class="dot-grid"></div>
     <h1 class="animate-fade-up">Procurement &amp; Supply Chain</h1>
-    <p class="animate-fade-up delay-2">Step-by-step guide to procurement in InnoVisions ERP: purchase orders, supplier management, RFQs, goods receiving, 3-way matching, and spend analytics.</p>
+    <p class="animate-fade-up delay-2">Purchase orders, approvals, goods received, supplier bills from orders, GRN-to-bill matching, supplier notes, reorder planning and payment runs.</p>
   </section>
 
   <section class="section">
@@ -49,6 +45,7 @@
         <aside class="guide-sidebar">
           <h4>All Guides</h4>
           <ul>
+            <li><a href="accounting-rules.html">Accounting Policies &amp; Tax Treatment</a></li>
             <li><a href="financials.html">Financial Management</a></li>
             <li><a href="stock.html">Stock &amp; Inventory</a></li>
             <li><a href="production.html">Production &amp; Manufacturing</a></li>
@@ -64,471 +61,195 @@
         <div class="guide-content">
 
           <div class="guide-meta">
-            <span class="guide-meta-item"><strong>Module:</strong> Procurement</span>
-            <span class="guide-meta-item"><strong>Difficulty:</strong> Advanced</span>
-            <span class="guide-meta-item"><strong>Prerequisites:</strong> Supplier records created, stock items with preferred supplier defined</span>
+            <span class="guide-meta-item"><strong>Module:</strong> Procurement &amp; Supply Chain</span>
+            <span class="guide-meta-item"><strong>Prerequisites:</strong> Suppliers, stock items and at least one warehouse set up; default chart of accounts loaded</span>
           </div>
 
-          <h2>Overview</h2>
-          <p>The Procurement &amp; Supply Chain module covers strategic procurement across the full procure-to-pay cycle — contract management, supplier performance scorecards, blanket purchase agreements, automated RFQ sourcing, 3-way matching with exception handling, multi-currency procurement, quality-driven goods receiving, spend analytics, automated PO generation, and procurement fraud prevention controls.</p>
+          <p>This guide follows a purchase from start to finish: deciding what to buy, raising the purchase order, receiving the goods, adding landed costs, capturing the supplier's bill and paying it. Each step that posts to the general ledger is named, so your accountant can follow the trail.</p>
 
-          <h2>Configure Procurement Settings</h2>
+          <h2>Decide What to Buy</h2>
           <div class="guide-step">
             <div class="guide-step-number">1</div>
             <div class="guide-step-body">
-              <strong>Set PO numbering scheme and prefix</strong>
-              <p>Navigate to Procurement → Settings → Document Numbering. Choose between sequential (PO-00001) or date-based (PO-2026-00001) numbering. Set a department prefix — IT-PO-00001 for IT purchases, OPS-PO-00001 for operations. The prefix determines which approval workflow applies. For multi-entity organisations, enable the company code segment (ZA-IT-PO-00001) to keep POs distinguishable across legal entities.</p>
+              <strong>Set stock levels and lead times</strong>
+              <p>Give each stock item a minimum level, reorder point and maximum level, and link it to its usual supplier. Capture the supplier's lead time in days on the supplier record.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">2</div>
             <div class="guide-step-body">
-              <strong>Configure approval routing by department and amount</strong>
-              <p>Define approval rules in Procurement → Settings → Approval Workflow. Create tiers: POs under R10 000 require one approver, R10 000–R100 000 require two approvers, over R100 000 require a director. Route by department — warehouse POs go to the logistics manager, IT POs to the CTO. Enable the escalation rule: if a PO is pending for more than 48 hours, it escalates to the next approval level automatically.</p>
+              <strong>Review the recommendations</strong>
+              <p>Go to <strong>Finance → Purchasing (AP)</strong> and click <strong>Planning</strong>. Each recommendation looks at stock on hand, stock already on order, open demand from job cards, recent usage, the supplier's lead time and the item's stock levels. It shows a suggested quantity, an estimated cost and the reasons for the suggestion.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">3</div>
             <div class="guide-step-body">
-              <strong>Set default payment terms by supplier category</strong>
-              <p>In Procurement → Supplier Categories, assign default terms: local suppliers Net 30, international suppliers Net 60, government Net 90. Enable early settlement discount capture — 2/10 Net 30 means 2% discount if paid within 10 days. The system calculates the discount during invoice matching and adjusts the AP amount. Override terms at the supplier or PO level when needed for specific arrangements.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Configure purchase requisition workflow</strong>
-              <p>Enable requisitions in Procurement → Settings → Requisition Workflow. Requisitioners create PRs with item descriptions, estimated costs, and required dates. Route PRs through budget holder approval before conversion to POs. Set the auto-convert threshold: PRs under R5 000 convert to POs automatically after approval. Use the PR-to-PO conversion screen to consolidate multiple PRs into a single PO for the same supplier.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Configure document generation templates</strong>
-              <p>In Settings → Document Templates, design PO, RFQ, and GRN layouts. Use merge fields for supplier name, delivery address, line items, and terms. Add your company logo, VAT number, and PO terms footer. Create separate print (PDF) and email (HTML) layouts. Test each template by previewing with a sample PO before activating it for production use.</p>
+              <strong>Create the order from a recommendation</strong>
+              <p>Click <strong>Create Draft PO</strong> on a recommendation to raise a draft purchase order for that item with its supplier.</p>
             </div>
           </div>
 
-          <h2>Set Up Blanket Purchase Agreements</h2>
+          <h2>Raise and Approve the Purchase Order</h2>
           <div class="guide-step">
             <div class="guide-step-number">1</div>
             <div class="guide-step-body">
-              <strong>Create blanket PO with validity period and spend limit</strong>
-              <p>Navigate to Procurement → Blanket POs → New. Enter the supplier, agreement start and end dates (e.g., 1 Jan 2026 – 31 Dec 2026), and the total spend limit (e.g., R500 000). Add item lines with negotiated unit prices — leave quantities as estimates since call-off orders will consume the value. Enable auto-close notification: when 90% of the spend limit is reached, the system alerts the buyer to renegotiate or extend.</p>
+              <strong>Create the PO</strong>
+              <p>On <strong>Finance → Purchasing (AP)</strong>, click <strong>New PO</strong>, or open a supplier under <strong>Operations → Suppliers</strong>. Choose the supplier and warehouse, then add lines with quantity, unit price and VAT rate.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">2</div>
             <div class="guide-step-body">
-              <strong>Create call-off/release PO against blanket</strong>
-              <p>From the blanket PO, click Create Release PO. The system pre-fills the supplier, pricing, and terms from the blanket agreement. Enter the quantity needed for this release — the system validates cumulative call-off value against the blanket spend limit. Price overrides are blocked unless you hold a Price Amendment Authority role. The release PO follows the standard approval workflow configured for the department.</p>
+              <strong>Approval</strong>
+              <p>A user with approval rights approves the PO on its page. If an approval rule exists for purchase orders and the order total reaches the rule's amount threshold, an approval request is also raised automatically and shows under <strong>ERP → Approvals</strong>. Each rule has one amount threshold and one approver role per document type.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">3</div>
             <div class="guide-step-body">
-              <strong>Enforce contract pricing</strong>
-              <p>Enable Contract Pricing Enforcement in blanket PO settings. When a user creates a standard PO for the same supplier-item combination during the blanket validity period, the system warns: "This item has an active blanket agreement at R12.50/unit. Use blanket pricing?" The user needs a manager override reason code to proceed outside the blanket. This prevents maverick buying that circumvents negotiated rates.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Track volume rebates</strong>
-              <p>Blanket POs support volume rebate tiers — 1% rebate on orders R100 000–R250 000, 2% on R250 000–R500 000, 3% above R500 000. Configure these in the blanket PO Rebate tab. The system tracks cumulative spend against each tier and calculates the rebate amount automatically. At agreement end, the rebate converts to a credit note against the supplier, reducing the AP balance without cash outlay.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Handle blanket PO amendments</strong>
-              <p>Mid-agreement changes — scope additions, price adjustments, or validity extensions — require an amendment. Create an amendment request from the blanket PO. The amendment shows a diff view of what is changing. Route for re-approval if the spend limit increases by more than 10%. Approved amendments create a version history entry for full auditability of agreement changes over time.</p>
+              <strong>Send it to the supplier</strong>
+              <p>Download the PO as a PDF or email it from the PO page, then mark it as sent.</p>
             </div>
           </div>
 
-          <h2>Manage Supplier Contracts</h2>
+          <h2>Receive the Goods</h2>
           <div class="guide-step">
             <div class="guide-step-number">1</div>
             <div class="guide-step-body">
-              <strong>Create contract with terms and conditions</strong>
-              <p>Navigate to Procurement → Supplier Contracts → New. Attach the signed PDF contract and enter key metadata: contract value, start/end dates, auto-renewal flag, and notice period (e.g., 90 days). Define the contract type — fixed-price, cost-plus, or time-and-materials. Enter SLA parameters: response time (4 hours), resolution time (48 hours), and penalty rate for breach (0.5% of contract value per day).</p>
+              <strong>Capture the goods received note (GRN)</strong>
+              <p>On an approved or sent PO, click <strong>Receive stock (GRN)</strong>. Enter the quantity received per line, the warehouse, the supplier's delivery note number and who received it. Part deliveries are allowed; the PO shows as partially received until all lines are in.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">2</div>
             <div class="guide-step-body">
-              <strong>Set contract milestone tracking</strong>
-              <p>Attach milestones: delivery milestones, payment milestones, or performance milestones. Each milestone has a due date, deliverable description, and value. The project manager marks milestones as achieved and can attach supporting documents. Overdue milestones trigger escalation to the contract manager and appear on the contract performance dashboard. Use milestone completion rates as a supplier performance metric.</p>
+              <strong>What the GRN does</strong>
+              <p>Stock on hand increases and the item's weighted average cost is updated. The ledger entry is DR 1500 Inventory / CR 2150 Goods received not invoiced, at the order cost.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">3</div>
             <div class="guide-step-body">
-              <strong>Manage attachments and version control</strong>
-              <p>Upload contract annexures, amendments, and supporting documents. Each attachment has a version number — replacing a page increments the counter. The audit trail records who uploaded each version and when. Restrict contract access by role — procurement managers and finance directors see pricing details, while operational staff see only SLA and contact information.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Configure auto-renewal handling</strong>
-              <p>For contracts with auto-renewal enabled, the system notifies the contract manager 90, 60, and 30 days before expiry. If no action is taken by 14 days before expiry, the contract auto-renews for the renewal term. To prevent renewal, change the flag to "Do Not Renew" before the notice deadline. Expired contracts without renewal are archived and excluded from sourcing suggestions.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Monitor contract compliance</strong>
-              <p>Contract compliance reports compare actual PO pricing against contracted pricing. Any PO line priced above the contracted rate is flagged as a compliance exception. Schedule a monthly compliance report listing all exceptions by supplier. Use this data during supplier business reviews to enforce contractual obligations and negotiate remedies for pricing breaches.</p>
+              <strong>Inspect if needed</strong>
+              <p>Create an inspection under <strong>Operations → Quality Control</strong> linked to the GRN, and record passed, failed and quarantined quantities.</p>
             </div>
           </div>
 
-          <h2>Run Automated Sourcing (RFQ)</h2>
+          <h2>Add Landed Costs</h2>
           <div class="guide-step">
             <div class="guide-step-number">1</div>
             <div class="guide-step-body">
-              <strong>Create RFQ with item specifications</strong>
-              <p>Navigate to Procurement → RFQs → New. Add line items with detailed specifications — part numbers, technical parameters, required delivery dates, and quantity ranges. Attach specification documents or drawings. Set the response deadline (typically 7–14 days). Suppliers receive an email invitation with a secure portal link to enter pricing, delivery lead time, and payment terms.</p>
+              <strong>Create a landed cost voucher</strong>
+              <p>Go to <strong>Finance → Landed Costs</strong>, link the voucher to a GRN and add cost lines of type freight, customs duty, insurance or other.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">2</div>
             <div class="guide-step-body">
-              <strong>Automate supplier invitation by item category</strong>
-              <p>Configure Supplier-Item Category assignments in Procurement → Supplier Catalogues. When you add an item, the system automatically identifies all approved suppliers for that category and sends invitations. Exclude blacklisted suppliers or those with expiring contracts. If fewer than three suppliers are found, the system warns the buyer to find additional sources to ensure competitive pricing.</p>
+              <strong>Choose the allocation and post</strong>
+              <p>Spread the costs over the GRN lines by value or by quantity. Posting adds each line's share to the item's cost price and posts DR 1500 Inventory / CR 2100 Accounts payable.</p>
             </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Compare bids and score responses</strong>
-              <p>The RFQ comparison screen displays all bids side-by-side — unit price, total price, delivery lead time, payment terms, and warranty. Use the scoring matrix: price 40%, delivery lead time 25%, payment terms 15%, warranty 10%, past performance 10%. The system calculates a weighted score for each supplier. Abnormally low bids (below 70% of average) are flagged for review to identify pricing errors or unsustainable offers.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Configure reverse auction</strong>
-              <p>For commodity items, enable reverse auction mode. Suppliers see their ranking without seeing other prices and can submit improved bids. Configure the minimum decrement — R0.50 or 1%. The auction closes after 5 minutes of no new bids. The lowest compliant bid wins. Use reverse auctions for high-volume, specification-clear items like office supplies, packaging, or standard raw materials.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Execute award decision workflow</strong>
-              <p>After bid evaluation, create an award recommendation on the RFQ. The system generates a comparison summary and the recommended supplier. Route the award through procurement manager approval. Once approved, convert the RFQ to a PO — the system pre-fills the PO with the winning supplier, pricing, and delivery dates. Unsuccessful suppliers receive automated notifications with a feedback summary.</p>
-            </div>
-          </div>
-
-          <h2>Handle 3-Way Matching Exceptions</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Set matching tolerance rules</strong>
-              <p>Navigate to Procurement → Matching → Tolerance Rules. Set global tolerances: price variance 5% (max R100), quantity variance 10% (max 5 units), amount variance 3%. Configure stricter tolerances per supplier — for strategic suppliers, set 2% price tolerance and zero quantity tolerance. Bypassing tolerances requires the Matching Override role and a mandatory reason code for audit trail completeness.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Handle price variances</strong>
-              <p>When the invoice price differs from the PO price, the system checks against the tolerance. Example: PO price R100/unit, invoice shows R108/unit with 5% tolerance. The 8% variance exceeds tolerance — the invoice is placed on hold. The buyer must negotiate: accept the higher price (requires a PO price amendment) or request a supplier credit note for the difference. Both actions are logged in the matching audit trail.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Handle quantity variances</strong>
-              <p>Three documents must agree on quantity: PO (ordered), GRN (received), and invoice (billed). Scenario A: ordered 100, received 98, invoiced 100 — over-invoicing, hold for resolution. Scenario B: ordered 100, received 102 (over-delivery within tolerance), invoiced 102 — match passes. Scenario C: ordered 100, received 100, invoiced 95 — under-invoicing, may indicate a missing line. The matching screen colour-codes each line: green (match), amber (within tolerance), red (exception).</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Release workflow for matched invoices</strong>
-              <p>Invoices that pass matching are automatically marked "Matched — Ready for Payment." Invoices with exceptions are placed in "Matching Hold." The matching clerk reviews each hold item, documents the resolution, and either releases the invoice or returns it to the supplier for correction. Released invoices flow to AP for payment scheduling. Review the matching hold report daily to avoid late payment penalties.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Track exception resolution</strong>
-              <p>Each matching exception gets a case ID assigned to a procurement officer. Track metrics: average resolution time (target under 48 hours), ageing of unresolved exceptions, and exception rate by supplier. Suppliers with rates above 10% are flagged for performance review. The exception dashboard shows open cases, ageing, and resolution status for management reporting.</p>
-            </div>
-          </div>
-
-          <h2>Process Multi-Currency Procurement</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Set up foreign supplier with currency</strong>
-              <p>On the supplier record, set the transaction currency to USD, EUR, or GBP. Store the supplier's bank account in that currency. Configure the default incoterm (FOB, CIF, EXW) — this affects landed cost calculation. If your base currency is ZAR, all foreign-currency POs display the equivalent ZAR amount alongside the foreign amount for reference.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Capture exchange rate at PO creation</strong>
-              <p>When creating a foreign-currency PO, the system displays the current exchange rate from your configured source (SARB daily rate, XE feed, or manual entry). Lock the rate for this PO — once locked, invoice matching uses the locked rate even if the spot rate changes. Record the rate source and date on the PO for audit. For estimated landed cost, the system can apply a buffer percentage on the exchange rate.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Calculate landed cost in base currency</strong>
-              <p>When goods arrive, add landed cost components: freight, insurance, customs duties, and handling fees. Each component is entered in transaction or base currency. The system calculates total landed cost in ZAR: (goods value × exchange rate) + freight + insurance + duties. Post the GRN with landed cost to update stock valuation. The landed cost variance report compares estimated vs actual costs.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Handle FX impact on PO/invoice matching</strong>
-              <p>Multi-currency 3-way matching compares PO and invoice amounts in the transaction currency. Exchange rate differences between PO and invoice are tracked as an FX variance line. If the rate moved from R18.50/USD to R19.20/USD, the R0.70/USD difference is recorded as an FX loss or gain and posted to the designated GL exchange rate variance account.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Perform currency revaluation for open POs</strong>
-              <p>At month-end, run the Currency Revaluation report for open foreign-currency POs. The system calculates unrealised gain/loss based on the closing exchange rate. Example: PO for USD 10 000 at rate R18.50 (ZAR 185 000), month-end rate R19.00 — unrealised loss of ZAR 5 000. Journal entries for unrealised FX are posted to designated GL accounts. Revaluations reverse next period and are recalculated.</p>
-            </div>
-          </div>
-
-          <h2>Perform Goods Receiving with Quality Inspection</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Set inspection requirements by item category</strong>
-              <p>In Stock → Item Categories, mark categories as "Inspection Required" — for raw materials, electronic components, and regulated items. Configure inspection type: Sample Inspection (check a percentage) or Full Inspection (check every unit). Set sample size as a percentage or based on AQL tables. Items not requiring inspection move directly to available stock after GRN posting.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Perform sample vs full inspection</strong>
-              <p>When a GRN is created for an inspection-required item, the system creates an inspection request. For sample inspection: receive 1 000 units, inspect 100 (10%), record pass/fail per unit. If failures are within AQL (under 2.5%), accept the batch. For full inspection: every unit is tested. Non-conforming units are tagged and moved to a quarantine location. The inspection result determines accept, reject, or rework.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Place GRN on hold for non-conforming goods</strong>
-              <p>If inspection fails, the GRN is placed on Quality Hold. Stock is recorded as Quarantine — unavailable for sale or production. The buyer decides to return to supplier (create return order and debit note), rework at supplier's cost (track rework costs against the PO), or accept as-is with a negotiated discount. Each decision updates the audit trail and supplier performance score.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Process supplier returns and debit notes</strong>
-              <p>When returning non-conforming goods, create a Return Order from the GRN. This authorises the physical return. Generate a Debit Note against the supplier — this reduces the AP balance by the return value. Track the debit note to ensure supplier acknowledgement. If the supplier replaces goods, a replacement PO is created referencing the original PO and return order.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Handle receipt corrections for over/under delivery</strong>
-              <p>If a GRN was posted with incorrect quantities, use the GRN Correction function. For over-delivery (ordered 100, received 110): post a negative receipt for 10 units if returned, or accept with a PO amendment. For under-delivery (ordered 100, received 90): post a supplemental GRN when the remaining 10 arrive. Each correction generates an audit trail entry referencing the original GRN.</p>
-            </div>
-          </div>
-
-          <h2>Configure Procurement Analytics</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Run spend analysis by supplier, category, and department</strong>
-              <p>Navigate to Reports → Procurement → Spend Analysis. View total spend by supplier (top 10 by value), by category (raw materials vs MRO vs services), and by department. Drill down from a supplier to see underlying POs. Use the Pareto filter to identify the 20% of suppliers accounting for 80% of spend. Export to Excel for presentation to the procurement steering committee.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Track purchase price variance</strong>
-              <p>PPV = (standard cost − PO price) × quantity. Positive PPV means savings (paid less than standard), negative PPV means cost overrun (paid more). Set alert thresholds: flag if PPV exceeds 5% of standard cost. The PPV trend chart shows monthly variance movement — rising negative PPV may indicate supplier price creep that needs renegotiation.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Measure on-time delivery performance</strong>
-              <p>OTIF = (deliveries on time and in full / total deliveries) × 100. A delivery is "on time" if the GRN date is on or before the PO promise date. "In full" means received quantity matches ordered quantity. Supplier OTIF scores appear on the supplier record and feed the supplier scorecard. Target: 95% for strategic suppliers, 90% for standard suppliers.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Analyse lead times</strong>
-              <p>Lead time analysis shows average time from PO creation to GRN posting, by supplier and item category. The report splits lead time into components: supplier processing time, transit time, and receiving time. Use this to set realistic reorder lead times. If a supplier's lead time variability is high (SD over 30% of mean), increase safety stock levels to buffer against uncertainty.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Track cost savings against budget</strong>
-              <p>Enter baseline price and negotiated price. Savings = (baseline − actual price) × quantity. Categorise as hard savings (invoice price reduction) or soft savings (extended payment terms, better warranty). Track monthly savings target vs actual. The savings dashboard shows YTD savings, savings by category, and the procurement team's contribution to the bottom line.</p>
-            </div>
-          </div>
-
-          <h2>Set Up Automated PO Generation</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Configure reorder rule-based PO auto-generation</strong>
-              <p>Navigate to Stock → Reorder Rules. Set minimum and maximum levels and reorder quantity for each item. When stock hits the reorder point, the system generates a suggested PO. Configure whether the PO is created in Draft or Submitted status. Set a minimum order value — if the auto-generated PO is below R500, suppress it and consolidate in the next run to reduce paperwork.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Feed MRP output into procurement</strong>
-              <p>In Production → MRP, run the MRP calculation. MRP generates planned orders for raw materials based on the production schedule. The MRP-to-Procurement interface converts planned orders into purchase requisitions, then auto-converts to POs. Each PO references the production order it supports. If a production order is rescheduled, the buyer is notified to adjust the PO delivery date accordingly.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Set min-max replenishment trigger</strong>
-              <p>For fast-moving items, use min-max replenishment. When current stock hits the minimum, the system generates a PO for the quantity needed to reach the maximum. Example: min = 50, max = 200, current = 45 → PO quantity = 155. Override max for seasonal items — increase by 20% during peak season. Run the min-max review report to check parameters before auto-generation.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Schedule PO generation runs</strong>
-              <p>Configure the Auto-PO scheduler: daily at 02:00 for production materials, weekly Monday for MRO items, monthly for office supplies. Each run generates a batch of suggested POs. The buyer receives a notification and reviews POs in the Auto-PO dashboard showing batch summary, total value, and exceptions — items without a preferred supplier or with price changes since the last order.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Route auto-POs for low-value approval bypass</strong>
-              <p>Low-value auto-POs (under R2 000) can skip approval if the preferred supplier has a valid contract. Configure bypass rules in Procurement → Settings → Auto-PO Approval. Set the bypass threshold per department. Bypassed POs appear on a daily summary emailed to the procurement manager for after-the-fact review, reducing cycle time for routine low-risk purchases.</p>
-            </div>
-          </div>
-
-          <h2>Implement Procurement Fraud Prevention</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Enforce segregation of duties</strong>
-              <p>Critical SOD rules: no user can both create and approve a PO; no user can create a supplier and approve invoices for that supplier; no user can receive goods and approve matching for the same PO. Run the SOD Conflict Report monthly. When a conflict is detected, the system blocks the action and notifies the security administrator with full context.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Detect duplicate invoices</strong>
-              <p>Detection criteria: same supplier + same invoice number (exact match); same supplier + same amount + same date (fuzzy match, flagged for review); same supplier + same PO reference + same amount (potential duplicate, different invoice numbers). Flagged duplicates route to a review queue. Confirmed duplicates are rejected and the supplier is notified. Track duplicate attempt frequency per supplier.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Flag unusual supplier payment requests</strong>
-              <p>The system flags: payment to a newly created supplier (under 30 days) exceeding R50 000; bank account change followed by a payment request; multiple payments to the same supplier in one day exceeding the daily limit; payment to a supplier with an expired tax clearance certificate. Flagged payments are held and require manager review with a mandatory comment.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Detect PO splitting</strong>
-              <p>PO splitting detection identifies: multiple POs to the same supplier on the same day for the same item; multiple POs to the same supplier within 7 days totalling more than the approval threshold; POs created just below the approval threshold (e.g., R9 900 when threshold is R10 000). Suspected split POs are flagged for compliance officer review.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Review procurement audit trail</strong>
-              <p>The audit trail captures every event: PO creation, modification, approval, rejection, GRN posting, matching, and payment. Each event records the user, timestamp, IP address, and before/after values. Schedule a monthly audit trail review — export the log, check for unusual patterns (weekend activity, failed approvals), and sign off. Store the signed-off report for auditor access.</p>
-            </div>
-          </div>
-
-          <div class="guide-callout guide-callout--info">
-            <strong>Info</strong>
-            <p>3-way matching tolerances can be set per supplier. Standard tolerances are 5% price variance and 10% quantity variance. Tighten to 2% price and 0% quantity for high-value strategic suppliers to minimise financial risk.</p>
           </div>
 
           <div class="guide-callout guide-callout--warn">
-            <strong>Warning</strong>
-            <p>Never approve payment for an invoice that hasn't completed 3-way matching. Override requires manager authorisation and an audit note with the reason for the override.</p>
+            <strong>Avoid counting the cost twice</strong>
+            <p>The landed cost voucher already credits 2100 Accounts payable. Agree with your accountant how to capture the freight or clearing agent's own bill so the same cost is not recorded a second time.</p>
           </div>
 
-          <div class="guide-callout guide-callout--tip">
-            <strong>Tip</strong>
-            <p>Set up blanket POs for frequently ordered items. Call-off orders reduce PO processing time from 15 minutes to under 2 minutes — an 87% reduction in transactional effort.</p>
+          <h2>Capture and Pay the Supplier's Bill</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Capture the bill</strong>
+              <p>On <strong>Finance → Purchasing (AP)</strong>, open the <strong>Bills</strong> tab and add the bill. Each line has a GL account; control accounts cannot be used. Lines for goods received on a PO go to 2150, which clears the GRN accrual. Other lines default to 7000. Only change the VAT amount to match the VAT printed on the supplier's tax invoice.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Approve the bill</strong>
+              <p>Use <strong>Approve bill</strong>. A posted bill cannot be edited (only its notes and due date) or deleted. If it is wrong, <strong>Cancel</strong> it, which reverses its journal.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Credit and debit notes</strong>
+              <p>Under <strong>Finance → Supplier Notes</strong>, a supplier credit note reduces what you owe, is reported in VAT201 Field 12 and can be applied to a bill. A supplier debit note becomes a linked bill and is reported in VAT201 Field 18.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Pay through a payment run</strong>
+              <p>Go to <strong>Finance → Payment Runs</strong> and select approved bills with a balance. A second user must approve the run. Export the run as a CSV file for your bank, then mark it as paid to record and post the payments.</p>
+            </div>
           </div>
 
           <div class="guide-callout guide-callout--info">
-            <strong>Info</strong>
-            <p>Supplier performance scorecards auto-calculate OTIF (on-time in-full) delivery rates from GRN data and PO promise dates. Use this data for quarterly supplier business reviews.</p>
+            <strong>Bank file format</strong>
+            <p>The payment run export is a general CSV file. Check that it matches your bank's bulk payment layout before you upload it.</p>
           </div>
 
-          <div class="guide-callout guide-callout--tip">
-            <strong>Tip</strong>
-            <p>Use the spend analytics dashboard for quarterly business reviews with top suppliers. Category-level spend breakdowns strengthen negotiation positions — suppliers know you have full visibility into their category share.</p>
+          <h2>Ledger Summary</h2>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead>
+                <tr><th>Step</th><th>Debit</th><th>Credit</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Goods received</td><td>1500 Inventory</td><td>2150 Goods received not invoiced</td></tr>
+                <tr><td>Landed cost voucher</td><td>1500 Inventory</td><td>2100 Accounts payable</td></tr>
+                <tr><td>Bill for goods received</td><td>2150 (received lines), 1200 VAT input</td><td>2100 Accounts payable</td></tr>
+                <tr><td>Supplier credit note</td><td>2100 Accounts payable</td><td>Line accounts, 1200 VAT input</td></tr>
+              </tbody>
+            </table>
           </div>
+          <p>Price differences between the GRN and the bill stay on 2150 for reconciliation. See <a href="accounting-rules.html">Accounting Rules</a> for the full treatment.</p>
 
           <h2>Related Modules</h2>
           <div class="guide-grid">
             <a href="stock.html" class="guide-card" style="text-decoration:none;color:inherit">
               <h4>Stock &amp; Inventory</h4>
-              <p>GRN posting updates stock quantities and triggers bin put-away suggestions. Serial and batch capture during receiving enables full traceability from supplier to customer.</p>
-            </a>
-            <a href="financials.html" class="guide-card" style="text-decoration:none;color:inherit">
-              <h4>Financial Management</h4>
-              <p>Invoice matching and AP ageing feed the cash flow forecast. Scheduled payment runs align with vendor term compliance and optimise working capital.</p>
+              <p>Warehouses, batches, serials and stock levels used by planning and receiving.</p>
             </a>
             <a href="production.html" class="guide-card" style="text-decoration:none;color:inherit">
               <h4>Production &amp; Manufacturing</h4>
-              <p>MRP-generated POs include the production order reference for full material traceability. Rush POs for production shortages bypass standard approval to minimise line downtime.</p>
+              <p>Quality inspections on goods received and work orders.</p>
             </a>
-            <a href="compliance.html" class="guide-card" style="text-decoration:none;color:inherit">
-              <h4>Compliance &amp; Governance</h4>
-              <p>Procurement audit trail captures every PO, GRN, and invoice match event for SOX and POPIA compliance verification. Fraud detection reports support internal audit reviews.</p>
+            <a href="financials.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Financial Management</h4>
+              <p>Accounts payable ageing, supplier statements and the books health check.</p>
+            </a>
+            <a href="accounting-rules.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Accounting Rules</h4>
+              <p>How purchases, VAT and trade payables are recorded.</p>
             </a>
           </div>
 
         </div>
-
       </div>
     </div>
   </section>
 
-  <section class="cta-section">
-    <div class="dot-grid"></div>
-    <div class="cta-orb cta-orb--blue"></div>
-    <div class="cta-orb cta-orb--teal"></div>
-    <div class="container cta-content">
-      <h2 class="reveal">Need more help?</h2>
-      <p class="reveal delay-2">Get in touch with our team. We're here to help you get the most out of InnoVisions.</p>
-      <a href="../contact.html" class="btn btn-primary reveal delay-3">Contact Support →</a>
-    </div>
-  </section>
+  </main>
 
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="/" class="logo">
-            <div class="logo-mark">IV</div>
+          <a href="../index.html" class="logo">
             <span class="logo-text" style="color:#fff">InnoVisions</span>
+            <span class="logo-slogan">From Vision to Innovation</span>
           </a>
-          <p>One platform for your entire business. Customers, inventory, jobs, finance, and support — deeply integrated.</p>
+          <p>Accounting, stock, jobs and payroll in one ledger, built for South African tax rules.</p>
         </div>
         <div class="footer-col">
           <h4>Platform</h4>
           <a href="../features.html">Features</a>
-          <a href="../pricing.html">Pricing</a>
           <a href="../compare.html">Compare</a>
-          <a href="../about.html">About</a>
           <a href="index.html">Guides</a>
-          <a href="../contact.html">Contact</a>
-        </div>
-        <div class="footer-col">
-          <h4>Product</h4>
-          <a href="https://app.innvisions.co.za/register">Get Started</a>
-          <a href="https://app.innvisions.co.za/login">Sign In</a>
-          <a href="index.html">Documentation</a>
-          <a href="../contact.html">Support</a>
         </div>
         <div class="footer-col">
           <h4>Legal</h4>
@@ -538,11 +259,10 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2026 InnoVisions ERP. All rights reserved.</span>
+        <span>&copy; 2026 InnoVisions. All rights reserved.</span>
         <span>Built in South Africa 🇿🇦</span>
       </div>
     </div>
-  </main>
   </footer>
 
   <script src="../js/main.js"></script>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accounting Policies and Tax Treatment — InnoVisions</title>
+  <meta name="description" content="How InnoVisions applies accounting and South African tax rules: ledger principles, VAT201 field mapping, receipts and deposits, bad debts, payroll, fixed assets, year-end and controls — with SARS references.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <meta name="theme-color" content="#00349A">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2300349A'/><text x='50' y='68' font-size='48' font-weight='900' text-anchor='middle' fill='white' font-family='Inter'>IV</text></svg>">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">
+        <span class="logo-text">InnoVisions</span>
+        <span class="logo-slogan">From Vision to Innovation</span>
+      </a>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+      <nav class="nav" id="nav">
+        <a href="../features.html">Features</a>
+        <a href="../compare.html">Compare</a>
+        <a href="index.html">Guides</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+
+  <section class="page-header">
+    <div class="dot-grid"></div>
+    <h1 class="animate-fade-up">Accounting Policies and Tax Treatment</h1>
+    <p class="animate-fade-up delay-2">Recognition, measurement and posting rules applied by InnoVisions, with the VAT, employees' tax and reporting treatment and the SARS references on which they are based.</p>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="guide-layout">
+
+        <aside class="guide-sidebar">
+          <h4>All Guides</h4>
+          <ul>
+            <li><a href="accounting-rules.html" class="active">Accounting Policies &amp; Tax Treatment</a></li>
+            <li><a href="financials.html">Financial Management</a></li>
+            <li><a href="stock.html">Stock &amp; Inventory</a></li>
+            <li><a href="production.html">Production &amp; Manufacturing</a></li>
+            <li><a href="hr-payroll.html">HR &amp; Payroll</a></li>
+            <li><a href="crm-sales.html">CRM &amp; Sales</a></li>
+            <li><a href="procurement.html">Procurement &amp; Supply Chain</a></li>
+            <li><a href="job-costing.html">Projects &amp; Job Costing</a></li>
+            <li><a href="compliance.html">Compliance &amp; Governance</a></li>
+            <li><a href="platform.html">Platform &amp; Technology</a></li>
+          </ul>
+        </aside>
+
+        <div class="guide-content">
+
+          <div class="guide-callout guide-callout--warn">
+            <strong>DRAFT – to be checked</strong>
+            <p>This note sets out the accounting and tax treatment applied by the InnoVisions software as built on 3&nbsp;October&nbsp;2026. It describes system behaviour and is not an opinion on compliance with IFRS for SMEs or tax legislation. Tax treatments reference the SARS publication from which they were built; please verify against the current versions. Illustrative amounts are in ZAR and assume VAT at 15%.</p>
+          </div>
+
+          <h2 id="contents">Contents</h2>
+          <ol>
+            <li><a href="#summary">Summary of significant policies</a></li>
+            <li><a href="#principles">Basis of recording and system controls</a></li>
+            <li><a href="#coa">Chart of accounts and control accounts</a></li>
+            <li><a href="#sales">Revenue and trade receivables</a></li>
+            <li><a href="#advances">Customer advances and unallocated receipts</a></li>
+            <li><a href="#baddebts">Irrecoverable debts</a></li>
+            <li><a href="#purchases">Purchases, inventory receipts and trade payables</a></li>
+            <li><a href="#vat201">Value-added tax — VAT201 derivation</a></li>
+            <li><a href="#payroll">Employee costs and employees' tax</a></li>
+            <li><a href="#assets">Property, plant and equipment</a></li>
+            <li><a href="#fx">Foreign currency</a></li>
+            <li><a href="#periods">Period end, year end and conversion</a></li>
+            <li><a href="#group">Group reporting</a></li>
+            <li><a href="#controls">Reconciliation controls — books health review</a></li>
+            <li><a href="#limits">Limitations</a></li>
+            <li><a href="#sources">References</a></li>
+          </ol>
+
+          <h2 id="summary">1. Summary of significant policies applied by the system</h2>
+          <ul>
+            <li><strong>Double-entry integrity:</strong> every source document posts a balanced journal entry; the document and its entry are committed atomically. Postings into closed or locked periods are rejected.</li>
+            <li><strong>Immutability:</strong> issued and posted documents are not amended; corrections are effected by reversing entries, and both the original and the reversal remain in the ledger.</li>
+            <li><strong>Transaction date:</strong> entries carry the source-document date in South African Standard Time, not the capture date.</li>
+            <li><strong>Functional and presentation currency:</strong> ZAR. Foreign-currency transactions are recorded at the spot rate on the transaction date; realised exchange differences are recognised in profit or loss on settlement.</li>
+            <li><strong>Revenue:</strong> recognised on issue of the tax invoice; cost of inventory sold is recognised at the same time (perpetual inventory).</li>
+            <li><strong>Receivables:</strong> carried at invoiced amounts less settlements, credit notes and specific write-offs.</li>
+            <li><strong>Customer advances:</strong> presented as a contract liability until applied; output tax follows the time-of-supply rule.</li>
+            <li><strong>PPE:</strong> cost model; depreciation monthly from the month of acquisition to residual value.</li>
+            <li><strong>VAT:</strong> output and input tax are recognised in the ledger at the time of supply; the VAT201 is derived from the ledger in the SARS field structure.</li>
+            <li><strong>Sub-ledger reconciliation:</strong> receivables, payables, customer advances and PPE are reconciled to their control accounts by a built-in report.</li>
+          </ul>
+
+          <h2 id="principles">2. Basis of recording and system controls</h2>
+          <h3>2.1 Posting rules</h3>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Area</th><th>Treatment</th></tr></thead>
+              <tbody>
+                <tr><td>Single posting engine</td><td>All documents (invoices, credit and debit notes, receipts, bills, payments, payslips, depreciation, disposals, cash book, opening balances) post through one engine that applies the rules below.</td></tr>
+                <tr><td>Rejection rules</td><td>An entry is rejected in full if it does not balance (tolerance R0.01), references a missing or inactive account, or is dated in a closed or locked period. No partial posting can occur; the source document is not saved either.</td></tr>
+                <tr><td>Idempotency</td><td>Each document can post its journal once only (by source type and source number), so a repeated action cannot double-post.</td></tr>
+                <tr><td>Corrections</td><td>Issued invoices and posted bills cannot be edited or deleted. Cancellation posts a reversing entry dated no earlier than the original (if the original is future-dated, the reversal takes its date). Only unposted drafts may be deleted.</td></tr>
+                <tr><td>Manual journals</td><td>Always classified as manual. Any VAT posted by manual journal is reported separately on the VAT201 and listed for review.</td></tr>
+                <tr><td>Measurement precision</td><td>Journal lines are stored as fixed-point decimals (16,2). Amounts are rounded half up to the nearest cent (R0.045 → R0.05). SARS does not prescribe a cent-rounding convention (VAT 404 para 9.5 deals only with rounding cash totals to the nearest coin).</td></tr>
+                <tr><td>Allocation of rounding</td><td>Where an amount is split proportionally (e.g. net revenue over several income accounts, VAT over several allocations of one receipt), the last share absorbs the rounding difference so that totals agree exactly.</td></tr>
+                <tr><td>Dates</td><td>The current date and document dates are determined in South African Standard Time (UTC+2), so transactions near midnight fall in the correct tax period.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>2.2 Access control and audit trail</h3>
+          <ul>
+            <li><strong>Role-based access:</strong> users are assigned roles (admin, staff, read-only) and named permissions such as finance view / create / edit, approvals and report export. Posting-sensitive actions (period close, year-end close, opening balances, account changes) require an administrator.</li>
+            <li><strong>Segregation in payments:</strong> supplier payment runs must be approved by a user other than the creator before export.</li>
+            <li><strong>Audit trail:</strong> every creating, changing or deleting action is logged with the user, date and time, action, record type and record number. The software provides no function to amend or delete audit records.</li>
+            <li><strong>Multi-entity:</strong> each company has its own database (its own books). One login may be granted access to several companies by each company's administrator.</li>
+          </ul>
+
+          <h2 id="coa">3. Chart of accounts and control accounts</h2>
+          <p>The default chart below is loaded per company and may be extended. Accounts marked * are control accounts: they are maintained solely by source documents and cannot be selected on bill or invoice lines. System accounts required by a posting rule (e.g. 7200, 1650, 8100, 2250, 9999) are created automatically on first use if missing.</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Code</th><th>Account</th><th>Nature</th><th>Maintained by</th></tr></thead>
+              <tbody>
+                <tr><td>1000</td><td>Bank and cash</td><td>Asset</td><td>Receipts, payments, cash book, net pay</td></tr>
+                <tr><td>1100*</td><td>Trade receivables control</td><td>Asset</td><td>Invoices, credit notes, receipts, write-offs</td></tr>
+                <tr><td>1200*</td><td>VAT input</td><td>Asset</td><td>Bills, cash book, expense claims, s22 relief</td></tr>
+                <tr><td>1500</td><td>Inventories</td><td>Asset</td><td>Goods received; cost of sales on invoicing</td></tr>
+                <tr><td>1600</td><td>Accumulated depreciation</td><td>Contra-asset</td><td>Depreciation runs, disposals</td></tr>
+                <tr><td>1650</td><td>Property, plant and equipment — cost</td><td>Asset</td><td>Supplier bills, opening balances, disposals</td></tr>
+                <tr><td>2100*</td><td>Trade payables control</td><td>Liability</td><td>Bills, supplier notes, payments</td></tr>
+                <tr><td>2150</td><td>Goods received not invoiced</td><td>Liability (accrual)</td><td>Goods received; cleared by bills</td></tr>
+                <tr><td>2200*</td><td>VAT output</td><td>Liability</td><td>Invoices, credit/debit notes, advances, recoveries</td></tr>
+                <tr><td>2250*</td><td>Customer advances</td><td>Liability (contract liability)</td><td>Customer receipts not yet applied</td></tr>
+                <tr><td>2300 / 2310 / 2320</td><td>PAYE / UIF / SDL payable</td><td>Liability</td><td>Payslips</td></tr>
+                <tr><td>2330 / 2340</td><td>Retirement fund / medical aid payable</td><td>Liability</td><td>Payslips</td></tr>
+                <tr><td>3000</td><td>Retained earnings</td><td>Equity</td><td>Year-end close; opening balances</td></tr>
+                <tr><td>4000</td><td>Revenue</td><td>Income</td><td>Invoice lines (default)</td></tr>
+                <tr><td>5000</td><td>Cost of sales</td><td>Expense</td><td>Invoicing of stock items</td></tr>
+                <tr><td>6000 / 6010</td><td>Salaries and wages / employer contributions net of ETI</td><td>Expense</td><td>Payslips</td></tr>
+                <tr><td>6100</td><td>Depreciation</td><td>Expense</td><td>Depreciation runs</td></tr>
+                <tr><td>7000</td><td>General expenses</td><td>Expense</td><td>Bill lines (default)</td></tr>
+                <tr><td>7200</td><td>Bad debts written off</td><td>Expense</td><td>Write-offs and recoveries</td></tr>
+                <tr><td>8000</td><td>Foreign exchange gains and losses</td><td>Expense / income</td><td>Settlement of foreign-currency items</td></tr>
+                <tr><td>8100</td><td>Profit or loss on disposal of PPE</td><td>Expense / income</td><td>Disposals</td></tr>
+                <tr><td>9999*</td><td>Opening balance suspense</td><td>Equity (transitional)</td><td>Conversion; nil once posted</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="sales">4. Revenue and trade receivables</h2>
+          <h3>4.1 Document lifecycle</h3>
+          <p>Draft → issued (posted) → partially paid → paid; or issued → cancelled (reversed). Lines can only be added or changed while the invoice is a draft. Issuing fixes the totals, posts the journal and deducts stock in one transaction.</p>
+          <h3>4.2 Recognition and measurement</h3>
+          <ul>
+            <li>Revenue and the receivable are recognised on issue of the tax invoice, at the invoiced amount.</li>
+            <li>Each line carries a VAT classification — standard, standard (capital goods), zero-rated, zero-rated export, exempt — and may be allocated to a specific income account (default 4000). A 0% rate alone does not distinguish zero-rated from exempt, so exempt lines must be classified explicitly.</li>
+            <li>Where an invoice has lines on more than one income account, net revenue (after any invoice discount and currency conversion) is apportioned to the accounts in proportion to the line totals.</li>
+            <li>Stock items sold are derecognised and cost of sales recognised (Dr 5000 / Cr 1500) on issue.</li>
+            <li>Amount paid and balance due are always recalculated from the settlements recorded against the invoice (payments, applied credit notes, applied receipts, write-offs, and amounts settled before conversion); they cannot be typed in.</li>
+          </ul>
+          <h3>4.3 Journal entries</h3>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Event</th><th>Dr</th><th>Cr</th><th>VAT201</th></tr></thead>
+              <tbody>
+                <tr><td>Invoice issued</td><td>1100 (gross)</td><td>Income account(s) (net); 2200 (VAT)</td><td>1/4, 1A/4A, 2, 2A or 3</td></tr>
+                <tr><td>Cost of stock sold</td><td>5000</td><td>1500</td><td>—</td></tr>
+                <tr><td>Payment received</td><td>Bank</td><td>1100 (± 8000 if foreign)</td><td>—</td></tr>
+                <tr><td>Credit note issued</td><td>Revenue; 2200</td><td>1100</td><td>18</td></tr>
+                <tr><td>Credit note applied to invoice</td><td colspan="2">No entry — non-cash settlement of the invoice</td><td>—</td></tr>
+                <tr><td>Debit note issued</td><td>1100</td><td>Revenue; 2200 (posted as a supplementary invoice)</td><td>12</td></tr>
+                <tr><td>Invoice cancelled</td><td colspan="2">Reversal of the original entry (only if nothing is settled against it)</td><td>Nets off in the same period; 18 if a later period</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>Example</strong> — supply of R1&nbsp;000 at the standard rate, then paid:</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Entry</th><th>Account</th><th>Dr</th><th>Cr</th></tr></thead>
+              <tbody>
+                <tr><td rowspan="3">Invoice</td><td>1100 Trade receivables</td><td>1 150.00</td><td></td></tr>
+                <tr><td>4000 Revenue</td><td></td><td>1 000.00</td></tr>
+                <tr><td>2200 VAT output</td><td></td><td>150.00</td></tr>
+                <tr><td rowspan="2">Payment</td><td>1000 Bank</td><td>1 150.00</td><td></td></tr>
+                <tr><td>1100 Trade receivables</td><td></td><td>1 150.00</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>4.4 Settlement and statements</h3>
+          <ul>
+            <li>All receipt channels — manual capture, bank-statement matching, the customer portal and card-payment gateway — apply the same settlement and posting logic.</li>
+            <li>A payment cannot exceed the balance due through the portal; it cannot be recorded on a draft or cancelled invoice.</li>
+            <li>Statements of account are generated from a single customer sub-ledger: each movement is presented once; drafts and cancelled documents are excluded; the opening balance equals cumulative movements before the statement period. The closing balance reconciles to open invoice balances less unapplied credit notes and unallocated receipts. Ageing (current, 1–30, 31–60, 61–90, over 90 days) is by due date.</li>
+          </ul>
+
+          <h2 id="advances">5. Customer advances and unallocated receipts</h2>
+          <h3>5.1 Tax principle</h3>
+          <p>The time of supply is the earlier of the issue of the invoice or the receipt of any payment of consideration. A deposit that does not form part of the consideration does not trigger the time of supply until it is applied as payment (VAT Act s9(1); VAT 404 para 5.2.1). The system therefore requires each receipt not linked to an invoice to be classified:</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th></th><th>Advance payment (consideration)</th><th>Unallocated receipt / refundable deposit</th></tr></thead>
+              <tbody>
+                <tr><td>Examples</td><td>Deposit on a quoted installation, prepayment for goods on order</td><td>Overpayment, refundable security deposit, unidentified receipt</td></tr>
+                <tr><td>On receipt</td><td>Dr Bank / Cr 2250 (net) / Cr 2200 (tax fraction 15/115 at the standard rate)</td><td>Dr Bank / Cr 2250</td></tr>
+                <tr><td>Output tax</td><td>Accounted for in the period of receipt, at the rate of the VAT classification chosen (standard, capital goods, zero-rated, export, exempt)</td><td>None until applied as consideration</td></tr>
+                <tr><td>On allocation to an invoice</td><td>Dr 2250 (net portion) / Dr 2200 (output tax previously declared on the portion applied) / Cr 1100</td><td>Dr 2250 / Cr 1100</td></tr>
+                <tr><td>On refund</td><td>Dr 2250 / Dr 2200 (output tax on the portion refunded, Field 18) / Cr Bank</td><td>Dr 2250 / Cr Bank</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>5.2 Rules</h3>
+          <ul>
+            <li>A receipt may be allocated in parts to several invoices of the same customer, and partly refunded. Allocations cannot exceed the unallocated amount or the invoice balance, and cannot be dated before the receipt or the invoice.</li>
+            <li>The output tax released on each part is the proportional share of the tax on the receipt; the final part takes any rounding remainder.</li>
+            <li>An allocation can be reversed; the reversal is posted and the original allocation is retained (marked reversed) for the audit trail and the VAT201.</li>
+            <li>A receipt can be cancelled only while nothing has been allocated or refunded.</li>
+          </ul>
+          <h3>5.3 Example across two VAT periods</h3>
+          <p>An advance payment of R1&nbsp;150 is received in October for an installation invoiced in November at R2&nbsp;000 + VAT (R2&nbsp;300).</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Date</th><th>Entry</th><th>Dr</th><th>Cr</th><th>VAT201 effect</th></tr></thead>
+              <tbody>
+                <tr><td>October</td><td>Receipt: Bank / 2250 / 2200</td><td>Bank 1 150.00</td><td>2250 1 000.00; 2200 150.00</td><td>October: Field 1 R1 150; Field 4 R150</td></tr>
+                <tr><td rowspan="2">November</td><td>Invoice: 1100 / 4000 / 2200</td><td>1100 2 300.00</td><td>4000 2 000.00; 2200 300.00</td><td rowspan="2">November: Field 1 R2 300 − R1 150 = R1 150; Field 4 R300 − R150 = R150</td></tr>
+                <tr><td>Allocation: 2250 / 2200 / 1100</td><td>2250 1 000.00; 2200 150.00</td><td>1100 1 150.00</td></tr>
+                <tr><td colspan="5">Total output tax declared over both periods: R300 — once, on the full supply. Receivable outstanding: R1 150.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="baddebts">6. Irrecoverable debts</h2>
+          <h3>6.1 Measurement and tax</h3>
+          <ul>
+            <li>Specific write-off of an identified irrecoverable balance, in full or in part, against 7200.</li>
+            <li>Input tax is deducted at the tax fraction of the original supply, calculated as the invoice's VAT ÷ the invoice total, applied to the amount written off (VAT Act s22; VAT 404 para 9.2). VAT201 Field 17.</li>
+            <li>The deduction is elective per write-off. The system warns that it is not available to a vendor on the payments basis, on supplies to a wholly-owned member of the same group of companies, on goods repossessed or surrendered under an instalment credit agreement, or on debts transferred on a non-recourse basis.</li>
+            <li>For receivables brought over at conversion (whose VAT is not on file), the VAT included must be entered and may not exceed the amount × 15/115.</li>
+            <li>A write-off can be reversed only while no recovery has been recorded against it.</li>
+          </ul>
+          <h3>6.2 Recoveries</h3>
+          <p>A later receipt on a written-off debt is accounted for as a recovery: Dr Bank / Cr 7200 / Cr 2200, with output tax at the same fraction as the deduction claimed (VAT201 Field 12). The customer statement shows the debt reinstated and the receipt.</p>
+          <h3>6.3 Example — partial write-off</h3>
+          <p>Invoice R2&nbsp;300 (incl. VAT R300); R1&nbsp;150 received; R575 written off as irrecoverable.</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Account</th><th>Dr</th><th>Cr</th></tr></thead>
+              <tbody>
+                <tr><td>7200 Bad debts written off</td><td>500.00</td><td></td></tr>
+                <tr><td>1200 VAT input — s22 deduction (575 × 300/2 300; Field 17)</td><td>75.00</td><td></td></tr>
+                <tr><td>1100 Trade receivables</td><td></td><td>575.00</td></tr>
+                <tr><td colspan="3">Invoice balance after write-off: R575.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="purchases">7. Purchases, inventory receipts and trade payables</h2>
+          <h3>7.1 Supplier bills</h3>
+          <ul>
+            <li>A liability is recognised when the supplier's tax invoice is posted. Each line is allocated to an expense, asset or liability account (control accounts excluded; default 7000; default 2150 for lines billed against goods received on a purchase order).</li>
+            <li>Input tax per line may be captured as stated on the supplier's tax invoice; otherwise it is calculated at the line rate. Subtotal, VAT and total are derived from the lines and cannot be entered directly.</li>
+            <li>The bill's input-tax category determines the VAT201 field: capital goods (14), capital goods imported (14A), other (15), other imported (15A).</li>
+            <li>A posted bill cannot be edited (other than notes and due date) or deleted; it is cancelled by a reversing entry, provided nothing has been settled against it.</li>
+          </ul>
+          <h3>7.2 Goods received not invoiced</h3>
+          <p>Inventory received against a purchase order is recognised on receipt at the order cost. A bill created from the order is built from the order lines: quantities received are charged to 2150 (clearing the accrual) and lines not received (e.g. services) to 7000. Price differences between the receipt and the bill remain on 2150 for reconciliation.</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Event</th><th>Account</th><th>Dr</th><th>Cr</th></tr></thead>
+              <tbody>
+                <tr><td rowspan="2">Goods received: 2 units × R50</td><td>1500 Inventories</td><td>100.00</td><td></td></tr>
+                <tr><td>2150 Goods received not invoiced</td><td></td><td>100.00</td></tr>
+                <tr><td rowspan="3">Supplier bill</td><td>2150 Goods received not invoiced</td><td>100.00</td><td></td></tr>
+                <tr><td>1200 VAT input (Field 15)</td><td>15.00</td><td></td></tr>
+                <tr><td>2100 Trade payables</td><td></td><td>115.00</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>7.3 Supplier credit and debit notes</h3>
+          <ul>
+            <li><strong>Credit note received:</strong> Dr 2100 / Cr line accounts / Cr 1200 — a reduction of input tax reported in Field 12 ("credit notes received"). It may be applied to an open bill of the same supplier as a non-cash settlement.</li>
+            <li><strong>Debit note received:</strong> posted as an additional payable bill (Dr line accounts / Dr 1200 / Cr 2100), reported in Field 18 ("debit notes received").</li>
+            <li>Posted notes are fixed; cancellation reverses the journal (for a debit note, its bill) provided nothing has been applied or paid.</li>
+          </ul>
+          <h3>7.4 Payments and payment runs</h3>
+          <ul>
+            <li>Payments: Dr 2100 / Cr Bank, with realised exchange differences to 8000 on foreign-currency bills. Manual capture, bank matching and payment runs share the same logic.</li>
+            <li>Payment runs: draft → approved (by a second user; supplier banking details are fixed at approval) → exported → paid. The system initiates no payment; the company submits the bank file, and the settlements post only when the run is confirmed as paid.</li>
+            <li>The supplier statement is generated from a single supplier sub-ledger on the same principles as the customer statement; its closing balance equals the payables control account.</li>
+          </ul>
+
+          <h2 id="vat201">8. Value-added tax — VAT201 derivation</h2>
+          <h3>8.1 Method</h3>
+          <ul>
+            <li>The return is prepared from the ledger for a chosen tax period in the field structure of SARS guide GEN-ELEC-04-G01 (Revision 11, effective 12 May 2025). The vendor submits it on eFiling; the system does not submit returns.</li>
+            <li>Every VAT amount is taken from the VAT accounts (2200 output, 1200 input). The source document of each journal entry determines the field.</li>
+            <li>Fields 1 and 1A are reported inclusive of VAT; Fields 4 and 4A carry the output tax from the ledger. Where an invoice mixes standard and capital-goods lines, the ledger output tax is apportioned between 4 and 4A.</li>
+            <li>Field 20 is reconciled to the net movement on 2200 and 1200 for the period; any difference is reported.</li>
+            <li>When Field 2A, 14A or 15A has a value, the user is reminded that the customs code is required on eFiling.</li>
+          </ul>
+          <h3>8.2 Field mapping</h3>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Transaction</th><th>Field</th><th>Basis in the guide</th></tr></thead>
+              <tbody>
+                <tr><td colspan="3"><strong>Output tax</strong></td></tr>
+                <tr><td>Standard-rated supplies (consideration incl. VAT) / output tax</td><td>1 / 4</td><td>Fields 1 and 4</td></tr>
+                <tr><td>Standard-rated supplies of capital goods, incl. disposals of PPE / output tax</td><td>1A / 4A</td><td>Fields 1A and 4A</td></tr>
+                <tr><td>Zero-rated supplies / zero-rated exports / exempt and non-supplies</td><td>2 / 2A / 3</td><td>Fields 2, 2A, 3</td></tr>
+                <tr><td>Advance payments received; reversed on allocation</td><td>1 / 4</td><td>Time of supply on receipt</td></tr>
+                <tr><td>Debit notes issued; credit notes received; irrecoverable debts recovered</td><td>12</td><td>Field 12 (A), (B), (C) — p.19</td></tr>
+                <tr><td colspan="3"><strong>Input tax</strong></td></tr>
+                <tr><td>Capital goods / capital goods imported / other / other imported</td><td>14 / 14A / 15 / 15A</td><td>Fields 14–15A</td></tr>
+                <tr><td>Irrecoverable debts (s22)</td><td>17</td><td>Field 17 — p.21</td></tr>
+                <tr><td>Credit notes issued; debit notes received</td><td>18</td><td>Field 18 (A), (B) — p.21</td></tr>
+                <tr><td>Refunds of advance payments; invoices cancelled in a later period</td><td>18</td><td>Treated as credit notes issued</td></tr>
+                <tr><td colspan="3"><strong>Other</strong></td></tr>
+                <tr><td>Cash book receipts bearing VAT / payments bearing VAT</td><td>1 and 4 / per input category</td><td>—</td></tr>
+                <tr><td>Expense claims</td><td>15</td><td>—</td></tr>
+                <tr><td>VAT on manual journals (listed for review)</td><td>12 (output) / 18 (input)</td><td>—</td></tr>
+                <tr><td>Accommodation; change in use</td><td>5–11, 16</td><td>Not derived — completed on eFiling</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="payroll">9. Employee costs and employees' tax</h2>
+          <h3>9.1 Calculation</h3>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Item</th><th>Treatment</th><th>Reference</th></tr></thead>
+              <tbody>
+                <tr><td>PAYE</td><td>Annualisation: (monthly remuneration less deductible retirement contributions) × 12; tax per the tables for the year of assessment selected by the pay date, less the age-based rebates; less medical scheme fees tax credits; ÷ 12. Year of assessment 2027: 1 March 2026 – 28 February 2027.</td><td>SARS Rates of Tax for Individuals; Medical Tax Credit Rates (25 Feb 2026)</td></tr>
+                <tr><td>Medical tax credits</td><td>R376 per month for the main member and first dependant, R254 for each additional dependant (2027)</td><td>SARS Medical Tax Credit Rates</td></tr>
+                <tr><td>UIF</td><td>1% employee and 1% employer contribution; remuneration ceiling R17&nbsp;712 per month (maximum R177.12 each)</td><td>SARS — UIF</td></tr>
+                <tr><td>SDL</td><td>1% of leviable amount; not levied where annual remuneration will not exceed R500&nbsp;000</td><td>SARS — SDL</td></tr>
+                <tr><td>Retirement fund contributions (s11F)</td><td>Deductible up to 27.5% of remuneration, annual cap R350&nbsp;000 (2026) / R430&nbsp;000 (2027) apportioned per pay period; employer contributions are a taxable fringe benefit and a deemed employee contribution</td><td>Guide for Employers iro Employees' Tax (2027); Budget 2026 FAQ</td></tr>
+                <tr><td>ETI</td><td>Applied against PAYE only (not SDL or UIF); excess carried forward within the reconciliation period, reset on 1 March and 1 September; not claimed below the national minimum wage (R28.79/hour; R30.23/hour from 2 March 2026); pro-rated below 160 hours</td><td>PAYE-GEN-01-G05 Rev 17, s12–14</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>9.2 Example — monthly payslip, November 2026</h3>
+          <p>Employee aged 35, gross remuneration R30&nbsp;000, retirement fund R2&nbsp;250, medical scheme R3&nbsp;000 (employee plus one dependant), employer registered for SDL. Calculated by the system:</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Step</th><th>Amount</th></tr></thead>
+              <tbody>
+                <tr><td>Remuneration less retirement deduction: 30 000 − 2 250</td><td>27 750.00</td></tr>
+                <tr><td>Annualised: × 12</td><td>333 000.00</td></tr>
+                <tr><td>Tax: 44 118 + 26% × (333 000 − 245 100)</td><td>66 972.00</td></tr>
+                <tr><td>Less primary rebate</td><td>(17 820.00)</td></tr>
+                <tr><td>Annual tax ÷ 12</td><td>4 096.00</td></tr>
+                <tr><td>Less medical tax credits (2 × 376)</td><td>(752.00)</td></tr>
+                <tr><td><strong>PAYE for the month</strong></td><td><strong>3 344.00</strong></td></tr>
+                <tr><td>UIF employee (ceiling applies) / employer</td><td>177.12 / 177.12</td></tr>
+                <tr><td>SDL (1% × 30 000)</td><td>300.00</td></tr>
+                <tr><td>Net pay: 30 000 − 3 344 − 177.12 − 2 250 − 3 000</td><td>21 228.88</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Account</th><th>Dr</th><th>Cr</th></tr></thead>
+              <tbody>
+                <tr><td>6000 Salaries and wages</td><td>30 000.00</td><td></td></tr>
+                <tr><td>2300 PAYE payable</td><td></td><td>3 344.00</td></tr>
+                <tr><td>2310 UIF payable (employee)</td><td></td><td>177.12</td></tr>
+                <tr><td>2330 Retirement fund payable</td><td></td><td>2 250.00</td></tr>
+                <tr><td>2340 Medical aid payable</td><td></td><td>3 000.00</td></tr>
+                <tr><td>1000 Bank — net pay</td><td></td><td>21 228.88</td></tr>
+                <tr><td>6010 Employer contributions (UIF 177.12 + SDL 300.00)</td><td>477.12</td><td></td></tr>
+                <tr><td>2310 UIF payable (employer)</td><td></td><td>177.12</td></tr>
+                <tr><td>2320 SDL payable</td><td></td><td>300.00</td></tr>
+                <tr><td colspan="3">Where ETI applies: Dr 2300 / Cr 6010, reducing PAYE payable and employer cost.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Net pay is credited directly to Bank on the payslip date; there is no separate salaries payable (net pay) control account.</p>
+          <h3>9.3 Declarations</h3>
+          <ul>
+            <li><strong>EMP201:</strong> PAYE, SDL, UIF (employee and employer) and ETI from issued payslips whose period ends in the month. Due on the 7th of the following month, or the last business day before it when the 7th falls on a weekend; public holidays are not applied.</li>
+            <li><strong>EMP501 / IRP5 / IT3(a):</strong> reconciliation and the e@syFile import file, built to SARS BRS "PAYE Employer Reconciliation" V25.3.0. Scope: monthly-paid employees who are natural persons with an SA identity number, remuneration on source code 3601, retirement fund fringe benefits, medical scheme contributions and the ETI block. Items outside this scope are reported as validation errors rather than written to the file. Rand amounts drop the cents except on the codes for which the specification keeps them.</li>
+          </ul>
+          <div class="guide-callout guide-callout--warn">
+            <strong>Matter for your advice</strong>
+            <p>Payroll amounts are currently rounded by the platform's native rounding, which may understate by one cent on an exact half cent (e.g. UIF on R12&nbsp;345.50). We have not identified a SARS or UIF prescribed convention; please confirm the method to apply.</p>
+          </div>
+
+          <h2 id="assets">10. Property, plant and equipment</h2>
+          <h3>10.1 Initial recognition</h3>
+          <p>At cost (excluding recoverable VAT), through the supplier invoice posted to the PPE cost account (default 1650) or through the opening balances. The fixed-asset register records the asset but does not re-post its cost; register and ledger are reconciled automatically (section 14). Assets recorded with a nil cost are tracked for custody only and not depreciated.</p>
+          <h3>10.2 Subsequent measurement — cost model</h3>
+          <ul>
+            <li>Depreciation is charged monthly from the month of acquisition (full-month convention) and stops at the residual value.</li>
+            <li>Straight-line: (cost − residual value) ÷ useful life ÷ 12 per month. Diminishing balance: carrying amount × (1 ÷ useful life) ÷ 12 per month.</li>
+            <li>A depreciation run charges every month not yet charged up to the run date (catch-up), and cannot charge the same month twice. Entry: Dr 6100 / Cr 1600, one entry per run with a schedule per asset.</li>
+            <li>Assets under maintenance continue to be depreciated; only disposed assets stop.</li>
+            <li>Cost and accumulated depreciation cannot be edited directly. Assets brought over from a previous system carry their accumulated depreciation and the date to which it was charged.</li>
+          </ul>
+          <p><strong>Example</strong> — cost R12&nbsp;000 acquired 15 January, useful life 1 year, nil residual: R1&nbsp;000 per month; a run at 31 March charges January to March (R3&nbsp;000).</p>
+          <h3>10.3 Derecognition</h3>
+          <p>On sale, scrapping or loss, depreciation is charged up to the month of disposal; cost and accumulated depreciation are derecognised and the carrying amount is charged to 8100. Disposal proceeds are invoiced to the buyer with the capital-goods VAT classification (Field 1A) and credited to 8100, which therefore reflects the gain or loss on disposal.</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Entry</th><th>Account</th><th>Dr</th><th>Cr</th></tr></thead>
+              <tbody>
+                <tr><td rowspan="3">Derecognition</td><td>1600 Accumulated depreciation</td><td>4 000.00</td><td></td></tr>
+                <tr><td>8100 Disposal — carrying amount</td><td>8 000.00</td><td></td></tr>
+                <tr><td>1650 PPE — cost</td><td></td><td>12 000.00</td></tr>
+                <tr><td rowspan="3">Sale invoice (R10 000 + VAT)</td><td>1100 Trade receivables</td><td>11 500.00</td><td></td></tr>
+                <tr><td>8100 Disposal — proceeds</td><td></td><td>10 000.00</td></tr>
+                <tr><td>2200 VAT output (Field 4A)</td><td></td><td>1 500.00</td></tr>
+                <tr><td colspan="4">Net credit on 8100: gain on disposal of R2&nbsp;000. If scrapped with no proceeds, 8100 shows a loss equal to the carrying amount.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="fx">11. Foreign currency</h2>
+          <ul>
+            <li>Exchange rates are maintained per currency pair with an effective date; a transaction uses the latest rate on or before its date. A foreign-currency document cannot be posted without a rate.</li>
+            <li>Foreign-currency invoices and bills are translated at the spot rate on the document date.</li>
+            <li>On settlement, the receivable or payable is cleared at the original rate and the bank at the settlement-date rate; the realised exchange difference is recognised in 8000.</li>
+            <li>Retranslation of open monetary items at the closing rate is <strong>not</strong> currently effective (see Limitations).</li>
+          </ul>
+          <p><strong>Example</strong> — USD 1&nbsp;000 invoice at R18.00; paid when the rate is R18.50:</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Entry</th><th>Account</th><th>Dr</th><th>Cr</th></tr></thead>
+              <tbody>
+                <tr><td rowspan="2">Invoice (zero-rated export)</td><td>1100 Trade receivables</td><td>18 000.00</td><td></td></tr>
+                <tr><td>4000 Revenue</td><td></td><td>18 000.00</td></tr>
+                <tr><td rowspan="3">Settlement</td><td>1000 Bank (1 000 × 18.50)</td><td>18 500.00</td><td></td></tr>
+                <tr><td>1100 Trade receivables (1 000 × 18.00)</td><td></td><td>18 000.00</td></tr>
+                <tr><td>8000 Realised exchange gain</td><td></td><td>500.00</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="periods">12. Period end, year end and conversion</h2>
+          <h3>12.1 Accounting periods</h3>
+          <p>Periods may be open, closed or locked. No posting is accepted into a closed or locked period — including reversals and opening entries, which must therefore be dated in an open period.</p>
+          <h3>12.2 Financial year and presentation of current-year profit</h3>
+          <p>Each entity defines its year-end month (default February). Until the year is closed, the statement of financial position presents profit for the current financial year in equity as "current year earnings" (measured from the entity's own year start) and any unclosed profit of earlier years separately, so that it balances at any reporting date.</p>
+          <h3>12.3 Year-end closing entry</h3>
+          <p>Income and expense accounts are closed to retained earnings at the financial year-end date. Closing a year that has not ended is rejected; re-running the close posts only residual balances (e.g. postings made after the first close).</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Example — year ended 28 February 2026: revenue R5 000, expenses R2 000</th><th>Dr</th><th>Cr</th></tr></thead>
+              <tbody>
+                <tr><td>4000 Revenue</td><td>5 000.00</td><td></td></tr>
+                <tr><td>7000 General expenses</td><td></td><td>2 000.00</td></tr>
+                <tr><td>3000 Retained earnings (profit for the year)</td><td></td><td>3 000.00</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>12.4 Conversion from a previous system</h3>
+          <ul>
+            <li>The conversion date is the last day in the previous system. Open receivables and payables are carried over as individual items with their original document and due dates (for ageing and statements), at the outstanding amount, without VAT (already accounted for in the previous system).</li>
+            <li>Each open item posts against 9999 on the conversion date (receivable: Dr 1100 / Cr 9999; payable: Dr 9999 / Cr 2100). The trial balance of all other accounts posts against 9999.</li>
+            <li>Posting is permitted only when the opening trial balance balances and the receivables and payables controls in it agree to the open items; 9999 is then nil. After posting, the opening balances are locked and corrections are made by journal.</li>
+          </ul>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Example</th><th>Dr</th><th>Cr</th></tr></thead>
+              <tbody>
+                <tr><td>Open invoices (Dr 1100 / Cr 9999)</td><td>1100 1 950.00</td><td>9999 1 950.00</td></tr>
+                <tr><td>Open bills (Dr 9999 / Cr 2100)</td><td>9999 600.00</td><td>2100 600.00</td></tr>
+                <tr><td>Trial balance excl. controls: Bank 10 000; VAT output 350; retained earnings 11 000</td><td>1000 10 000.00; 9999 1 350.00</td><td>2200 350.00; 3000 11 000.00</td></tr>
+                <tr><td colspan="3">9999: 1 950 Cr − 600 Dr − 1 350 Dr = nil.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="group">13. Group reporting</h2>
+          <ul>
+            <li>A group is an explicit set of entities. An entity can only be added or removed by its own administrator, and group reports require access to every entity in the group.</li>
+            <li>The group trial balance, statement of profit or loss and statement of financial position aggregate the separate ledgers by account code, with one column per entity, an eliminations column and the group total. Account codes used with different names in different entities are flagged.</li>
+            <li>Accounts designated as inter-company with another group entity are eliminated. An account designated against an entity outside the group is not eliminated and is reported.</li>
+            <li>Unmatched inter-company balances are disclosed as one line, "unreconciled inter-company difference", with a reconciliation per entity pair, so that the group totals still equal the sum of the entities.</li>
+            <li>Current-year earnings in the group statement of financial position follow each entity's own financial year.</li>
+            <li>This is an aggregation with inter-company eliminations; it is <strong>not</strong> a consolidation under IFRS&nbsp;10 or Section 9 of IFRS for SMEs.</li>
+          </ul>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Example</th><th>Entity A</th><th>Entity B</th><th>Eliminated</th><th>Group</th></tr></thead>
+              <tbody>
+                <tr><td>Loan to B (asset, designated: B)</td><td>1 000.00 Dr</td><td></td><td>1 000.00</td><td>—</td></tr>
+                <tr><td>Loan from A (liability, designated: A)</td><td></td><td>900.00 Cr</td><td>900.00</td><td>—</td></tr>
+                <tr><td>Unreconciled inter-company difference</td><td colspan="3">A–B pair out by R100 (reconciliation shown)</td><td>100.00</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="controls">14. Reconciliation controls — books health review</h2>
+          <p>A built-in reconciliation report verifies, at any time, that the ledger agrees with its sub-ledgers:</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead><tr><th>Control</th><th>Reconciled to</th><th>Typical cause of a difference</th></tr></thead>
+              <tbody>
+                <tr><td>Each journal entry</td><td>Debits equal credits</td><td>—</td></tr>
+                <tr><td>Trial balance</td><td>Total debits equal total credits</td><td>—</td></tr>
+                <tr><td>1100 Trade receivables control</td><td>Open invoices (ZAR at the transaction rate) less unapplied credit notes</td><td>Manual journal to the control account; invoice saved without a journal</td></tr>
+                <tr><td>2100 Trade payables control</td><td>Open bills less unapplied supplier credit notes</td><td>Bill captured before posting rules were enforced</td></tr>
+                <tr><td>2250 Customer advances</td><td>Unallocated receipts, net of output tax already accounted for</td><td>Manual journal to the account</td></tr>
+                <tr><td>1650 PPE cost; 1600 accumulated depreciation</td><td>Fixed-asset register</td><td>Asset bought but not registered, or registered without its bill</td></tr>
+                <tr><td>9999 Opening balance suspense</td><td>Nil after conversion</td><td>Conversion not yet posted</td></tr>
+                <tr><td>Bank accounts</td><td>Latest imported bank statement balance (for information)</td><td>Unpresented items; transactions not yet captured</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Exceptions are reported with the amount and, where possible, the source documents concerned. The treatments in this note are covered by an automated regression suite of more than 1&nbsp;500 tests, including a full accounting cycle (conversion, sales, receipts, advances, write-offs, purchases, supplier notes) that must reconcile on every control.</p>
+
+          <h2 id="limits">15. Limitations</h2>
+          <ul>
+            <li><strong>Expected credit losses:</strong> no allowance for impairment of receivables is calculated; only specific write-offs.</li>
+            <li><strong>Foreign currency:</strong> open monetary items are not retranslated at the closing rate; the existing revaluation function does not yet produce a translation difference, because foreign-currency amounts are not held on the ledger. Customer advances, conversion balances and write-offs are ZAR only.</li>
+            <li><strong>PPE:</strong> no tax-allowance (s11(e)) register, impairment or revaluation model; a change in useful life or residual value recalculates the straight-line charge on cost over the revised life rather than re-spreading the remaining carrying amount over the remaining life.</li>
+            <li><strong>Payroll:</strong> net pay is credited to Bank on the payslip date (no salaries payable account); rounding convention open (section 9); public holidays not applied to EMP201 due dates.</li>
+            <li><strong>Group:</strong> aggregation with eliminations only (section 13).</li>
+            <li><strong>VAT:</strong> fields 5–11 and 16 not derived; no electronic submission; payments-basis vendors are not separately supported.</li>
+            <li><strong>Not yet available:</strong> provisional tax (IRP6), trust-specific reporting (IT3(t), beneficiary distributions), annual financial statements with notes, a statement of cash flows derived from the ledger, bank-specific payment file formats, live bank feeds.</li>
+          </ul>
+
+          <h2 id="sources">16. References</h2>
+          <ul>
+            <li>SARS, <a href="https://www.sars.gov.za/wp-content/uploads/Ops/Guides/Legal-Pub-Guide-VAT404-VAT-404-Guide-for-Vendors.pdf" rel="noopener">VAT 404 Guide for Vendors</a>, Issue 15 (17 December 2024): para 5.2.1 (time of supply, deposits), 9.2 (irrecoverable debts), 9.5 (rounding differences).</li>
+            <li>SARS, <a href="https://www.sars.gov.za/wp-content/uploads/Ops/Guides/GEN-ELEC-04-G01-Guide-for-completing-the-Value-Added-Tax-VAT201-Declaration-External-Guide.pdf" rel="noopener">GEN-ELEC-04-G01 Guide to completing the VAT201 return</a>, Revision 11, effective 12 May 2025 (Field 12 p.19; Fields 17 and 18 p.21).</li>
+            <li>Value-Added Tax Act 89 of 1991, ss 9(1) and 22 (as summarised in VAT 404).</li>
+            <li>SARS, Rates of Tax for Individuals and Medical Tax Credit Rates (updated 25 February 2026); SARS guidance on UIF and SDL.</li>
+            <li>SARS, PAYE-GEN-01-G05 Guide for Employers in respect of the Employment Tax Incentive, Revision 17 (19 September 2025).</li>
+            <li>SARS, Guide for Employers in respect of Employees' Tax (2027); Budget 2026 FAQ.</li>
+            <li>SARS, Business Requirements Specification: PAYE Employer Reconciliation, V25.3.0 (2026 release).</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="logo">
+            <span class="logo-text" style="color:#fff">InnoVisions</span>
+            <span class="logo-slogan">From Vision to Innovation</span>
+          </a>
+          <p>Accounting, stock, jobs and payroll in one ledger, built for South African tax rules.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="../features.html">Features</a>
+          <a href="../compare.html">Compare</a>
+          <a href="index.html">Guides</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms of Service</a>
+          <a href="../data-processing.html">Data Processing</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 InnoVisions. All rights reserved.</span>
+        <span>Built in South Africa 🇿🇦</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

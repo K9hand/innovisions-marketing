@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Production &amp; Manufacturing Guide — InnoVisions ERP</title>
-  <meta name="description" content="Step-by-step guide to manufacturing in InnoVisions ERP: bills of materials, work orders, production output, MRP, routing, and quality control.">
+  <title>Production &amp; Manufacturing Guide — InnoVisions</title>
+  <meta name="description" content="Bills of materials with versions, work orders, recipe production runs and quality control inspections.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -16,21 +16,17 @@
 
   <header class="header">
     <div class="container header-inner">
-      <a href="/" class="logo">
-        <div class="logo-mark">IV</div>
-        <span class="logo-text">InnoVisions<span class="erp-badge">ERP</span></span>
+      <a href="../index.html" class="logo">
+        <span class="logo-text">InnoVisions</span>
+        <span class="logo-slogan">From Vision to Innovation</span>
       </a>
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
       </button>
       <nav class="nav" id="nav">
         <a href="../features.html">Features</a>
-        <a href="../pricing.html">Pricing</a>
         <a href="../compare.html">Compare</a>
-        <a href="../about.html">About</a>
         <a href="index.html">Guides</a>
-        <a href="../contact.html">Contact</a>
-        <a href="https://app.innvisions.co.za/login" class="btn btn-primary">Sign In</a>
       </nav>
     </div>
   </header>
@@ -39,7 +35,7 @@
   <section class="page-header">
     <div class="dot-grid"></div>
     <h1 class="animate-fade-up">Production &amp; Manufacturing</h1>
-    <p class="animate-fade-up delay-2">Step-by-step guide to manufacturing in InnoVisions ERP: bills of materials, work orders, production output, MRP, routing, and quality control.</p>
+    <p class="animate-fade-up delay-2">Bills of materials with versions, work orders, recipe production runs and quality control inspections.</p>
   </section>
 
   <section class="section">
@@ -49,6 +45,7 @@
         <aside class="guide-sidebar">
           <h4>All Guides</h4>
           <ul>
+            <li><a href="accounting-rules.html">Accounting Policies &amp; Tax Treatment</a></li>
             <li><a href="financials.html">Financial Management</a></li>
             <li><a href="stock.html">Stock &amp; Inventory</a></li>
             <li><a href="production.html" class="active">Production &amp; Manufacturing</a></li>
@@ -65,343 +62,157 @@
 
           <div class="guide-meta">
             <span class="guide-meta-item"><strong>Module:</strong> Production &amp; Manufacturing</span>
-            <span class="guide-meta-item"><strong>Difficulty:</strong> Advanced</span>
-            <span class="guide-meta-item"><strong>Prerequisites:</strong> Stock module with items created, BOM components defined, work centres configured</span>
+            <span class="guide-meta-item"><strong>Prerequisites:</strong> Finished goods and components set up as stock items</span>
           </div>
 
-          <p>The Production &amp; Manufacturing module manages your end-to-end manufacturing execution — from demand forecasting and BOM engineering through MRP, production execution, quality control, cost analysis, and continuous improvement. Multi-level BOMs support complex assemblies, routing engines track operation-level costs, and MRP reconciles demand signals with supply chain constraints.</p>
+          <p>The production tools help you plan what you make and record what it used. You define a bill of materials (BOM) for each finished product, plan runs with work orders, record the components consumed and compare plan with actual. Quality Control records inspections on goods received and on work orders. This guide also says clearly where production does not move stock or post to the ledger, so you know what to do by hand.</p>
 
-          <div class="guide-callout guide-callout--info">
-            <strong>Info</strong>
-            <p>MRP is typically run overnight. Schedule it after all POs, sales orders, and work orders are updated for the day.</p>
-          </div>
-
-          <h2>Design Multi-Level Bills of Materials</h2>
+          <h2>Build a Bill of Materials</h2>
           <div class="guide-step">
             <div class="guide-step-number">1</div>
             <div class="guide-step-body">
-              <strong>Create the BOM header</strong>
-              <p>Navigate to Production → BOMs and click New BOM. Select the finished product and choose between an Engineering BOM (designed specification) or Manufacturing BOM (production execution view). Set the BOM type to Standard, Phantom (for sub-assemblies consumed directly into parent), or Planning (for forecasting only).</p>
+              <strong>Create a BOM version</strong>
+              <p>Go to <strong>Operations → BOM</strong>. Choose the finished good, the quantity one run produces and the unit of measure. Each BOM has a version number, so you can keep a history of recipe changes.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">2</div>
             <div class="guide-step-body">
-              <strong>Add components with quantity and scrap</strong>
-              <p>Add each raw material or sub-assembly, specifying the quantity per finished unit. Configure the scrap percentage to account for manufacturing losses — for example, 5% scrap on steel sheet accounts for edge trim waste. Set component yield if using variable-ratio BOMs for process manufacturing.</p>
+              <strong>Add components</strong>
+              <p>Click <strong>+ Component</strong> and add each raw material or sub-assembly with its quantity. Enter a scrap percentage to allow for waste; for example, 5 means 5% more of that component is planned. A component that has its own BOM is marked as a manufactured item.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">3</div>
             <div class="guide-step-body">
-              <strong>Configure co-products and by-products</strong>
-              <p>Add co-products (multiple primary outputs from one process) with individual quantities and cost allocation percentages. Define by-products with negative quantities or disposal cost to automatically reduce WIP value at production posting.</p>
+              <strong>Activate or clone</strong>
+              <p>Click <strong>Activate</strong> to make a version the current recipe for that product. Use <strong>Clone</strong> to copy a version, with all its components, into a new inactive version that you can change.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">4</div>
             <div class="guide-step-body">
-              <strong>Set BOM version control</strong>
-              <p>Enable versioning to track engineering changes over time. Set effective from/to dates per version. Only the active version is used for MRP and work order creation. Approve through ECO workflow before a new version replaces the current standard.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Validate and cost-roll-up</strong>
-              <p>Run BOM validation to check for missing components, inactive items, or circular references. Run cost roll-up to calculate the standard cost from component costs and routing operations. Review the manufacturing cost breakdown before releasing for production.</p>
+              <strong>Explode the BOM</strong>
+              <p>Use <strong>Explode</strong> to work out the total raw materials needed for a production quantity, across all levels of sub-assemblies.</p>
             </div>
           </div>
 
-          <h2>Configure Production Routing and Work Centres</h2>
+          <h2>Run Work Orders</h2>
           <div class="guide-step">
             <div class="guide-step-number">1</div>
             <div class="guide-step-body">
-              <strong>Define work centres</strong>
-              <p>Navigate to Production → Routing → Work Centres. Create each machine, workstation, or production line. Configure rated capacity in hours per day, efficiency percentage (actual output vs rated), and utilisation percentage. Set cost rates for labour, machine, and overhead per hour.</p>
+              <strong>Create the work order</strong>
+              <p>From a BOM version, click <strong>Work Order</strong>, or go to <strong>Operations → Work Orders</strong>. Enter the quantity to produce, the warehouse and planned start and end dates. The system fills in the component lines from the BOM, scaled to the quantity and including the scrap percentage.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">2</div>
             <div class="guide-step-body">
-              <strong>Create operation sequence</strong>
-              <p>For each product routing, define the sequence of operations. Each operation references a work centre. Set setup time (fixed per batch) and run time (per unit). Add queue time, move time, and wait time for realistic throughput scheduling.</p>
+              <strong>Move it through its statuses</strong>
+              <p>A work order moves from Draft to Released, then In Progress, then Completed. It can be cancelled at any point before it is completed.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">3</div>
             <div class="guide-step-body">
-              <strong>Configure parallel and overlapping operations</strong>
-              <p>Set operation overlap percentage to allow the next operation to start before the previous one finishes (e.g., 50% overlap for assembly lines). Configure parallel operations for tasks that can run simultaneously at different work centres.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Assign routing to BOM versions</strong>
-              <p>Link each BOM version to the appropriate routing version. When a work order is created, the system loads the routing automatically. The routing drives the production schedule, capacity requirements, and operation-level cost collection.</p>
-            </div>
-          </div>
-
-          <h2>Run Material Requirements Planning (MRP)</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Set MRP parameters</strong>
-              <p>Navigate to Production → MRP → Parameters. Configure the planning horizon (typically 12 weeks), order modifiers (minimum/multiple order quantities per item), lead time buffers, and safety stock policy. Choose regeneration (full net-change) or net-change (incremental) planning mode.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Run net requirements calculation</strong>
-              <p>Click Run MRP. The system calculates gross demand from sales orders, MPS, and forecasts. It nets against current stock, open POs, work-in-progress, and scheduled receipts. The output is a set of planned orders with quantities and suggested dates.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Review pegging and action messages</strong>
-              <p>Review the pegging report to trace each planned order back to its demand source (sales order, MPS, forecast). Action messages highlight exceptions: Release (planned orders due), Reschedule In/Out (date misalignment), Cancel (surplus supply).</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Convert planned orders</strong>
-              <p>Select planned orders and click Convert to generate firm work orders and purchase orders. The system creates POs for purchased items with the correct supplier and delivery dates, and work orders for manufactured items with BOM and routing. Review ATP before converting.</p>
-            </div>
-          </div>
-
-          <div class="guide-callout guide-callout--tip">
-            <strong>Tip</strong>
-            <p>Run MRP in simulation mode first to review the impact of demand changes before committing to new POs and work orders.</p>
-          </div>
-
-          <h2>Create and Release Work Orders</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Create work order</strong>
-              <p>Work orders can be created manually, from MRP conversion, directly from a sales order, or from the MPS. Navigate to Production → Work Orders → New. Select the product, BOM version, routing, and quantity. The system pre-calculates material requirements and operation durations.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Check material availability</strong>
-              <p>Run material availability check to identify shortages. The system compares required BOM quantities against on-hand + on-order stock. Shortages are flagged. Partial release can proceed with available stock while back-ordered components are tracked.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Schedule and release</strong>
-              <p>Set planned start/end dates. The system performs backward scheduling from due date or forward scheduling from start date based on routing operation times. Release the work order to reserve stock and make it available on the shop floor. Released orders appear on the dispatch board.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Handle work order lifecycle</strong>
-              <p>Work orders progress through Draft → Released → In Progress → Completed → Closed. Use Hold status to pause production for quality issues or material shortages. Click-by-click operation status tracking can be enabled for detailed WIP visibility at each routing step.</p>
-            </div>
-          </div>
-
-          <h2>Record Production with Variance Analysis</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Record production output</strong>
-              <p>Navigate to the work order and click Record Production. Enter the finished good quantity produced. Record by-products and scrap. The system can backflush component consumption based on BOM quantities, or you can issue materials manually for more precise tracking.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Post and review GL impact</strong>
-              <p>Post the production completion. The system creates a manufacturing journal entry: credits WIP (raw material consumption + labour + overhead applied), debits finished goods inventory (standard cost of output), and posts variances to configured variance accounts.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Analyse variances</strong>
-              <p>Run the work order variance report: material usage variance (actual component qty vs BOM qty), labour efficiency variance (actual hours vs routing hours), rate variance (actual labour rate vs standard), and overhead absorption variance. Investigate variances exceeding configured thresholds.</p>
+              <strong>Record what was used</strong>
+              <p>On the work order, enter the quantity actually consumed and the unit cost for each component line. You can add extra lines while the order is open. Completed and cancelled orders are locked.</p>
             </div>
           </div>
 
           <div class="guide-callout guide-callout--warn">
-            <strong>Warning</strong>
-            <p>Engineering changes that affect active work orders require careful disposition planning. Use the change impact report before approving to identify affected orders and their current production stage.</p>
+            <strong>Work orders do not move stock</strong>
+            <p>Work order statuses and consumption lines are records only. They do not issue components from stock, receive finished goods or post to the general ledger. Update stock by adjustment on each item (stock journal only), and ask your accountant to post any journal needed for the value.</p>
           </div>
 
-          <h2>Manage Engineering Changes</h2>
+          <h2>Compare Plan with Actual</h2>
+          <p>Go to <strong>Operations → Ops Reports</strong> and open <strong>Work Order Variance</strong>. For each completed work order it compares the planned component use with what you recorded:</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead>
+                <tr><th>Measure</th><th>How it is worked out</th></tr>
+              </thead>
+              <tbody>
+                
+                <tr><td>Component variance</td><td>Quantity consumed less quantity required, per component</td></tr>
+                <tr><td>Cost variance</td><td>Consumed quantity × unit cost, less required quantity × unit cost</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Quality Control</h2>
           <div class="guide-step">
             <div class="guide-step-number">1</div>
             <div class="guide-step-body">
-              <strong>Create ECO workflow</strong>
-              <p>Navigate to Production → Engineering → Change Orders. Create an Engineering Change Order (ECO) describing the proposed change, reason, and affected BOMs/routings. Route through approval stages: Engineering Manager → Production Manager → Quality.</p>
+              <strong>Create an inspection</strong>
+              <p>Go to <strong>Operations → Quality Control</strong> and create an inspection linked to a goods received note or a work order.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">2</div>
             <div class="guide-step-body">
-              <strong>Run impact analysis</strong>
-              <p>Before approving, run the change impact report showing: affected BOM versions, active work orders using the current BOM, existing stock of the old component (use-as-is vs scrap vs rework), customer orders specifying the current version. Cost impact analysis compares old vs new BOM cost.</p>
+              <strong>Record results per line</strong>
+              <p>For each line, enter the quantity inspected, passed, failed and quarantined. The three results cannot add up to more than the quantity inspected. Set the result to pass, fail or quarantine, and choose a disposition: return to supplier, scrap or rework.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">3</div>
             <div class="guide-step-body">
-              <strong>Implement and phase in</strong>
-              <p>Approve the ECO to create a new BOM version with effective date. Use phase-in/phase-out dates to transition smoothly. For example, effective from 1 March — work orders released before use old BOM, after use new BOM. Existing WIP is completed with the old BOM unless disposition requires rework.</p>
-            </div>
-          </div>
-
-          <h2>Implement Quality Control in Production</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Create inspection plans</strong>
-              <p>Navigate to Production → Quality → Inspection Plans. Define inspection criteria per product or operation: measurements to check, acceptable ranges (upper/lower spec limits), sampling frequency (every nth unit or batch), and AQL (acceptable quality level) for statistical sampling.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Link to BOM or routing operation</strong>
-              <p>Assign inspection plans to a product, BOM version, or specific routing operation. For example, dimensional check after Operation 20 (machining) and before Operation 30 (assembly). The inspection is triggered automatically when production is recorded at that operation.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Record non-conformance</strong>
-              <p>When inspection fails, create a Non-Conformance Report (NCR). Classify severity (minor/major/critical). Route for disposition: Use-as-Is, Rework, Scrap, or Return to Supplier. Corrective action tracking ensures root cause analysis and prevents recurrence.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Track quality KPIs</strong>
-              <p>Monitor production quality metrics: first-pass yield (FPY), scrap rate percentage, rework cost as % of production cost, supplier defect ppm. Configure threshold alerts — e.g., if scrap rate exceeds 3% in a shift, notify the production manager automatically.</p>
-            </div>
-          </div>
-
-          <h2>Configure Production Costing</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Set costing method</strong>
-              <p>Choose between Standard Cost (pre-set costs with variance tracking) or Actual Cost (costs calculated from actual transactions). Standard cost requires periodic cost roll-ups and variance analysis. Actual cost provides real-time profitability but requires more processing.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Run cost roll-up</strong>
-              <p>Navigate to Production → Costing → Cost Roll-Up. Select the BOM and routing. The system calculates: material cost (component qty × standard cost), labour cost (operation hours × work centre rate), overhead cost (operation hours × overhead rate). Review rolled-up cost before updating standard costs.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Configure variance accounts</strong>
-              <p>Set GL accounts for each variance type: Material Usage, Material Price, Labour Rate, Labour Efficiency, Overhead Absorption, and Production Volume. Variances post automatically at production completion. Review the monthly manufacturing P&L to identify cost trends and improvement areas.</p>
-            </div>
-          </div>
-
-          <h2>Optimise Production Scheduling</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Choose scheduling method</strong>
-              <p>Use Forward Scheduling (start as soon as materials available — pushes completion date out) or Backward Scheduling (start as late as possible to meet due date). Finite scheduling respects work centre capacity and shows overload/underload by period.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Use the Gantt chart board</strong>
-              <p>The production schedule board (Gantt chart) shows work orders by work centre across time. Drag-drop for manual rescheduling. Colour-coded by status (released, in progress, completed, late). Identify capacity bottlenecks where work centre utilisation exceeds 90%.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Monitor OEE dashboards</strong>
-              <p>Configure OEE (Overall Equipment Effectiveness) calculation for each work centre: Availability (actual run time / planned time), Performance (actual output / max output), Quality (good units / total units). Target OEE of 85%+ for world-class manufacturing.</p>
+              <strong>Submit</strong>
+              <p>When you submit, the inspection becomes Passed, Failed or Partially Passed based on its lines. Failed and quarantined inspections are listed on <strong>Operations → Ops Reports</strong>.</p>
             </div>
           </div>
 
           <div class="guide-callout guide-callout--info">
-            <strong>Info</strong>
-            <p>Set up work centre efficiency rates (e.g., 85%) to account for breaks and downtime. This gives realistic capacity planning rather than theoretical maximum.</p>
+            <strong>Inspection results are records</strong>
+            <p>An inspection does not move stock by itself. To hold a batch back, set it to quarantine under <strong>ERP → Stock Batches</strong>. Returns to a supplier are handled with a supplier debit note under <strong>Finance → Supplier Notes</strong>.</p>
           </div>
+
+          <h2>Simple Recipes</h2>
+          <p>For simple assembly there are also stock recipes: a list of components for one finished item. Running "produce" on a recipe issues the components from stock and receives the finished item. This is written to the stock journal only, with no ledger posting. Recipes are currently available through the API, not on a menu screen.</p>
 
           <h2>Related Modules</h2>
           <div class="guide-grid">
             <a href="stock.html" class="guide-card" style="text-decoration:none;color:inherit">
               <h4>Stock &amp; Inventory</h4>
-              <p>Backflushing automates component consumption when production output is recorded. Configure backflush at operation completion for WIP tracking. BOM component reservations ensure material availability at work order release.</p>
+              <p>Components and finished goods are stock items, with batches, serials and adjustments.</p>
             </a>
             <a href="procurement.html" class="guide-card" style="text-decoration:none;color:inherit">
               <h4>Procurement &amp; Supply Chain</h4>
-              <p>MRP-generated POs flow directly to procurement with the correct supplier, quantity, and required-by date based on routing lead times and component lead times.</p>
+              <p>Buy raw materials with purchase orders and inspect them on receipt.</p>
             </a>
             <a href="job-costing.html" class="guide-card" style="text-decoration:none;color:inherit">
-              <h4>Projects &amp; Job Costing</h4>
-              <p>Work order costs (materials, labour, overhead) can be tracked at the project level when a work order is linked to a job. Production variance analysis feeds into job profitability reporting.</p>
+              <h4>Job Costing</h4>
+              <p>Track stock, labour and travel on customer jobs.</p>
             </a>
-            <a href="financials.html" class="guide-card" style="text-decoration:none;color:inherit">
-              <h4>Financial Management</h4>
-              <p>Manufacturing variances post to GL variance accounts for material usage, labour rate, and overhead absorption. WIP valuation is maintained at standard or actual cost through production posting.</p>
+            <a href="accounting-rules.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Accounting Rules</h4>
+              <p>Which documents post to the ledger, and how.</p>
             </a>
           </div>
 
         </div>
-
       </div>
     </div>
   </section>
 
-  <section class="cta-section">
-    <div class="dot-grid"></div>
-    <div class="cta-orb cta-orb--blue"></div>
-    <div class="cta-orb cta-orb--teal"></div>
-    <div class="container cta-content">
-      <h2 class="reveal">Need more help?</h2>
-      <p class="reveal delay-2">Get in touch with our team. We're here to help you get the most out of InnoVisions.</p>
-      <a href="../contact.html" class="btn btn-primary reveal delay-3">Contact Support →</a>
-    </div>
-  </section>
+  </main>
 
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="/" class="logo">
-            <div class="logo-mark">IV</div>
+          <a href="../index.html" class="logo">
             <span class="logo-text" style="color:#fff">InnoVisions</span>
+            <span class="logo-slogan">From Vision to Innovation</span>
           </a>
-          <p>One platform for your entire business. Customers, inventory, jobs, finance, and support — deeply integrated.</p>
+          <p>Accounting, stock, jobs and payroll in one ledger, built for South African tax rules.</p>
         </div>
         <div class="footer-col">
           <h4>Platform</h4>
           <a href="../features.html">Features</a>
-          <a href="../pricing.html">Pricing</a>
           <a href="../compare.html">Compare</a>
-          <a href="../about.html">About</a>
           <a href="index.html">Guides</a>
-          <a href="../contact.html">Contact</a>
-        </div>
-        <div class="footer-col">
-          <h4>Product</h4>
-          <a href="https://app.innvisions.co.za/register">Get Started</a>
-          <a href="https://app.innvisions.co.za/login">Sign In</a>
-          <a href="index.html">Documentation</a>
-          <a href="../contact.html">Support</a>
         </div>
         <div class="footer-col">
           <h4>Legal</h4>
@@ -411,11 +222,10 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2026 InnoVisions ERP. All rights reserved.</span>
+        <span>&copy; 2026 InnoVisions. All rights reserved.</span>
         <span>Built in South Africa 🇿🇦</span>
       </div>
     </div>
-  </main>
   </footer>
 
   <script src="../js/main.js"></script>

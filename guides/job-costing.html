@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects &amp; Job Costing Guide — InnoVisions ERP</title>
-  <meta name="description" content="Step-by-step guide to managing projects and job costing in InnoVisions ERP: job setup, real-time cost tracking, subcontractors, profitability analysis, and equipment tracking.">
+  <title>Projects &amp; Job Costing Guide — InnoVisions</title>
+  <meta name="description" content="Job cards with stock, labour and travel, job totals, projects with phases and milestones, and invoicing the work.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -16,21 +16,17 @@
 
   <header class="header">
     <div class="container header-inner">
-      <a href="/" class="logo">
-        <div class="logo-mark">IV</div>
-        <span class="logo-text">InnoVisions<span class="erp-badge">ERP</span></span>
+      <a href="../index.html" class="logo">
+        <span class="logo-text">InnoVisions</span>
+        <span class="logo-slogan">From Vision to Innovation</span>
       </a>
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
       </button>
       <nav class="nav" id="nav">
         <a href="../features.html">Features</a>
-        <a href="../pricing.html">Pricing</a>
         <a href="../compare.html">Compare</a>
-        <a href="../about.html">About</a>
         <a href="index.html">Guides</a>
-        <a href="../contact.html">Contact</a>
-        <a href="https://app.innvisions.co.za/login" class="btn btn-primary">Sign In</a>
       </nav>
     </div>
   </header>
@@ -39,7 +35,7 @@
   <section class="page-header">
     <div class="dot-grid"></div>
     <h1 class="animate-fade-up">Projects &amp; Job Costing</h1>
-    <p class="animate-fade-up delay-2">Step-by-step guide to managing projects and job costing in InnoVisions ERP: job setup, real-time cost tracking, subcontractors, profitability analysis, and equipment tracking.</p>
+    <p class="animate-fade-up delay-2">Job cards with stock, labour and travel, job totals, projects with phases and milestones, and invoicing the work.</p>
   </section>
 
   <section class="section">
@@ -49,6 +45,7 @@
         <aside class="guide-sidebar">
           <h4>All Guides</h4>
           <ul>
+            <li><a href="accounting-rules.html">Accounting Policies &amp; Tax Treatment</a></li>
             <li><a href="financials.html">Financial Management</a></li>
             <li><a href="stock.html">Stock &amp; Inventory</a></li>
             <li><a href="production.html">Production &amp; Manufacturing</a></li>
@@ -64,471 +61,164 @@
         <div class="guide-content">
 
           <div class="guide-meta">
-            <span class="guide-meta-item"><strong>Module:</strong> Projects &amp; Job Costing</span>
-            <span class="guide-meta-item"><strong>Difficulty:</strong> Expert</span>
-            <span class="guide-meta-item"><strong>Prerequisites:</strong> Stock, HR, and financial modules configured</span>
+            <span class="guide-meta-item"><strong>Module:</strong> Job Costing &amp; Projects</span>
+            <span class="guide-meta-item"><strong>Prerequisites:</strong> Customers, stock items and employees captured; vehicles if you charge travel</span>
           </div>
 
-          <h2>Overview</h2>
-          <p>The Projects &amp; Job Costing module covers the full project lifecycle — from job setup with budget baselines through real-time cost tracking across labour, materials, equipment, and subcontractors. Manage change orders with cost impact analysis, process progress and milestone billing, run subcontractor workflows, perform equipment cost allocation, forecast profitability to completion, analyse performance variances, and execute a structured job close-out with retention release.</p>
+          <p>A job card collects everything that goes into a piece of work for a customer: stock, labour, travel and items bought on site. You can see the running total for each job and turn the job into a draft invoice when the work is done. Larger jobs can be split into project phases and milestones.</p>
 
-          <h2>Configure Job Costing Settings</h2>
+          <h2>Open a Job Card</h2>
           <div class="guide-step">
             <div class="guide-step-number">1</div>
             <div class="guide-step-body">
-              <strong>Set up cost categories</strong>
-              <p>Navigate to Jobs → Settings → Cost Categories. Define the categories that map to your chart of accounts: Labour (Direct), Labour (Indirect), Materials, Subcontract, Equipment, Travel, and Overhead. Each category links to a GL account for automatic journal posting. Mark categories as billable or non-billable — billable categories flow through to customer invoices, non-billable categories affect profitability analysis only.</p>
+              <strong>Create the job</strong>
+              <p>Go to <strong>Operations → Job Costing</strong> and create a new job. Choose the customer and enter a title, description, start date and due date. The job number is filled in for you.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">2</div>
             <div class="guide-step-body">
-              <strong>Configure cost allocation rules</strong>
-              <p>Define direct vs indirect cost allocation. Direct costs (labour, materials) are allocated to specific jobs automatically. Indirect costs (rent, utilities, management salaries) are allocated using a cost driver — percentage of direct labour, machine hours, or square footage. For example, allocate overhead at 30% of direct labour cost. Configure the allocation frequency: monthly or per job, and the GL accounts for the offset entries.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Select overhead absorption method</strong>
-              <p>Choose the overhead absorption method in Jobs → Settings → Overhead. Methods include: Percentage of Direct Labour Cost (e.g., 25%), Per Labour Hour (e.g., R50/hour), Per Machine Hour (e.g., R120/hour), or Percentage of Material Cost (e.g., 10%). Set the rate annually based on budgeted overheads and budgeted activity levels. Review quarterly — if actual overheads diverge by more than 10% from budget, adjust the rate.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Manage budget baseline versioning</strong>
-              <p>Enable baseline versioning in Jobs → Settings → Budgeting. The original approved budget is Version 1. When a change order is approved, create Version 2 — this preserves the original budget for variance comparison. The system always shows actual vs current baseline, but you can run comparison reports against any version. Lock the baseline once approved — unlocked baselines invalidate variance analysis.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Select WIP valuation method</strong>
-              <p>Work-in-Progress valuation determines how job costs appear on the balance sheet. Select from: Cost Method (WIP = total costs incurred to date), Percentage of Completion (WIP = % complete × contract value − amounts billed), or Completed Contract (WIP = all costs until job is finished, then full revenue is recognised). Each method affects revenue recognition timing and has different audit and tax implications.</p>
+              <strong>Keep the status up to date</strong>
+              <p>A job can be Open, In Progress, On Hold, Completed, Invoiced or Cancelled. Overdue jobs are listed on the job reports.</p>
             </div>
           </div>
 
-          <h2>Set Up Job Budgets and Baselines</h2>
+          <h2>Record Work on the Job</h2>
           <div class="guide-step">
             <div class="guide-step-number">1</div>
             <div class="guide-step-body">
-              <strong>Create budget with cost category breakdown</strong>
-              <p>On the job card, click Budget → New. Enter estimated costs per category: Labour — 200 hours × R80/hour = R16 000; Materials — R25 000; Subcontract — R40 000; Equipment — 50 hours × R150/hour = R7 500; Travel — R5 000. Total budget: R93 500. The system auto-calculates the overhead absorption (e.g., 25% of labour = R4 000) and shows the total cost plus margin at the budgeted selling price.</p>
+              <strong>Stock</strong>
+              <p>On the job's <strong>Stock</strong> tab, add the stock items used, with quantity and unit price. The quantity is taken out of stock straight away, from the warehouse with the most stock first, and written to the stock journal. You cannot issue more than is in stock.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">2</div>
             <div class="guide-step-body">
-              <strong>Set labour hour and rate estimates</strong>
-              <p>Break down labour by role: Technician (120 hours × R65/hour), Senior Technician (60 hours × R95/hour), Project Manager (20 hours × R120/hour). Each role's cost rate comes from the HR module — ensure the loaded cost rate (including payroll taxes, pension, medical aid) is configured in HR → Employee Cost Rates. Bill rates are set separately on the job card and can differ from cost rates to achieve target margins.</p>
+              <strong>Labour</strong>
+              <p>On the <strong>Labour</strong> tab, record the employee, a description, the date, hours and the rate per hour. You enter the rate on each line.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">3</div>
             <div class="guide-step-body">
-              <strong>Estimate material quantities and costs</strong>
-              <p>Add materials from the stock catalogue or enter free-form items. System checks current average cost for catalogue items. Round up quantities by 5–10% to account for offcuts and wastage. Mark items as "Client Supplied" if the customer is providing them — these are tracked for installation but excluded from cost totals. Create a material release schedule aligned with the project timeline.</p>
+              <strong>Travel</strong>
+              <p>On the <strong>Travel</strong> tab, record the employee, the vehicle, the distance in kilometres and the rate per kilometre.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">4</div>
             <div class="guide-step-body">
-              <strong>Track budget vs commitment</strong>
-              <p>Commitments are POs and subcontract orders placed but not yet invoiced. The commitment report shows: Budget R93 500, POs issued R45 000, invoices received R22 000, remaining commitment R23 000, available budget R25 500. Use this forward visibility to prevent overspending before it happens. Review commitments weekly — a committed cost is a future liability even before the invoice arrives.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Execute budget revision with change order</strong>
-              <p>When scope changes, initiate a change order from the job card. The change order documents the change description, cost impact per category, and revised totals. Route for approval. Once approved, the system creates a new baseline version. Example: change order adds R15 000 for additional materials — Version 2 baseline becomes R108 500. The budget revision log shows who approved the change and when.</p>
-            </div>
-          </div>
-
-          <h2>Manage Change Orders</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Initiate change order from scope change</strong>
-              <p>Navigate to the job card → Change Orders → New. Select the change category: Scope Addition, Scope Deletion (credit), Design Change, or Unforeseen Condition. Describe the change with reference to the client's instruction or variation order. Link any supporting documents — client emails, revised drawings, site photos. The change order number is auto-generated with the job reference and sequential suffix (JOB-042-CO-001).</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Analyse cost impact of change</strong>
-              <p>Break down the cost impact by category: Additional labour — 40 hours × R80/hour = R3 200; Additional materials — R8 500; Extended equipment — 20 hours × R150/hour = R3 000; Total direct cost increase: R14 700. Overhead at 25% of labour: R800. Include margin at 20% = R2 940. The change order value to the client: R18 440. The system calculates margin erosion if the client doesn't accept the full value.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Route change order for approval</strong>
-              <p>Submit the change order through the approval workflow. Approval routing depends on the change value: under R10 000 — project manager approval; R10 000–R50 000 — project manager + director; over R50 000 — project manager + director + client written approval (attachment required). The change order status tracks through: Draft → Submitted → Approved → Rejected → Implemented. Notify the client when the change order is approved.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Revise baseline budget</strong>
-              <p>Once the change order is approved, update the baseline budget. The system creates a new baseline version that incorporates the change order amounts. The original baseline remains visible for audit. Variance reports can be run against Original Baseline (Version 1) or Current Baseline (Version 2). The difference between versions represents the total value of approved changes on the job.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Report and communicate change orders</strong>
-              <p>The Change Order Register lists all changes on the job: number, description, date, value, status, and approver. Export the register for client reporting. The cumulative change order value shows the total contract variation. If approved changes exceed 20% of the original contract value, the system flags the job for risk review — high levels of change indicate scope creep or poor initial scoping.</p>
-            </div>
-          </div>
-
-          <h2>Track Real-Time Job Costs</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Capture labour hours with cost rate</strong>
-              <p>Technicians log hours via the timesheet module, selecting the job card and task code. The system applies the employee's loaded cost rate from HR. Overtime is captured separately with the applicable overtime rate (1.5× or 2×). Timesheets must be approved by the project manager before costs are posted to the job. Same-day timesheet entry is encouraged — late timesheets (more than 7 days) require a manager override.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Allocate materials from stock</strong>
-              <p>From the job card, use Allocate Stock to issue materials from the warehouse. Select the item, quantity, and bin location. The system reduces stock quantity and posts the cost to the job at the item's average cost. For serialised or batch-tracked items, scan or select the specific serial/batch numbers. If stock is unavailable, the system suggests creating a purchase requisition for the job.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Log subcontractor invoices</strong>
-              <p>When a subcontractor invoice arrives, enter it against the subcontractor PO. The system validates the invoice against the PO value and work completed. If the invoice exceeds the PO by more than 10%, flag for approval. Post the invoice — the cost flows to the job cost summary. Track subcontractor invoices separately from materials and labour to analyse subcontracted work profitability.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Record equipment usage</strong>
-              <p>Operators log equipment hours against the job from the mobile app or web interface. Each entry records the equipment ID, start/end time, and meter reading. The system calculates the cost by multiplying hours by the equipment's cost rate (ownership + operating). Fuel and consumables used during the job can be recorded as additional equipment costs. The equipment cost section of the job card shows total usage hours and cost.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Track committed costs from POs</strong>
-              <p>When a PO is created for a job, the PO amount is recorded as a committed cost. The committed cost appears in the job cost summary as "Committed" — different from "Actual" (invoiced). This forward visibility is crucial: a job may show R50 000 actual costs but have R30 000 in un-invoiced POs, making total exposure R80 000 against a R90 000 budget. Review committed vs budget weekly to stay on track.</p>
-            </div>
-          </div>
-
-          <h2>Process Progress and Milestone Billing</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Define milestones and percentage complete</strong>
-              <p>On the job card, define billing milestones: Project Initiation (10%), Foundation Complete (25%), Structural Complete (50%), Handover (90%), Defects Liability Period End (100%). Each milestone has a value based on the contract price and the milestone percentage. When a milestone is achieved, the project manager marks it as complete with supporting evidence (sign-off document, progress photo, site report).</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Generate progress claims</strong>
-              <p>Navigate to the job card → Progress Claims → New. The system pre-fills achieved milestones and their values. Adjust for variations — if previous milestone was over-billed, apply a credit in the current claim. Add retention: for example, 10% retention on each milestone (released at final completion). The progress claim shows: gross claim value − retention = net claim value. Submit the claim for client approval.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Process progress invoice with retention</strong>
-              <p>When the client approves the progress claim, generate an invoice from the claim. The invoice shows the claim items with retention deducted. If retention is 10% and the milestone is R50 000, the invoice amount is R45 000 and R5 000 is recorded as Retention Receivable. The retention is tracked on the job card and released on the final invoice. Retention ageing reports show outstanding retention amounts by customer.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Track milestone achievement</strong>
-              <p>The Milestone Tracking dashboard shows all jobs with their milestones: planned date, actual date, status (Not Started, In Progress, Achieved, Overdue), and billing status (Not Billed, Claimed, Invoiced, Paid). Overdue milestones are highlighted — if more than 14 days late, the project manager receives an escalation. Use the milestone completion rate as a leading indicator of project health.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Follow up on client approval and payment</strong>
-              <p>After sending the progress invoice, track payment against the invoice. The AR ageing report shows outstanding progress invoices by customer. Set dunning rules: reminder at 7 days overdue, second reminder at 14 days, escalation to collections at 30 days. If a progress claim is rejected or queried by the client, create a dispute case linked to the invoice and document the resolution steps.</p>
-            </div>
-          </div>
-
-          <h2>Manage Subcontractor Workflows</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Create subcontractor PO with SOW</strong>
-              <p>From the job card, create a Subcontractor PO. Enter the scope of work, agreed price, start and end dates, and payment terms (e.g., 30 days after invoice). Attach the subcontract agreement, insurance certificate, and any required site induction documents. The PO amount is tracked as a committed cost against the job. Set a retention percentage on the PO — 10% retention is standard in construction subcontracts.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Verify subcontractor timesheets and progress</strong>
-              <p>Subcontractors submit timesheets against the PO. The project manager or site supervisor reviews and approves each timesheet. Track progress against the SOW — has the subcontractor completed 50% of the scope? The subcontractor progress report shows hours logged, percentage complete, and the estimated cost to complete. Overdue milestones on subcontractor POs are escalated to the subcontractor's account manager.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Validate subcontractor invoices</strong>
-              <p>When the subcontractor submits an invoice, it must be validated against the PO and work completed. The system checks: invoice amount ≤ PO balance; work certified ≥ invoice value; retention already deducted. If the invoice includes variations not in the PO, the variation must be approved via a change order before the invoice is processed. Invalid invoices are rejected with a clear reason sent to the subcontractor.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Process subcontractor payment application</strong>
-              <p>Validated invoices are batched into a subcontractor payment application. The application shows: gross invoice value, retention deducted, amounts previously paid, and net payment due. Route for approval — the project manager certifies the work is complete; the quantity surveyor verifies the amounts; the finance manager authorises payment. Approved payment applications flow to AP for the next payment run.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Rate subcontractor performance</strong>
-              <p>After job completion, rate the subcontractor on: Quality of Work (1–5), Adherence to Schedule (1–5), Safety Compliance (1–5), and Cooperation (1–5). The overall score is the average. Scores feed the subcontractor database — future job estimates can exclude subcontractors with scores below 3.0. The subcontractor performance report is used for pre-qualification on new tenders.</p>
-            </div>
-          </div>
-
-          <h2>Track Equipment Costs on Jobs</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Assign equipment to job</strong>
-              <p>Navigate to Jobs → Equipment Assignment. Select the equipment (excavator, generator, etc.), link it to the job card, and enter the expected usage hours and the cost rate. The cost rate comes from the equipment master record — verify it is up to date before assignment. Assign a specific operator who will be responsible for logging hours. Multiple equipment items can be assigned to a single job.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Record usage hours</strong>
-              <p>Operators log hours daily via the mobile app — enter equipment ID, job number, start time, end time, and meter start/end readings. The system calculates hours based on start/end times or meter readings. If the operator forgets to log out, the system sends a reminder notification. Partial hours are rounded to the nearest 15 minutes. All hours are subject to supervisor approval before costing.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Set up equipment cost rates</strong>
-              <p>Equipment cost rates include ownership costs (depreciation, insurance, licencing) and operating costs (fuel, maintenance, tyres). Configure these in Stock → Equipment → Cost Rates. Example: Excavator — ownership R80/hour + operating R70/hour = total R150/hour. Update rates annually or when costs change significantly. The system uses the rate to calculate the equipment cost on jobs automatically.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Track fuel and consumables</strong>
-              <p>When fuel is purchased for equipment on a job, record it against the job and equipment. Navigate to the equipment assignment → Fuel Entry. Enter litres, cost per litre, and attach the fuel receipt. The cost is added to the equipment cost category on the job. Similarly, consumables like oils, filters, and tyres can be recorded. The fuel consumption report shows litres per hour by equipment, helping identify abnormal consumption.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Allocate maintenance costs to jobs</strong>
-              <p>When equipment requires maintenance during a job, the maintenance cost can be allocated to the job. Create a maintenance request from the equipment record, raise a PO for the repair, and mark the cost as billable to the job. If the maintenance is general (not job-specific), allocate it to the equipment overhead account instead. The equipment cost summary on the job card shows usage, fuel, and maintenance costs.</p>
-            </div>
-          </div>
-
-          <h2>Configure Job Profitability Forecasting</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Calculate estimate-to-complete</strong>
-              <p>The Estimate-to-Complete (ETC) is the forecast cost to finish the remaining work. ETC = (Budget − Actual Cost) × Performance Factor. Performance Factor = Budget / Actual if actual > 0. Example: Budget R100 000, Actual R60 000 at 50% physical completion. Budget for remaining 50% = R50 000. If the job is tracking at 0.83 efficiency (R50 000 / R60 000), ETC = R50 000 / 0.83 = R60 240. The system recalculates ETC automatically as actual costs are posted.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Forecast final cost at completion</strong>
-              <p>Forecast Final Cost = Actual Cost to Date + Estimate-to-Complete. Using the example: R60 000 + R60 240 = R120 240. Compare to the budget of R100 000 — the forecast overrun is R20 240 (20.2%). The forecast dashboard shows all jobs with their forecast final cost, budget, and variance. Jobs with forecast variance > 10% are flagged as at-risk. Use the forecast to initiate corrective action — scope reduction, efficiency improvement, or change order negotiation.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Project margin analysis</strong>
-              <p>Project Margin = (Contract Value − Forecast Final Cost) / Contract Value × 100. If the contract value is R150 000 and forecast final cost is R120 240, the projected margin is 19.8%. Compare to the budgeted margin — if budgeted margin was 25%, the erosion is 5.2%. The margin erosion pie chart shows causes: labour overrun 2.5%, material price increase 1.5%, equipment inefficiency 1.2%. Use this data to focus corrective actions.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Compare cost-to-complete vs budget remaining</strong>
-              <p>The Cost-to-Complete report shows the remaining budget and the estimated cost to complete per category. If the remaining budget for materials is R15 000 but the estimated cost to complete is R22 000, there is a R7 000 shortfall. The system highlights categories where the cost-to-complete exceeds the remaining budget. The project manager must decide: request additional budget (change order), reduce scope, or find cost savings in other categories.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Set early warning indicators</strong>
-              <p>Configure early warning triggers in Jobs → Settings → Forecasting. Warnings: actual cost exceeds 80% of budget before 60% completion; labour efficiency ratio falls below 0.8 (budget hours/actual hours); material waste exceeds 10% of materials issued; change order value exceeds 15% of original contract. When a warning is triggered, the system sends an alert to the project manager and the job appears on the At-Risk Jobs dashboard for management attention.</p>
-            </div>
-          </div>
-
-          <h2>Run Job Performance Analytics</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Generate job profitability report</strong>
-              <p>Navigate to Reports → Job Costing → Profitability Report. Select a job or a portfolio of jobs. The report shows: Contract Value, Total Actual Cost, Gross Profit, Gross Margin %, Budget Variance (actual − budget), and Forecast Final Margin. Filter by date range, project manager, customer, or job status. Export to PDF for client reporting or Excel for detailed analysis. The report includes a variance explanation column for narrative commentary.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Analyse variance by cost category</strong>
-              <p>Drill into each cost category: Budget Labour R20 000 vs Actual Labour R24 500 — variance R4 500 (22.5% over). The variance splits into Rate Variance (paid R85/hour vs budgeted R80/hour) and Efficiency Variance (used 288 hours vs budgeted 250 hours). Similarly for materials: Price Variance (paid R12.50/unit vs budgeted R11.00/unit) and Usage Variance (used 1 200 units vs budgeted 1 000 units). This granularity pinpoints the root cause of overruns.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Measure labour productivity</strong>
-              <p>Labour Productivity = Budget Hours / Actual Hours × 100. If budgeted 250 hours and actual 288 hours, productivity is 86.8%. Track productivity by job, by team, and by task type. Consistently low productivity (below 80%) indicates training needs, inadequate supervision, or unrealistic estimating. The productivity trend chart shows weekly or monthly productivity against target. Use this data to improve future estimating accuracy.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Track material waste</strong>
-              <p>Material Waste % = (Quantity Issued − Quantity Used in Completed Work) / Quantity Issued × 100. If 1 200 units were issued and 1 080 units are in the completed work, waste is 10%. Compare to the budgeted waste allowance (typically 5–8%). Jobs exceeding the waste allowance are flagged. The waste report shows waste by material type — identify items with consistently high waste and investigate (theft, damage, poor cutting practices).</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Perform trend analysis across similar jobs</strong>
-              <p>Compare profitability metrics across similar job types. Select jobs of the same category (e.g., "Solar Installation") completed in the last 12 months. The trend report shows: average margin, margin range (min–max), average labour efficiency, average material waste, and average change order value. If one job has a significantly worse margin than the average, investigate what went wrong. Use the best-performing jobs as benchmarks for future estimates.</p>
-            </div>
-          </div>
-
-          <h2>Handle Job Close-Out</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Verify final costs and accruals</strong>
-              <p>Before closing a job, verify all costs are captured. Run the Missing Costs report — it shows any timesheets, stock issues, or expense claims not yet posted. Create accruals for expected invoices not yet received: if a subcontractor PO is 90% complete but no final invoice has arrived, accrue the estimated remaining cost. The accrual is reversed in the next period when the actual invoice is posted. Final cost verification must be signed off by the project manager.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Finalise client invoice</strong>
-              <p>If retention was held, the final invoice includes the retention release. Navigate to the job card → Final Invoice. The system pre-fills all unbilled amounts including retention. Review the invoice for accuracy: total invoiced should equal the contract value plus approved change orders. Issue the final invoice — any remaining WIP is cleared to cost of sales. The job status changes to "Pending Close" until the final invoice is paid.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Process retention release</strong>
-              <p>After the defects liability period (typically 6–12 months), release retention. Navigate to the job card → Retention → Release. The system shows total retention held, amount previously released, and amount now due for release. Create a credit note or final invoice for the retention amount. Track retention release deadlines — the system sends reminders 30 days before the release date. Unc collected retention is written off after 12 months.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Run final profitability report</strong>
-              <p>The Final Profitability Report shows the definitive job result: Actual Gross Profit, Margin %, and Variance from Budget. This report is archived with the job record. Export to PDF for management sign-off. Compare the final margin to the forecast margin — a large difference indicates forecasting inaccuracy that needs process improvement. The final report includes a lessons-learned section for continuous improvement.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Archive job documentation</strong>
-              <p>Close the job in the system — all PO lines are closed, open POs are cancelled, and the job status changes to "Closed — Archived." The job record moves to the archived database but remains accessible for reporting. Attach final documentation: signed completion certificate, as-built drawings, maintenance manuals, and client handover documents. Archived jobs are excluded from active reports but available for historical trend analysis.</p>
+              <strong>On-site orders</strong>
+              <p>On the <strong>On-Site Orders</strong> tab, list items needed on site with quantity and unit price. Track each line as requested, ordered or received. Open on-site orders are also counted as demand in the purchasing reorder recommendations.</p>
             </div>
           </div>
 
           <div class="guide-callout guide-callout--warn">
-            <strong>Warning</strong>
-            <p>Job budgets should be baselined before any costs are captured. Uncontrolled budget revisions make variance analysis meaningless. Lock the baseline after project kick-off.</p>
+            <strong>Stock issued to a job does not post to the ledger</strong>
+            <p>Issuing stock to a job reduces the quantity on hand but posts no journal. The invoice created from the job does not post cost of sales for those lines either. Ask your accountant to post a journal for the value of stock used on jobs (DR 5000 Cost of sales / CR 1500 Inventory, or as advised).</p>
           </div>
 
-          <div class="guide-callout guide-callout--info">
-            <strong>Info</strong>
-            <p>Commitment tracking through POs gives forward visibility of job costs before invoices arrive. Review committed vs budget weekly — not monthly — for active jobs to catch overruns early.</p>
+          <h2>See the Job Totals</h2>
+          <p>The job's <strong>Overview</strong> tab shows a summary. The job list adds up, for every job, the stock, labour, travel and on-site order lines and a grand total. These totals are line value (quantity × the price or rate you entered). They are not a full cost: there is no overhead allocation and no work-in-progress posting.</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead>
+                <tr><th>Line type</th><th>Line value</th><th>Moves stock</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Stock</td><td>Quantity × unit price</td><td>Yes, when added</td></tr>
+                <tr><td>Labour</td><td>Hours × rate per hour</td><td>No</td></tr>
+                <tr><td>Travel</td><td>Kilometres × rate per kilometre</td><td>No</td></tr>
+                <tr><td>On-site order</td><td>Quantity × unit price</td><td>No</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>From the Job Costing screen, open <strong>Job Reports</strong> for a status summary, jobs by customer, overdue jobs and the complete job list.</p>
+
+          <h2>Invoice the Job</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Create the invoice</strong>
+              <p>On the job, click <strong>Create Invoice</strong>. A draft invoice is made with one line for each stock, labour, travel and on-site order line, VAT at 15% and payment due in 30 days. The job is marked as Invoiced.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Check and issue</strong>
+              <p>Open the draft under <strong>Finance → Invoicing (AR)</strong>. Change lines, VAT codes or income accounts if needed, then issue it. Issuing posts the invoice to the ledger and locks it.</p>
+            </div>
           </div>
 
           <div class="guide-callout guide-callout--tip">
             <strong>Tip</strong>
-            <p>Set overhead absorption rates annually based on budgeted overheads and activity levels. Review quarterly — if actuals diverge by more than 10%, adjust the rate to maintain accurate job costs.</p>
+            <p>Labour lines with a zero total are left off the invoice, so you can record time that is not charged without it appearing on the customer's invoice.</p>
+          </div>
+
+          <h2>Projects: Phases and Milestones</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Add phases to a job</strong>
+              <p>Go to <strong>Operations → Projects</strong>. For a job card, add phases with planned start and end dates and a budgeted amount. Start and complete each phase to record actual dates.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Add milestones</strong>
+              <p>Add milestones to a phase with a due date. Mark a milestone as achieved when it is done. A milestone can be flagged as billable with an amount or a percentage of the job.</p>
+            </div>
           </div>
 
           <div class="guide-callout guide-callout--info">
-            <strong>Info</strong>
-            <p>Equipment cost rates should include ownership costs (depreciation, insurance, licencing) and operating costs (fuel, maintenance, tyres). Update rates at least annually to reflect current market conditions.</p>
-          </div>
-
-          <div class="guide-callout guide-callout--tip">
-            <strong>Tip</strong>
-            <p>Use job templates for standard project types. Template costs and hours provide a starting budget that can be adjusted for specific job variables, reducing setup time by up to 40%.</p>
+            <strong>Milestone billing is a marker</strong>
+            <p>Billing a milestone confirms it is ready to bill; it does not create an invoice. Create the invoice yourself under <strong>Finance → Invoicing (AR)</strong>. The phase budget is a planning figure on the project; ledger budgets under <strong>Accounting → Budgets</strong> are set per GL account and cost centre, not per job.</p>
           </div>
 
           <h2>Related Modules</h2>
           <div class="guide-grid">
-            <a href="financials.html" class="guide-card" style="text-decoration:none;color:inherit">
-              <h4>Financial Management</h4>
-              <p>Job WIP valuation feeds the balance sheet. Progress billings offset WIP as revenue is recognised. Job profitability flows through to the P&amp;L for accurate financial reporting.</p>
-            </a>
             <a href="stock.html" class="guide-card" style="text-decoration:none;color:inherit">
               <h4>Stock &amp; Inventory</h4>
-              <p>Material issued to jobs is transferred from available stock to job WIP. Returned unused material reverses the allocation and restocks the warehouse.</p>
+              <p>Stock issued to jobs comes out of your warehouses and shows in the stock journal.</p>
             </a>
-            <a href="hr-payroll.html" class="guide-card" style="text-decoration:none;color:inherit">
-              <h4>HR &amp; Payroll</h4>
-              <p>Labour costs are captured at the actual pay rate including overtime and allowances. Timesheet approval ensures cost accuracy before posting to jobs.</p>
+            <a href="procurement.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Procurement &amp; Supply Chain</h4>
+              <p>Reorder recommendations include demand from open job cards.</p>
             </a>
             <a href="crm-sales.html" class="guide-card" style="text-decoration:none;color:inherit">
               <h4>CRM &amp; Sales</h4>
-              <p>Service and support tickets can create job cards for on-site work. Customer SLA commitments inform job priority and scheduling.</p>
+              <p>Quotes, sales orders and invoices for your customers.</p>
+            </a>
+            <a href="accounting-rules.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Accounting Rules</h4>
+              <p>How invoices and cost of sales are posted.</p>
             </a>
           </div>
 
         </div>
-
       </div>
     </div>
   </section>
 
-  <section class="cta-section">
-    <div class="dot-grid"></div>
-    <div class="cta-orb cta-orb--blue"></div>
-    <div class="cta-orb cta-orb--teal"></div>
-    <div class="container cta-content">
-      <h2 class="reveal">Need more help?</h2>
-      <p class="reveal delay-2">Get in touch with our team. We're here to help you get the most out of InnoVisions.</p>
-      <a href="../contact.html" class="btn btn-primary reveal delay-3">Contact Support →</a>
-    </div>
-  </section>
+  </main>
 
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="/" class="logo">
-            <div class="logo-mark">IV</div>
+          <a href="../index.html" class="logo">
             <span class="logo-text" style="color:#fff">InnoVisions</span>
+            <span class="logo-slogan">From Vision to Innovation</span>
           </a>
-          <p>One platform for your entire business. Customers, inventory, jobs, finance, and support — deeply integrated.</p>
+          <p>Accounting, stock, jobs and payroll in one ledger, built for South African tax rules.</p>
         </div>
         <div class="footer-col">
           <h4>Platform</h4>
           <a href="../features.html">Features</a>
-          <a href="../pricing.html">Pricing</a>
           <a href="../compare.html">Compare</a>
-          <a href="../about.html">About</a>
           <a href="index.html">Guides</a>
-          <a href="../contact.html">Contact</a>
-        </div>
-        <div class="footer-col">
-          <h4>Product</h4>
-          <a href="https://app.innvisions.co.za/register">Get Started</a>
-          <a href="https://app.innvisions.co.za/login">Sign In</a>
-          <a href="index.html">Documentation</a>
-          <a href="../contact.html">Support</a>
         </div>
         <div class="footer-col">
           <h4>Legal</h4>
@@ -538,11 +228,10 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2026 InnoVisions ERP. All rights reserved.</span>
+        <span>&copy; 2026 InnoVisions. All rights reserved.</span>
         <span>Built in South Africa 🇿🇦</span>
       </div>
     </div>
-  </main>
   </footer>
 
   <script src="../js/main.js"></script>

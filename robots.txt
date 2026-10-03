@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://innvisions.co.za/sitemap.xml
+Sitemap: https://innovisions.co.za/sitemap.xml

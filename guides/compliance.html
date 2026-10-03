@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compliance &amp; Governance Guide — InnoVisions ERP</title>
-  <meta name="description" content="Step-by-step guide to compliance and governance in InnoVisions ERP: VAT returns, audit trails, role-based access control, POPIA compliance, and document management.">
+  <title>Compliance &amp; Governance Guide — InnoVisions</title>
+  <meta name="description" content="Preparing the VAT201 and payroll declarations from the ledger, the Books Health check before a return, the audit trail of changes and user access control.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -16,21 +16,17 @@
 
   <header class="header">
     <div class="container header-inner">
-      <a href="/" class="logo">
-        <div class="logo-mark">IV</div>
-        <span class="logo-text">InnoVisions<span class="erp-badge">ERP</span></span>
+      <a href="../index.html" class="logo">
+        <span class="logo-text">InnoVisions</span>
+        <span class="logo-slogan">From Vision to Innovation</span>
       </a>
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
       </button>
       <nav class="nav" id="nav">
         <a href="../features.html">Features</a>
-        <a href="../pricing.html">Pricing</a>
         <a href="../compare.html">Compare</a>
-        <a href="../about.html">About</a>
         <a href="index.html">Guides</a>
-        <a href="../contact.html">Contact</a>
-        <a href="https://app.innvisions.co.za/login" class="btn btn-primary">Sign In</a>
       </nav>
     </div>
   </header>
@@ -39,7 +35,7 @@
   <section class="page-header">
     <div class="dot-grid"></div>
     <h1 class="animate-fade-up">Compliance &amp; Governance</h1>
-    <p class="animate-fade-up delay-2">Step-by-step guide to compliance and governance in InnoVisions ERP: VAT returns, audit trails, role-based access control, POPIA compliance, and document management.</p>
+    <p class="animate-fade-up delay-2">Preparing the VAT201 and payroll declarations from the ledger, the Books Health check before a return, the audit trail of changes and user access control.</p>
   </section>
 
   <section class="section">
@@ -49,6 +45,7 @@
         <aside class="guide-sidebar">
           <h4>All Guides</h4>
           <ul>
+            <li><a href="accounting-rules.html">Accounting Policies &amp; Tax Treatment</a></li>
             <li><a href="financials.html">Financial Management</a></li>
             <li><a href="stock.html">Stock &amp; Inventory</a></li>
             <li><a href="production.html">Production &amp; Manufacturing</a></li>
@@ -65,433 +62,196 @@
 
           <div class="guide-meta">
             <span class="guide-meta-item"><strong>Module:</strong> Compliance &amp; Governance</span>
-            <span class="guide-meta-item"><strong>Difficulty:</strong> Advanced</span>
-            <span class="guide-meta-item"><strong>Prerequisites:</strong> Financial module configured with tax settings, audit trail enabled</span>
-          </div>
-
-          <h2>Overview</h2>
-          <p>The Compliance &amp; Governance module covers the full regulatory compliance landscape — VAT return preparation with SARS eFiling integration, immutable audit trail management, role-based access control governance with SOD conflict detection, POPIA compliance programme administration including DSAR workflows, document lifecycle management with retention schedules, compliance calendar with deadline escalation, tax reconciliations, external audit preparation, and regulatory change management.</p>
-
-          <h2>Prepare and Submit VAT Returns</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Reconcile VAT control account</strong>
-              <p>Navigate to Compliance → VAT Returns → Reconciliation. The system compares the GL VAT control account balance to the VAT return calculated amount. Any difference must be investigated before submission. Common causes: missing tax invoices, incorrect VAT codes on transactions, or manual journal entries posted without VAT. The reconciliation report shows the difference amount and the contributing transactions. Resolve all differences before proceeding to submission.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Verify input VAT against AP</strong>
-              <p>The system aggregates input VAT from all purchase transactions in the period. Verify that every supplier tax invoice has been captured with the correct VAT amount and VAT type (15% standard, 0% zero-rated, or exempt). Flag any invoices from non-vendors or missing tax invoices. The input VAT verification report lists all AP invoices with their VAT codes — review and correct any misclassified entries (e.g., zero-rated coded as standard).</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Verify output VAT against AR</strong>
-              <p>Output VAT is calculated from sales invoices, credit notes, and cash receipts. Review the output VAT breakdown by VAT type: standard-rated sales, zero-rated exports, exempt supplies (e.g., financial services), and deemed supplies (e.g., private use of business assets). The output VAT reconciliation report compares the AR VAT total to the GL output VAT account. Discrepancies may indicate invoices posted directly to GL without going through AR.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Handle zero-rated and exempt supplies</strong>
-              <p>Zero-rated supplies (exports, certain food items) and exempt supplies (financial services, rental housing) must be reported separately on the VAT201 return. The system categorises these based on the item or service VAT code. Review the zero-rated and exempt schedules — ensure supporting documentation (e.g., export shipping documents, proof of delivery) is attached for zero-rated claims. SARS can request this documentation in an audit.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Generate VAT201 and submit via eFiling</strong>
-              <p>Once the return is verified, click Generate VAT201. The system creates the XML file in the SARS eFiling format. Download the file and upload to SARS eFiling, or use the integrated eFiling API if configured. Enter the SARS received reference number in the system to close the VAT period. Track the VAT payment due date — if the return shows VAT payable, schedule the payment to arrive at SARS before the 25th of the month to avoid 10% penalties.</p>
-            </div>
-          </div>
-
-          <h2>Configure and Review Audit Trails</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Configure audit event categories</strong>
-              <p>Navigate to Settings → Audit Trail → Configuration. Enable event categories: Create, Update, Delete, Login, Logout, Export, Print, and Permission Change. For each module, select which events to capture — financial modules should capture all events, while reference data modules may only need Create and Delete. Capturing every event generates large volumes of data, so balance audit requirements against storage capacity. Configure minimum 12 months retention for general events and 5 years for financial events.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Set audit log retention period</strong>
-              <p>In Settings → Audit Trail → Retention, set retention periods per event category. Financial audit events: 5 years (SARS requirement). User access events: 2 years. System configuration changes: permanently. The system auto-archives events older than the retention period to compressed storage. Archived events are still searchable but may have slower retrieval. Ensure sufficient storage is allocated before going live — a busy ERP can generate 50 000+ audit events per month.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Search and filter audit trail</strong>
-              <p>The Audit Trail Viewer supports complex filtering: by module (Procurement, Financials, Stock), by user, by date range, by event type (Create, Delete), and by record ID. Use the Advanced Search to find specific transactions — for example, find all changes to supplier bank accounts in the last 30 days. Search results show: timestamp, user, IP address, module, record ID, action, and before/after values. Export results to CSV for further analysis.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Review before/after value comparison</strong>
-              <p>Each audit entry captures the previous and new values for changed fields. For a supplier bank account change, the audit entry shows: Field = Bank Account, Before = 1234567890, After = 0987654321, Changed By = John Smith, Timestamp = 2026-06-15 14:30:22, IP = 192.168.1.50. Use the comparison view to spot suspicious activity — if a supplier's bank account was changed and a payment was processed the same day, this is a red flag for payment fraud.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Verify audit log integrity</strong>
-              <p>Audit trail records are immutable — they cannot be edited or deleted by any user, including administrators. The system uses cryptographic hashing: each record contains a hash of the previous record, creating a chain. Run the Integrity Check from Settings → Audit Trail → Integrity to verify the hash chain has not been broken. If a break is detected, investigate immediately — it indicates the audit log has been tampered with at the database level.</p>
-            </div>
-          </div>
-
-          <h2>Implement Role-Based Access Control Governance</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Define RBAC policy and approval</strong>
-              <p>Navigate to Settings → Security → RBAC Policy. Document the access control policy: who can request role changes, who authorises them, and the review frequency. For each role, document the business justification: Financial Manager requires access to GL, AP, AR, and Reporting; Warehouse Operator requires access to Stock, Picking, and GRN. The policy document is stored in the document repository and must be signed off by the compliance officer and IT manager.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Detect segregation of duties conflicts</strong>
-              <p>Run the SOD Conflict Report from Settings → Security → SOD. The report checks for incompatible permission combinations across all users. Critical SOD rules: Create Supplier + Approve Invoice; Create PO + Approve PO; Post GL Journal + Approve GL Journal; Create User + Assign Roles. The report lists each conflict with the user, the conflicting permissions, and the risk level (High/Medium/Low). Resolve high-risk conflicts within 7 days by reassigning one of the permissions.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Run periodic access review</strong>
-              <p>Schedule quarterly access reviews. The system generates an Access Review worksheet listing all users, their roles, and last login date. The review is assigned to each department manager — they verify that their team members still need the access they have. Mark users for removal (leavers), role changes (transfers), or retention. The compliance officer reviews the completed worksheet and implements changes. Overdue access reviews are escalated to the steering committee.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Manage temporary access provisioning</strong>
-              <p>For temporary access (contractors, interns, auditors), use the Temporary Access function. Set an expiry date — access is automatically revoked on that date. Example: external auditor needs read-only access to GL and AP for 2 weeks. Create a temporary Auditor role, assign it to the user, set expiry to 14 days. The system sends a reminder 2 days before expiry and revokes access automatically on the expiry date. The temporary access log records all such provisions for audit.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Run RBAC audit report</strong>
-              <p>The RBAC Audit Report shows: all users with their roles and permissions, SOD conflicts (current and resolved), access review completion status, temporary access provisions, and permission change history. This report is used by external auditors to verify access control effectiveness. Export the report at each audit period end and store it in the compliance document repository with the audit sign-off.</p>
-            </div>
-          </div>
-
-          <h2>Manage POPIA Compliance Programme</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Create personal data inventory (ROPA)</strong>
-              <p>Navigate to Compliance → POPIA → ROPA (Record of Processing Activities). Document each data processing activity: data category (customer personal data, employee data, supplier contact data), purpose (processing orders, payroll, supplier management), lawful basis (consent, contractual necessity, legal obligation), data subjects, data retention period, and data recipients (third parties, SARS, DOL). The ROPA must be reviewed annually and updated within 30 days of any new processing activity.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Document lawful basis for processing</strong>
-              <p>For each processing activity, record the lawful basis: Consent (marketing emails, customer surveys), Contractual Necessity (order processing, delivery), Legal Obligation (tax reporting, payroll deductions), Legitimate Interest (fraud prevention, credit checks), or Public Task. Consent records must include: date obtained, method (web form, signed form, verbal), consent text, and withdrawal date if applicable. The consent register is searchable by data subject.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Manage consent with withdrawal tracking</strong>
-              <p>The consent management dashboard shows: total consents, consents by purpose, withdrawal rate, and pending withdrawal requests. When a data subject withdraws consent, the system records the withdrawal date and time, and flags the record for processing restriction. Marketing preferences are updated immediately to stop further communications. Withdrawal does not affect processing that was done before the withdrawal or processing based on a different lawful basis (e.g., legal obligation).</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Process data subject access requests</strong>
-              <p>When a DSAR is received, log it in Compliance → POPIA → DSAR. The system compiles all personal data for that data subject across all modules: customer record, contact details, transaction history, communication log, consent records, and support tickets. Package the data as a structured export (Excel or PDF) within 30 days (POPIA requirement). The DSAR workflow tracks: receipt date, response due date, data compilation status, review and approval, and dispatch confirmation. Late responses are flagged for management escalation.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Prepare for data breach notification</strong>
-              <p>If a data breach is suspected, use the Breach Notification workflow in Compliance → POPIA → Breach. Document the breach details: discovery date and time, data categories affected, number of data subjects, potential impact, and containment actions. The Information Regulator must be notified within 72 hours of becoming aware of the breach. The system generates the notification form and tracks the submission. Affected data subjects must also be notified if the breach poses a risk to their rights and freedoms.</p>
-            </div>
-          </div>
-
-          <h2>Configure Compliance Calendar</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Define regulatory deadlines</strong>
-              <p>Navigate to Compliance → Calendar → Deadline Types. Configure recurring deadlines: VAT Returns — 25th of month following period end; PAYE — 7th of following month; Annual Returns — within 30 days of financial year end; POPIA Report — annual by 30 June; BEE Certificate Renewal — annual; WCA Returns — annual by 31 March. Each deadline has a regulatory reference, penalty for late submission, and responsible role. The calendar auto-populates for the next 12 months.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Set automated deadline alerts and escalation</strong>
-              <p>Configure alert timing for each deadline type: Initial reminder 30 days before due date, Warning reminder 14 days before, Urgent reminder 7 days before, Overdue notification on the due date. Escalation: if the task is not marked complete by the due date, escalate to the manager on day 1, to the director on day 7, and to the compliance officer on day 14. Alerts are sent via email and in-app notification. Each escalation logs an audit trail entry.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Assign and track compliance tasks</strong>
-              <p>Each deadline generates a compliance task assigned to the responsible person. Tasks have: description, due date, checklist of required actions, document upload requirement (e.g., proof of submission), and sign-off field. The task dashboard shows overdue, pending, and completed tasks for each user. The compliance manager runs the Compliance Task Status report weekly to identify overdue filings before penalties accrue.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Handle deadline extensions</strong>
-              <p>If a filing deadline cannot be met, log an extension request in the calendar. SARS grants automatic extensions for certain returns (e.g., provisional tax). Record the extension reference number and new due date. The system recalculates the deadline alerts based on the extended date. Extensions must be approved by the compliance officer. The extension log shows all extensions granted and the reasons, providing an audit trail for late filings.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Generate compliance calendar report</strong>
-              <p>The Compliance Calendar Report shows all deadlines for a selected period (monthly, quarterly, annually). Columns: Deadline Type, Due Date, Status (Complete/Pending/Overdue), Responsible Person, Days Overdue (if applicable). Filter by status to focus on overdue items. Export to PDF for board reporting or Excel for detailed tracking. The annual compliance calendar is reviewed and approved by the board at the start of each financial year.</p>
-            </div>
-          </div>
-
-          <h2>Set Up Document Lifecycle Management</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Create document classification and metadata schema</strong>
-              <p>Navigate to Compliance → Documents → Classification. Define document categories: Tax Documents (VAT returns, tax certificates, EMP201), Contracts (supplier contracts, customer contracts, lease agreements), HR Records (employment contracts, disciplinary records, medical certificates), Policies (POPIA policy, IT security policy, HR policy), and Audit Reports (internal audit, external audit, regulatory audit). Each category has mandatory metadata: document type, date, expiry date, responsible person, and retention period.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Set retention schedule by document category</strong>
-              <p>Configure retention periods per category: Tax documents — 5 years from year of assessment (SARS requirement). Contracts — 3 years post-termination (contract law). Employment records — 3 years post-employment (BCEA), 5 years for medical records (OHSA). Financial records — 5 years (Companies Act). Once the retention period expires, the document is flagged for review. If no legal hold applies, it moves to Archive status for 12 months, then automatically deleted.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Automate archival and secure deletion</strong>
-              <p>Documents reaching their retention end date are moved to the Archive. Archived documents are compressed and moved to long-term storage (slower retrieval but lower cost). After the archive period expires, the system schedules secure deletion — files are overwritten and the metadata is purged. The deletion log records: document ID, category, deletion date, and authorising user. If a deletion is blocked (e.g., litigation hold), the document remains in Archive status with a hold flag.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Manage document version control with approval</strong>
-              <p>When a document is updated, the new version is uploaded and the system increments the version number (v1, v2, v3). The version history shows each version with upload date, uploader, and change notes. For policy documents, enable the approval workflow — the updated version must be reviewed and approved before it replaces the current version. Previous versions are retained for audit reference. The Document Version Report shows the version history for all documents in a category.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Manage litigation hold overrides</strong>
-              <p>When litigation is anticipated or in progress, all relevant documents must be preserved regardless of retention schedule. Use the Litigation Hold function: select the documents or categories, enter the legal case reference, and set the hold expiry date (when litigation concludes). Documents under hold are excluded from archival and deletion processes. The hold register is reviewed monthly by the legal team. When the hold is released, documents resume their normal retention lifecycle.</p>
-            </div>
-          </div>
-
-          <h2>Run Tax Reconciliations</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Reconcile VAT return to GL VAT account</strong>
-              <p>Navigate to Compliance → Tax Reconciliations → VAT. The reconciliation compares the VAT return output (from AR/AP) to the GL balance of the VAT control accounts. Formula: GL VAT Control Account Balance − VAT Return Amount = Variance. If variance > 0, investigate: missing invoices, incorrect VAT codes, unprocessed credit notes, or journal entries affecting VAT accounts. The reconciliation must be signed off by the financial manager before the VAT return is submitted.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Reconcile PAYE to EMP201</strong>
-              <p>The PAYE reconciliation compares the GL payroll tax account to the EMP201 return. Components: PAYE on salaries, UIF, SDL, and Skills Development Levy. Differences arise from: payroll adjustments after the PAYE run, fringe benefit calculations, or manual adjustments. Run the reconciliation after each payroll run and before EMP201 submission. The reconciliation report shows each component's GL balance vs return amount, with drill-down to employee-level details.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Reconcile turnover to SARS declarations</strong>
-              <p>Annual turnover declared to SARS (for income tax) must match the system's total revenue per the financial statements. The Turnover Reconciliation Report compares: system revenue (P&L total income) vs prior year SARS return vs estimated current year. Significant variances (over 10%) require explanation: changes in business model, acquisitions/divestments, or accounting policy changes. The reconciliation is reviewed by the external auditors during the annual audit.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Investigate and resolve discrepancies</strong>
-              <p>When a discrepancy is found, create a discrepancy case from the reconciliation. Document the cause: system error (incorrect VAT code on an item), process error (invoice posted to wrong period), or data entry error (wrong amount captured). Assign the case to the responsible person for resolution. Track resolution status and timeliness. All discrepancies must be resolved before the relevant return is finalised. The discrepancy resolution log serves as internal audit evidence.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Sign off and archive reconciliation</strong>
-              <p>Once the reconciliation is complete and variance is zero or explained, the financial manager and compliance officer sign off digitally. The signed-off reconciliation is stored in the document repository with the period reference. This documentation is critical for external audit — auditors will request reconciliations for the periods under review. Maintain a reconciliation sign-off register showing all periods completed, signed off, and available for audit.</p>
-            </div>
-          </div>
-
-          <h2>Prepare for External Audit</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Compile audit evidence from system</strong>
-              <p>Navigate to Compliance → Audit Preparation → Evidence Compilation. Select the audit period and modules under review. The system generates an evidence package: audit trail export, user access list, RBAC configuration report, SOD conflict report, document retention compliance report, and key transaction reports (sales, purchases, payroll). Each evidence item is indexed and cross-referenced to the audit programme. The evidence package can be exported as a single PDF or ZIP of individual files.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Generate audit trail reports by module</strong>
-              <p>For each module under audit, generate module-specific audit trail reports: Financials — all GL journal postings, AP payments, AR receipts; Procurement — PO changes, GRN postings, matching events; Stock — inventory adjustments, stock takes, transfers; HR — employee data changes, payroll runs. Filter by the audit period and order chronologically. Each report includes the user, timestamp, and before/after values. These reports form the primary evidence for transaction testing.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Package documents for auditor review</strong>
-              <p>The Document Collection tool gathers all documents relevant to the audit: signed financial statements, board minutes, tax returns, contracts above materiality threshold, and policies. Organise by category and period. Create an audit document index with hyperlinks to each document. The auditor receives read-only access to the document repository through a secure portal. Grant access with an expiry date matching the audit engagement period.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Provision auditor access (read-only)</strong>
-              <p>Create an External Auditor role with read-only access to the modules under audit. Permissions: view only — no create, edit, delete, or export without approval. Set a hard expiry date on the auditor user account. The auditor's activities are logged in the audit trail — if they export data, the event is recorded. Review the auditor activity log weekly during the audit engagement to ensure access is being used appropriately.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Track audit findings and remediation</strong>
-              <p>When the auditor issues findings, log them in Compliance → Audit → Findings. Each finding has: description, risk rating, remediation action, responsible person, target date, and status. Track remediation progress through the Findings Dashboard — overdue items are escalated. When remediation is complete, the system notifies the auditor for verification. The audit findings history is maintained for the next audit cycle to demonstrate continuous improvement.</p>
-            </div>
-          </div>
-
-          <h2>Maintain Regulatory Change Management</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Create regulations register and applicability matrix</strong>
-              <p>Navigate to Compliance → Regulatory Change → Register. Document all applicable regulations: VAT Act, Income Tax Act, POPIA, BCEA, OHSA, BEE Act, Companies Act, and industry-specific regulations. For each regulation, record the issuing body, last amendment date, next review date, and applicability to your business (applies fully, partially, or not applicable). The applicability matrix maps each regulation to the affected module and processes. Review annually and update within 30 days of a regulatory change.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Monitor regulatory updates</strong>
-              <p>Subscribe to regulatory update feeds in the system — SARS announcements, Government Gazette changes, and industry body notifications. When a regulatory update is received, log it in the system with the effective date and summary of changes. Assess the impact: does this affect system configuration, processes, or reporting? The regulatory update log shows all changes, their assessed impact, and implementation status. This log is reviewed in quarterly compliance committee meetings.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Assess impact on system configuration</strong>
-              <p>When a regulation changes, perform an impact assessment: Does the VAT rate change require updating tax codes? Does a new reporting requirement need a new report? Does a change in data retention periods require updating the retention schedule? Document the assessment in the system, assign implementation tasks to the relevant team members, and set target dates. High-impact changes (e.g., VAT rate change) are escalated to the project steering committee.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Track compliance requirement implementation</strong>
-              <p>Each regulatory change generates implementation tasks: configuration changes, process updates, report development, and staff training. The implementation dashboard shows status by regulation: Not Started, In Progress, Testing, Completed, and Verified. Changes must be tested in the sandbox environment before production deployment. A change management log records all system changes made for regulatory compliance, with audit trail evidence of testing and sign-off.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Deliver regulatory change training and communication</strong>
-              <p>When a regulatory change is implemented, create training materials and communications for affected staff. The system tracks training completion: who has been trained, who has acknowledged the policy change, and who still needs training. Overdue training assignments are escalated to department heads. The training record is maintained for auditor review — auditors will check that staff were trained on regulatory changes within a reasonable timeframe of implementation.</p>
-            </div>
-          </div>
-
-          <div class="guide-callout guide-callout--warn">
-            <strong>Warning</strong>
-            <p>VAT returns must be submitted within 25 days of the period end. Late submissions attract penalties of 10% of the VAT due plus interest at the prescribed rate per month.</p>
+            <span class="guide-meta-item"><strong>Prerequisites:</strong> Company VAT and payroll reference numbers captured; reports permission</span>
           </div>
 
           <div class="guide-callout guide-callout--info">
-            <strong>Info</strong>
-            <p>POPIA requires that data subjects can request access to their personal data within 30 days. The DSAR workflow tracks response timelines automatically and escalates overdue requests.</p>
+            <strong>For accountants</strong>
+            <p>The VAT201 field mapping, the payroll calculations and the SARS publications behind them are set out in <a href="accounting-rules.html">Accounting Policies &amp; Tax Treatment</a>. This guide covers the steps in the system.</p>
+          </div>
+          <p>InnoVisions prepares your SARS returns from the same ledger and payroll that run the business, checks the books before you file, and keeps a record of who did what. It does not file anything for you. You submit returns on SARS eFiling or e@syFile yourself.</p>
+
+          <h2>Check the Books Before Any Return</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Run Books Health</strong>
+              <p>Open <strong>Accounting → Books Health</strong>. It shows each control with the ledger figure, the figure from the documents and the difference.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Clear every difference</strong>
+              <p>Books Health checks that every journal balances and the trial balance balances. It also checks that receivables (1100) equal open invoices less unapplied credit notes, payables (2100) equal open bills less unapplied supplier credit notes, customer advances (2250) equal unallocated receipts, fixed assets agree with the asset register, and opening balance suspense (9999) is nil. Where possible it lists the documents behind a difference. The bank balance is shown next to the last imported statement balance for information.</p>
+            </div>
           </div>
 
           <div class="guide-callout guide-callout--tip">
             <strong>Tip</strong>
-            <p>Run the SOD conflict report quarterly to identify users with incompatible permissions (e.g., creating suppliers and approving invoices). High-risk conflicts should be resolved within 7 days.</p>
+            <p>Run Books Health before every VAT201 and before you close a period. A clean result means the return is drawn from books that agree with their documents.</p>
           </div>
 
-          <div class="guide-callout guide-callout--warn">
-            <strong>Warning</strong>
-            <p>Audit trail records are immutable — they cannot be edited or deleted. Configure sufficient storage for your retention period before going live. Running out of audit log storage can halt system operations.</p>
+          <h2>Prepare the VAT201</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Open the return</strong>
+              <p>Go to <strong>Finance → Financial Reports → VAT201 Return</strong> and enter the start and end date of the VAT period. The header shows the company name, VAT number and VAT category.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Read the output and input tax</strong>
+              <p>The return is laid out in the SARS field structure (guide GEN-ELEC-04-G01, Revision 11). Every VAT amount comes from the VAT accounts: 2200 for output tax and 1200 for input tax. The source document of each journal decides the field. For example, invoices go to Fields 1 and 4, capital goods to 1A and 4A, supplier bills to 14 to 15A, bad debt relief to 17, and credit notes issued to 18.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Work through "Review before filing"</strong>
+              <p>VAT posted by a manual journal is placed in Field 12 (output) or Field 18 (input) and listed by journal number so you can check it. Field 20 is compared with the net movement on 2200 and 1200 for the period; if they differ, a warning appears in this list.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">4</div>
+            <div class="guide-step-body">
+              <strong>Add what the system does not derive</strong>
+              <p>Fields 5 to 11 (accommodation) and 16 (change in use) are not generated and show nil. Enter them on eFiling if they apply. When Field 2A, 14A or 15A has a value, the notes remind you that a customs code is needed on eFiling.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">5</div>
+            <div class="guide-step-body">
+              <strong>Submit on eFiling, then close the period</strong>
+              <p>Capture the figures on SARS eFiling and submit. Then close and lock the months in <strong>Accounting → Periods</strong>, so nothing more can post into the period you declared.</p>
+            </div>
+          </div>
+
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead>
+                <tr><th>Situation</th><th>How the VAT201 treats it</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Advance payment received before the invoice</td><td>Output tax in Fields 1 and 4 in the month of receipt; taken out again when allocated to the invoice</td></tr>
+                <tr><td>Bad debt written off with VAT relief</td><td>Field 17</td></tr>
+                <tr><td>Bad debt recovered</td><td>Field 12</td></tr>
+                <tr><td>Supplier credit note received / supplier debit note received</td><td>Field 12 / Field 18</td></tr>
+                <tr><td>Invoice cancelled in a later period</td><td>Field 18, treated as a credit note issued</td></tr>
+                <tr><td>Sale of a fixed asset</td><td>Fields 1A and 4A</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Payroll Declarations</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>EMP201</strong>
+              <p>Open <strong>Finance → Financial Reports → EMP201 Declaration</strong> and choose the month. It totals PAYE, SDL, UIF (employee and employer) and ETI from issued payslips for that month, shows ETI brought forward, used and carried forward, and the total payable to SARS. The due date shown moves to the last business day before the 7th when the 7th falls on a weekend; public holidays are not taken into account.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>EMP501 and IRP5 file</strong>
+              <p>Open <strong>Finance → Financial Reports → EMP501 &amp; IRP5 (e@syFile)</strong> and pick the reconciliation period. The screen lists items to fix before exporting and tells you whether the certificates agree with the monthly EMP201 totals. Download a TEST file first, then the LIVE file, and import it into e@syFile. The file covers monthly-paid employees with a South African ID number; anything outside that scope is reported as an error rather than written to the file.</p>
+            </div>
+          </div>
+
+          <h2>Audit Trail</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Open the log</strong>
+              <p>Go to <strong>Settings → Audit Trail</strong>. Only administrators can see it. Every create, change and delete action is listed with the user, date and time, IP address, the endpoint used and the data sent.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Filter</strong>
+              <p>Filter by resource (table), action, user email and date range to answer questions such as "who changed this supplier last week?"</p>
+            </div>
           </div>
 
           <div class="guide-callout guide-callout--info">
-            <strong>Info</strong>
-            <p>Document retention schedules must comply with specific legislation: tax records 5 years (SARS), employment records 3 years (BCEA), medical records 6 years (OHSA). Configure these in the document lifecycle settings.</p>
+            <strong>What the audit trail records</strong>
+            <p>The software has no function to edit or delete audit records. The log records the new data sent with a change, not the value before the change. There is no export from the screen.</p>
+          </div>
+
+          <h2>Access Control</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Assign roles</strong>
+              <p>Go to <strong>Settings → Access</strong>. The system roles are Administrator, Manager, Staff and Viewer. You can also create custom roles. The role permission matrix shows which named permissions each role has, such as finance view, create and edit, approvals and report export. Assign roles to users under <em>User Role Assignments</em>. Users themselves are managed under <strong>Settings → Users</strong>.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Know what needs an administrator</strong>
+              <p>Adding or changing GL accounts, posting manual journals, closing, locking and reopening periods, closing the financial year and posting opening balances all need an administrator. Books Health, the financial reports and group reports need the report export permission.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Use the built-in controls</strong>
+              <p>Issued invoices and posted bills cannot be edited or deleted; they are cancelled by a reversing entry. A supplier payment run must be approved by a user other than its creator before the bank file can be exported. Each company has its own books, and a login only sees the companies its administrator has granted.</p>
+            </div>
+          </div>
+
+          <div class="guide-callout guide-callout--warn">
+            <strong>What the system does not do</strong>
+            <p>It does not submit the VAT201, EMP201 or EMP501 to SARS; you file on eFiling and e@syFile. It does not derive VAT201 Fields 5 to 11 or 16. It has no compliance calendar or reminders. It has no POPIA workflows, such as data subject requests or retention schedules; those processes remain the company's responsibility. It does not produce segregation-of-duties reports or an audit trail export.</p>
           </div>
 
           <h2>Related Modules</h2>
           <div class="guide-grid">
+            <a href="accounting-rules.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Accounting Policies &amp; Tax Treatment</h4>
+              <p>VAT201 field mapping, payroll calculations and the SARS references behind them.</p>
+            </a>
             <a href="financials.html" class="guide-card" style="text-decoration:none;color:inherit">
               <h4>Financial Management</h4>
-              <p>VAT return data is sourced from GL VAT control accounts. Period-end GL reconciliation ensures VAT return accuracy. Tax reconciliation reports link the compliance module to the financial ledgers.</p>
-            </a>
-            <a href="platform.html" class="guide-card" style="text-decoration:none;color:inherit">
-              <h4>Platform &amp; Technology</h4>
-              <p>RBAC and audit trail are platform-level infrastructure. User authentication, session management, and encryption underpin all compliance controls across every module.</p>
+              <p>Periods, bank matching, month-end and year-end close.</p>
             </a>
             <a href="hr-payroll.html" class="guide-card" style="text-decoration:none;color:inherit">
               <h4>HR &amp; Payroll</h4>
-              <p>POPIA compliance for employee data includes consent for payslip distribution, background check data handling, and medical information storage with restricted access.</p>
+              <p>The payslips behind the EMP201 and EMP501.</p>
             </a>
-            <a href="procurement.html" class="guide-card" style="text-decoration:none;color:inherit">
-              <h4>Procurement &amp; Supply Chain</h4>
-              <p>Procurement audit trail and approval workflows provide the transactional evidence required for procurement compliance verification and 3-way matching audit.</p>
+            <a href="platform.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Platform &amp; Technology</h4>
+              <p>Users, companies and how each company's books are kept apart.</p>
             </a>
           </div>
 
         </div>
-
       </div>
     </div>
   </section>
 
-  <section class="cta-section">
-    <div class="dot-grid"></div>
-    <div class="cta-orb cta-orb--blue"></div>
-    <div class="cta-orb cta-orb--teal"></div>
-    <div class="container cta-content">
-      <h2 class="reveal">Need more help?</h2>
-      <p class="reveal delay-2">Get in touch with our team. We're here to help you get the most out of InnoVisions.</p>
-      <a href="../contact.html" class="btn btn-primary reveal delay-3">Contact Support →</a>
-    </div>
-  </section>
+  </main>
 
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="/" class="logo">
-            <div class="logo-mark">IV</div>
+          <a href="../index.html" class="logo">
             <span class="logo-text" style="color:#fff">InnoVisions</span>
+            <span class="logo-slogan">From Vision to Innovation</span>
           </a>
-          <p>One platform for your entire business. Customers, inventory, jobs, finance, and support — deeply integrated.</p>
+          <p>Accounting, stock, jobs and payroll in one ledger, built for South African tax rules.</p>
         </div>
         <div class="footer-col">
           <h4>Platform</h4>
           <a href="../features.html">Features</a>
-          <a href="../pricing.html">Pricing</a>
           <a href="../compare.html">Compare</a>
-          <a href="../about.html">About</a>
           <a href="index.html">Guides</a>
-          <a href="../contact.html">Contact</a>
-        </div>
-        <div class="footer-col">
-          <h4>Product</h4>
-          <a href="https://app.innvisions.co.za/register">Get Started</a>
-          <a href="https://app.innvisions.co.za/login">Sign In</a>
-          <a href="index.html">Documentation</a>
-          <a href="../contact.html">Support</a>
         </div>
         <div class="footer-col">
           <h4>Legal</h4>
@@ -501,11 +261,10 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2026 InnoVisions ERP. All rights reserved.</span>
+        <span>&copy; 2026 InnoVisions. All rights reserved.</span>
         <span>Built in South Africa 🇿🇦</span>
       </div>
     </div>
-  </main>
   </footer>
 
   <script src="../js/main.js"></script>

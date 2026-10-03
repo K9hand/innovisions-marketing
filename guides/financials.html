@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Financial Management Guide — InnoVisions ERP</title>
-  <meta name="description" content="Step-by-step guide to managing your company's finances in InnoVisions ERP: general ledger, accounts payable and receivable, cash flow, budgeting, and bank reconciliation.">
+  <title>Financial Management Guide — InnoVisions</title>
+  <meta name="description" content="Chart of accounts, periods, bank import and matching, foreign currency, budgets, approvals, month-end with the Books Health check, year-end close, opening balances and group reports.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -16,21 +16,17 @@
 
   <header class="header">
     <div class="container header-inner">
-      <a href="/" class="logo">
-        <div class="logo-mark">IV</div>
-        <span class="logo-text">InnoVisions<span class="erp-badge">ERP</span></span>
+      <a href="../index.html" class="logo">
+        <span class="logo-text">InnoVisions</span>
+        <span class="logo-slogan">From Vision to Innovation</span>
       </a>
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
       </button>
       <nav class="nav" id="nav">
         <a href="../features.html">Features</a>
-        <a href="../pricing.html">Pricing</a>
         <a href="../compare.html">Compare</a>
-        <a href="../about.html">About</a>
         <a href="index.html">Guides</a>
-        <a href="../contact.html">Contact</a>
-        <a href="https://app.innvisions.co.za/login" class="btn btn-primary">Sign In</a>
       </nav>
     </div>
   </header>
@@ -39,7 +35,7 @@
   <section class="page-header">
     <div class="dot-grid"></div>
     <h1 class="animate-fade-up">Financial Management</h1>
-    <p class="animate-fade-up delay-2">Step-by-step guide to managing your company's finances in InnoVisions ERP: general ledger, accounts payable and receivable, cash flow, budgeting, and bank reconciliation.</p>
+    <p class="animate-fade-up delay-2">Chart of accounts, periods, bank import and matching, foreign currency, budgets, approvals, month-end with the Books Health check, year-end close, opening balances and group reports.</p>
   </section>
 
   <section class="section">
@@ -49,6 +45,7 @@
         <aside class="guide-sidebar">
           <h4>All Guides</h4>
           <ul>
+            <li><a href="accounting-rules.html">Accounting Policies &amp; Tax Treatment</a></li>
             <li><a href="financials.html" class="active">Financial Management</a></li>
             <li><a href="stock.html">Stock &amp; Inventory</a></li>
             <li><a href="production.html">Production &amp; Manufacturing</a></li>
@@ -65,448 +62,287 @@
 
           <div class="guide-meta">
             <span class="guide-meta-item"><strong>Module:</strong> Financial Management</span>
-            <span class="guide-meta-item"><strong>Difficulty:</strong> Advanced</span>
-            <span class="guide-meta-item"><strong>Prerequisites:</strong> Chart of accounts configured, at least one period open</span>
-          </div>
-
-          <p>The Financial Management module serves as the central hub for all financial operations in InnoVisions ERP, supporting multi-currency transaction processing, inter-company eliminations, and automated allocations across cost centres and dimensions. The period-end close workflow orchestrates depreciation runs, inventory revaluations, accrual postings, and inter-company reconciliations into a single controlled process. Real-time consolidation across legal entities is supported through configurable elimination rules and currency translation adjustments, while the audit trail captures field-level before/after values with full user attribution for every GL transaction.</p>
-
-          <h2>Configure Advanced Chart of Accounts</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Define account groups with roll-up rules</strong>
-              <p>Create account groups (assets, liabilities, equity, income, expenses) and configure roll-up hierarchies that drive financial statement line items. Each group can have alternate hierarchies for management reporting vs statutory reporting. Set consolidation rules per group to define how balances from subsidiary entities are aggregated.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Integrate cost centres and dimensions</strong>
-              <p>Configure mandatory or optional dimensions per account group — cost centre, department, project, region — and set default dimension derivation rules based on transaction source (e.g., sales orders default to the customer's region dimension). Dimension combinations can be restricted to prevent invalid posting pairs.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Set up alternate hierarchies for reporting</strong>
-              <p>Create multiple reporting hierarchies on the same base accounts, such as a management view that groups by responsibility centre and a statutory view that follows IFRS or GAAP classification. Assign hierarchy-specific sort orders and subtotal definitions for the report designer.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Configure inter-company account mapping</strong>
-              <p>Designate inter-company clearing accounts and map them per subsidiary pair. When an inter-company transaction is posted, the system automatically creates matching entries in both entities' GLs with offsetting balances. Validation rules ensure the due-to/due-from accounts remain in balance after elimination.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Set up auto-account derivation rules</strong>
-              <p>Define rules that automatically derive the GL account based on transaction type, item group, supplier/customer category, and warehouse. For example, stock receipts from local suppliers route to Inventory - Raw Materials account, while imports route to Inventory - In Transit. Rules are evaluated in priority order with fallback accounts for unmatched transactions.</p>
-            </div>
+            <span class="guide-meta-item"><strong>Prerequisites:</strong> Administrator access; company year-end month set</span>
           </div>
 
           <div class="guide-callout guide-callout--info">
-            <strong>Info</strong>
-            <p>Always run the trial balance before closing a period to verify debits equal credits across all accounts.</p>
+            <strong>For accountants</strong>
+            <p>This guide shows where to click. The exact journal entries, VAT fields and limitations are set out in <a href="accounting-rules.html">Accounting Policies &amp; Tax Treatment</a>. Where the two differ, that page describes the system as built.</p>
           </div>
+          <p>InnoVisions keeps one double-entry ledger per company, in ZAR. Every document posts through one posting engine. An entry that does not balance, uses a missing or inactive account, or falls in a closed or locked period is refused in full, and the document is not saved either.</p>
 
-          <h2>Process Multi-Currency Transactions</h2>
+          <h2>Set Up the Chart of Accounts and Periods</h2>
           <div class="guide-step">
             <div class="guide-step-number">1</div>
             <div class="guide-step-body">
-              <strong>Set up currencies and exchange rates</strong>
-              <p>Maintain a currency master table with ISO codes, symbols, and decimal precision. Configure exchange rate types — spot rate, month-end rate, average rate — and set up automatic rate feeds from central banks or manual rate entry with effective dates. Each rate type can be assigned to different transaction contexts (spot for invoicing, average for reporting).</p>
+              <strong>Review the default chart of accounts</strong>
+              <p>Open <strong>Accounting → General Ledger</strong>. Each company starts with a default chart. An administrator can add accounts with a code, name, account type and sub-type. Control accounts such as 1100, 2100, 1200 and 2200 are maintained only by source documents and cannot be chosen on invoice or bill lines. An account with journal lines cannot be deleted; mark it inactive instead.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">2</div>
             <div class="guide-step-body">
-              <strong>Process transactions in foreign currency</strong>
-              <p>When entering AP bills, AR invoices, or journal entries in a foreign currency, the system records both the transaction currency amount and the equivalent base currency amount using the spot rate on the document date. The exchange rate can be overridden with approval. The system stores the original currency amount for revaluation purposes.</p>
+              <strong>Create accounting periods</strong>
+              <p>Go to <strong>Accounting → Periods</strong> and choose <em>New Period</em>. Give each period a name, financial year, period number, start date and end date. A period is open, closed or locked. Nothing can be posted into a closed or locked period.</p>
+            </div>
+          </div>
+
+          <div class="guide-callout guide-callout--tip">
+            <strong>Tip</strong>
+            <p>Create periods for the whole financial year up front. The period rules only protect dates that fall inside a period you have created.</p>
+          </div>
+
+          <h2>Daily Posting</h2>
+          <p>Most entries come from documents, not from journals. The table shows where each document lives and what it does to the ledger at a high level.</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead>
+                <tr><th>Document</th><th>Menu</th><th>Ledger effect</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Tax invoice</td><td>Finance → Invoicing (AR)</td><td>DR 1100 / CR income account(s) and 2200 on issue. Issued invoices are locked; cancel posts a reversal.</td></tr>
+                <tr><td>Customer receipt</td><td>Finance → Customer Receipts</td><td>Advance payments carry VAT on receipt (2250 and 2200); unallocated receipts carry none until applied.</td></tr>
+                <tr><td>Bad debt write-off</td><td>Finance → Bad Debts</td><td>DR 7200 and 1200 / CR 1100, with optional VAT relief.</td></tr>
+                <tr><td>Supplier bill</td><td>Finance → Purchasing (AP)</td><td>Each line on a GL account; DR lines and 1200 / CR 2100. Posted bills are cancelled, not edited.</td></tr>
+                <tr><td>Supplier credit and debit notes</td><td>Finance → Supplier Notes</td><td>Reduce or add to the payable and input VAT.</td></tr>
+                <tr><td>Supplier payments</td><td>Finance → Payment Runs</td><td>Draft, approved by a second user, exported as a bank file, then confirmed as paid.</td></tr>
+                <tr><td>Manual journal</td><td>Accounting → Journal Entries</td><td>Saved as a draft, then posted by an administrator.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Capture a manual journal</strong>
+              <p>Open <strong>Accounting → Journal Entries</strong> and create a new entry with a date, reference and balanced debit and credit lines. The entry is saved as a draft. An administrator opens it and chooses <em>Post Entry</em>.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Correct a posted journal</strong>
+              <p>Posted journals are not edited. Open the entry and choose <em>Create Reversing Entry</em> with a reversal date in an open period, then capture the correct entry.</p>
+            </div>
+          </div>
+
+          <h2>Import and Match Bank Statements</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Import the statement</strong>
+              <p>Go to <strong>Accounting → Banking</strong>, pick the bank account and upload an OFX/QFX, QIF, SWIFT MT940 or CSV file. You see a preview before anything is saved. Lines already imported are skipped. PDF statements are not supported.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Accept suggested matches</strong>
+              <p>On the <em>Match</em> tab each bank line gets a scored suggestion: a payment already captured, a cash book entry, an open invoice, an open bill or a bank rule. Nothing posts until you accept. You can accept one line at a time or accept all high-confidence matches in one batch.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">3</div>
             <div class="guide-step-body">
-              <strong>Calculate realized vs unrealized FX gains/losses</strong>
-              <p>Realized FX gains/losses are calculated at the point of settlement — when an invoice is paid, the system compares the settlement rate to the original invoice rate and posts the difference to the designated FX gain/loss account. Unrealized gains/losses arise from period-end revaluation of open foreign currency balances and are reversed in the following period.</p>
+              <strong>Handle the rest</strong>
+              <p>For recurring items such as bank charges, add a bank rule: text the description contains, money in or out, a GL account and a VAT setting. For anything else, use the <em>Cash Book</em> tab to post a payment, receipt or transfer to your own account.</p>
+            </div>
+          </div>
+
+          <h2>Foreign Currency</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Enter exchange rates</strong>
+              <p>Under <strong>Accounting → FX Rates</strong>, add a rate per currency pair with an effective date. A document uses the latest rate on or before its date. A foreign-currency document cannot be posted without a rate. Rates are entered by hand; there is no rate feed.</p>
             </div>
           </div>
           <div class="guide-step">
-            <div class="guide-step-number">4</div>
+            <div class="guide-step-number">2</div>
             <div class="guide-step-body">
-              <strong>Run period-end revaluation</strong>
-              <p>Using the month-end exchange rate type, revalue all open foreign currency balances — bank accounts, AP/AR sub-ledgers, inter-company loans. The revaluation report shows the pre- and post-revaluation amounts per account. Review and approve the revaluation journal before posting. Unrealized gains/losses post to separate GL accounts and auto-reverse on the first day of the next period.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Reconcile multi-currency bank accounts</strong>
-              <p>Upload bank statements in the account's native currency. The system matches transactions using the original currency amounts and handles currency conversion for base currency GL posting. Any rounding differences between the bank exchange rate and the system rate post to a currency rounding account.</p>
+              <strong>Invoice, bill and settle</strong>
+              <p>Foreign invoices and bills are converted to ZAR at the rate on the document date. When they are paid, the difference between the original rate and the settlement rate posts to 8000 as a realised exchange gain or loss.</p>
             </div>
           </div>
 
           <div class="guide-callout guide-callout--warn">
-            <strong>Warning</strong>
-            <p>Foreign currency revaluation creates unrealized FX gains/losses that must be reversed in the next period. Review the revaluation report before posting.</p>
+            <strong>Limitation</strong>
+            <p>Open foreign balances are not retranslated at the closing rate at month-end. Customer receipts and advances, opening balances and bad debt write-offs are ZAR only.</p>
           </div>
 
-          <h2>Manage Inter-Company Transactions</h2>
+          <h2>Budgets, Cost Centres and Approvals</h2>
           <div class="guide-step">
             <div class="guide-step-number">1</div>
             <div class="guide-step-body">
-              <strong>Configure inter-company account mapping</strong>
-              <p>For each pair of related entities, map the inter-company receivable and payable accounts. Define which transaction types flow through inter-company accounts — inter-company sales, cost recharges, management fees, loans. Set up default inter-company terms and currency preferences per relationship.</p>
+              <strong>Set up cost centres</strong>
+              <p>Under <strong>ERP → Cost Centres</strong>, create cost centres with a code, name, department and budget figure.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">2</div>
             <div class="guide-step-body">
-              <strong>Define elimination rules and auto-reversal</strong>
-              <p>Configure elimination rules that specify which inter-company balances to eliminate during consolidation. Rules can be percentage-based (eliminate 100% of inter-company revenue and expense) or fixed-amount. Auto-reversal templates ensure that inter-company entries recorded in one entity automatically generate the mirror entry in the counterparty entity.</p>
+              <strong>Build a budget</strong>
+              <p>Under <strong>Accounting → Budgets</strong>, create a budget for a financial year and period, optionally for one cost centre. Add lines per GL account (or category) per month. When the budget is final, approve it and lock it.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">3</div>
             <div class="guide-step-body">
-              <strong>Run inter-company reconciliation</strong>
-              <p>Execute the inter-company reconciliation report to compare due-to and due-from balances between entities. The report highlights unmatched transactions, currency translation differences, and timing discrepancies. Investigate and resolve variances before period close — unresolved differences prevent consolidation finalization.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Generate consolidated financial reports</strong>
-              <p>Using the consolidation engine, combine subsidiary financial data into group-level reports. The system applies elimination journals, performs currency translation using period-end and average rates, and calculates non-controlling interest. Consolidated reports can be generated for management review or statutory filing with differing hierarchy views.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Apply transfer pricing considerations</strong>
-              <p>For inter-company goods and services, configure transfer pricing rules based on cost-plus, market rate, or negotiated price methods. The system validates inter-company invoice prices against the defined method and flags deviations for review. Maintain transfer pricing documentation and audit trails for tax compliance purposes.</p>
-            </div>
-          </div>
-
-          <h2>Set Up Automated Allocations</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Define allocation rules by method</strong>
-              <p>Create allocation rules using percentage-based (allocate 60% to department A, 40% to department B), activity-based (allocate by headcount, square footage, machine hours), or driver-based methods. Each rule specifies the source account, the target accounts with dimensions, and the allocation basis with source data from a lookup table or formula.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Configure recurring allocation schedules</strong>
-              <p>Set up monthly, quarterly, or annual schedules that trigger allocation execution automatically. Schedules can be date-driven or event-driven (e.g., triggered by period close initiation). Multiple allocations can be chained in a sequence where the output of one allocation becomes the input pool for the next.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Manage overhead cost pools</strong>
-              <p>Define cost pools that collect shared expenses (rent, utilities, IT, admin salaries) before allocation. Pool accounts are cleared to zero after allocation posting. Set up tiered allocation — allocate IT costs to departments, then allocate a portion of each department's total to projects based on project hours.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Review allocation audit trail</strong>
-              <p>Each allocation run generates a detailed audit report showing the source amount, allocation basis values, target distribution, and any rounding residuals. The audit trail supports drill-down from the allocated journal entry back to the source transactions. Re-run allocations as needed before period finalization — previous allocations are automatically reversed.</p>
-            </div>
-          </div>
-
-          <div class="guide-callout guide-callout--tip">
-            <strong>Tip</strong>
-            <p>Use allocation rules for shared costs like rent and utilities. Automate monthly overhead absorption instead of manual journal entries.</p>
-          </div>
-
-          <h2>Run Period-End Close</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Execute the close checklist and task management</strong>
-              <p>Access the period-end close checklist from the GL module. The checklist drives a sequential workflow — verify bank reconciliations, approve all pending journals, run depreciation, post accruals, revalue FX, reconcile inter-company accounts — with each task requiring sign-off before the next begins. Task assignments and deadlines are tracked with escalation reminders.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Post accrual and prepayment journals</strong>
-              <p>Create accrual journals for expenses incurred but not yet invoiced, and prepayment amortization schedules for expenses paid in advance. Recurring journal templates can automate month-end accruals with auto-reversal in the following period. Prepayment schedules automatically post monthly amortization entries based on the amortization pattern (straight-line, usage-based).</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Run depreciation and inventory revaluation</strong>
-              <p>Execute the fixed asset depreciation run for the period — the system calculates depreciation for all active assets using the assigned method (straight-line, reducing balance, sum-of-digits) and posts to the accumulated depreciation and depreciation expense accounts. Simultaneously, run inventory revaluation to adjust stock values for period cost changes.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Complete inter-company reconciliation</strong>
-              <p>Run the inter-company reconciliation report to confirm all due-to/due-from balances match between entities. Post any required adjusting entries to clear residual differences. The reconciliation must be approved by both entities' finance managers before consolidation can proceed.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Lock the period and open the next period</strong>
-              <p>Once all close tasks are signed off, generate the final trial balance and financial statements for review. Lock the completed period to prevent further posting. Open the next accounting period with opening balances carried forward. Configure period access permissions to control who can unlock a closed period for adjustments.</p>
-            </div>
-          </div>
-
-          <h2>Configure Approval Workflows</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Set up purchase order approval routing</strong>
-              <p>Define approval tiers based on PO value thresholds — department manager approves up to R50,000, director up to R250,000, CFO over R250,000. Configure multi-level approval for high-value or non-standard POs. Route approvals to specific users, roles, or dynamic approvers based on the requester's cost centre.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Configure invoice approval thresholds</strong>
-              <p>Set invoice approval rules that trigger when an invoice exceeds a percentage variance from the PO amount (e.g., >5% variance requires approval). Define automatic matching rules — invoices matching PO and goods receipt within tolerance auto-approve. Unmatched or three-way mismatch invoices route to AP team review.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Establish journal entry approval policy</strong>
-              <p>Configure manual journal entry rules — standard journals post directly, adjusting journals above a threshold require manager approval, system-generated journals (depreciation, FX revaluation) are auto-approved. Define mandatory review fields such as supporting attachment and business justification for non-standard entries.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Set up workflow escalation rules</strong>
-              <p>Configure escalation timers — if an approval is not actioned within 48 hours, the request escalates to the next level approver. Send reminder notifications at 24 hours and escalation alerts at 48 hours. Approvers can delegate or reassign pending approvals with full audit trail of the delegation chain.</p>
-            </div>
-          </div>
-
-          <div class="guide-callout guide-callout--tip">
-            <strong>Tip</strong>
-            <p>Set up journal approval workflows with thresholds: journals under R10,000 post automatically; over R100,000 require CFO approval.</p>
-          </div>
-
-          <h2>Perform Bank Reconciliation</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Configure matching algorithm parameters</strong>
-              <p>Adjust the fuzzy match sensitivity for automated transaction matching — set tolerance percentages for amount matching, date range windows (3 days before/after), and reference field pattern rules. Configure exact match rules for electronic payments where the bank reference matches the system payment ID.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Upload statement and review matches</strong>
-              <p>Import bank statements in CSV, MT940, or OFX format. The system presents suggested matches grouped by confidence level (high/medium/low). Review and confirm matches in batch, or manually match unmatched items using the side-by-side statement vs ledger view.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Generate uncleared item aging</strong>
-              <p>Run the uncleared items aging report to identify transactions that remain unmatched beyond the reconciliation period. Aged items are categorized into buckets (1-30 days, 31-60, 61-90, 90+). Investigate stale items — cheques that haven't been cashed, deposits not yet credited — and initiate follow-up or write-off as appropriate.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Post reconciliation and archive</strong>
-              <p>Once all items are matched or resolved, post the reconciliation. The system updates the GL bank account to reflect the reconciled balance and generates a reconciliation report. Archive the reconciliation report with the bank statement for audit purposes. The system prevents reconciliation for already-locked periods.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Perform multi-account reconciliation</strong>
-              <p>For companies with multiple bank accounts, run reconciliations in parallel or sequence. Use the consolidated reconciliation dashboard to monitor the reconciliation status of all accounts at a glance. Set up reconciliation review workflows where a senior accountant reviews and approves each completed reconciliation.</p>
-            </div>
-          </div>
-
-          <h2>Generate Financial Reports</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Generate P&amp;L by cost centre</strong>
-              <p>Run the profit and loss statement with cost centre or dimension breakdown. Configure column layouts — actual, budget, prior period, variance % — per reporting group. Use the drill-down feature to navigate from the P&amp;L summary to the underlying account balances and individual transactions.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Run balance sheet with comparatives</strong>
-              <p>Generate the balance sheet with period-end balances, prior period comparatives, and period-over-period change columns. Configure subtotal sections for current assets, non-current assets, current liabilities, and equity. The system validates that total assets equal total liabilities plus equity.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Generate cash flow statement</strong>
-              <p>Select between the direct method (cash receipts and payments disclosed) or indirect method (starting from net profit with non-cash adjustments). The system maps GL account categories to cash flow sections automatically. Validate the statement by ensuring net change in cash equals the difference between opening and closing bank balances.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Run budget vs actual with variance analysis</strong>
-              <p>Compare actual financial results against budgeted amounts with percentage and absolute variance calculations. Configure variance thresholds — variances exceeding 10% or R50,000 are flagged for management commentary. Use the variance analysis report to identify areas requiring corrective action and update forecasts accordingly.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Use the custom report designer and schedule distribution</strong>
-              <p>Design custom financial reports using the drag-and-drop report designer — select account groups, column layouts, filters, and formatting. Save report templates and schedule automated distribution via email in PDF or Excel format. Reports can be sent to distribution lists with role-based access control.</p>
-            </div>
-          </div>
-
-          <h2>Handle Audit Preparation</h2>
-          <div class="guide-step">
-            <div class="guide-step-number">1</div>
-            <div class="guide-step-body">
-              <strong>Perform GL drill-down from report to transaction</strong>
-              <p>Starting from any financial report, click through from the summary balance to the underlying GL account activity, then to the individual journal entries, and finally to the source document (invoice, PO, goods receipt). This drill-down path provides auditors with complete transactional transparency without requiring database access.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">2</div>
-            <div class="guide-step-body">
-              <strong>Attach supporting documents</strong>
-              <p>Every journal entry supports document attachments — scanned invoices, signed approvals, contracts, board resolutions. Configure mandatory attachment rules for specific journal types (e.g., adjusting entries require supporting documentation). Documents are stored in the system's document management repository and included in audit export packages.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">3</div>
-            <div class="guide-step-body">
-              <strong>Export the audit trail</strong>
-              <p>Generate the audit trail report for a selected date range, user, account, or transaction type. The report includes field-level before/after values, timestamps, user IDs, and IP addresses. Export in CSV or PDF format for external auditors. The audit trail is tamper-evident — any alteration to historical audit records is flagged.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">4</div>
-            <div class="guide-step-body">
-              <strong>Verify period locks</strong>
-              <p>Run the period-lock verification report to confirm that all periods are closed and locked according to the company's close schedule. Any unauthorized unlocking or post-closing adjustments are highlighted with the user, timestamp, and reason. Provide this report to auditors as evidence of period integrity controls.</p>
+              <strong>Use approvals</strong>
+              <p>An approval rule sets one amount threshold and an approver role for a document type. Purchase orders and expense claims that meet a rule appear under <strong>ERP → Approvals</strong>, where a user with the approvals permission approves or rejects them with a note. Purchase orders and supplier bills also have their own <em>Approve</em> action. A payment run must be approved by someone other than the person who created it.</p>
             </div>
           </div>
 
           <div class="guide-callout guide-callout--info">
-            <strong>Info</strong>
-            <p>The audit trail captures field-level before/after values with timestamps and user IDs — export for external auditors in CSV or PDF format.</p>
+            <strong>Note</strong>
+            <p>Approval rules have no set-up screen yet; your administrator sets them up. There is one level of approval per rule; there is no escalation or delegation.</p>
           </div>
 
-          <h2>Create Recurring Journal Templates</h2>
+          <h2>Month-End</h2>
           <div class="guide-step">
             <div class="guide-step-number">1</div>
             <div class="guide-step-body">
-              <strong>Define template types</strong>
-              <p>Create recurring journal templates by type — accrual (auto-reversing next period), amortization (spread over multiple periods), and allocation (distribute to multiple dimensions). Each template defines the source account, target accounts, and the calculation method for the journal amount.</p>
+              <strong>Run depreciation</strong>
+              <p>Under <strong>Accounting → Depreciation</strong>, run depreciation up to month-end. A run charges every month not yet charged and never charges the same month twice (DR 6100 / CR 1600).</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">2</div>
             <div class="guide-step-body">
-              <strong>Configure variable amount calculation rules</strong>
-              <p>Set up rules that calculate the journal amount dynamically — a fixed amount, a percentage of another account's balance, a formula based on activity metrics (e.g., sales volume x rate), or a spreadsheet-like calculation with multiple variables. Use lookup functions to pull allocation basis data from other modules.</p>
+              <strong>Check Books Health</strong>
+              <p>Open <strong>Accounting → Books Health</strong>. It checks that every journal balances, the trial balance balances, and receivables, payables, customer advances, fixed assets and the opening balance suspense agree with the documents behind them. It also shows the bank GL balance next to the last imported statement balance. Differences list the documents involved. Clear them before you go on.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">3</div>
             <div class="guide-step-body">
-              <strong>Set schedule frequency</strong>
-              <p>Define the posting frequency — monthly, quarterly, annually, or custom intervals. For monthly templates, specify the day of month for automatic generation (e.g., last day of month, first business day). Set start and end dates for the template's validity period. Templates can be paused or skipped for individual periods.</p>
+              <strong>Prepare the VAT201</strong>
+              <p>Open <strong>Finance → Financial Reports → VAT201 Return</strong> for the VAT period and work through the review list. See <a href="compliance.html">Compliance &amp; Governance</a> for the full steps.</p>
             </div>
           </div>
           <div class="guide-step">
             <div class="guide-step-number">4</div>
             <div class="guide-step-body">
-              <strong>Configure auto-posting vs review-required</strong>
-              <p>Set each template to auto-post (journal is created and posted without user intervention) or review-required (journal is created but held in draft for review and approval). Auto-posting templates include system-generated accruals and amortizations; review-required templates cover estimates and management adjustments.</p>
-            </div>
-          </div>
-          <div class="guide-step">
-            <div class="guide-step-number">5</div>
-            <div class="guide-step-body">
-              <strong>Manage template versioning</strong>
-              <p>Templates support version history — when a template is modified, the previous version is archived with effective dates. Use the template change log to track who modified what and when. If a template change affects future postings, the system recalculates pending journals using the new version.</p>
+              <strong>Close, then lock the period</strong>
+              <p>In <strong>Accounting → Periods</strong>, close the month. A closed period can be reopened by an administrator if a correction is needed. When the month is final, lock it. A period must be closed before it can be locked, and a locked period cannot be reopened.</p>
             </div>
           </div>
 
+          <h2>Year-End Close</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Close the financial year</strong>
+              <p>The financial year follows the company's year-end month (February by default). After the year has ended, use <em>Close financial year</em> on <strong>Accounting → Periods</strong> and enter the year in which it ends. Income and expense accounts are closed to 3000 Retained earnings. A year not yet ended is refused. Running it again posts only late postings still open.</p>
+            </div>
+          </div>
+
+          <h2>Opening Balances</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Set the conversion date</strong>
+              <p>Under <strong>Accounting → Opening Balances</strong>, enter the last day in the old system, for example 31 October when you start on 1 November.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Add open items and the trial balance</strong>
+              <p>Add each open customer invoice and supplier bill with its original number, date, total and outstanding amount, so ageing and statements are right. Then enter the trial balance of all other accounts.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div class="guide-step-body">
+              <strong>Post</strong>
+              <p>Everything posts against 9999 Opening balance suspense. Posting is refused unless the trial balance balances and receivables and payables agree with the open items, so 9999 ends at nil. After posting, opening balances are locked; corrections are made by journal.</p>
+            </div>
+          </div>
+
+          <h2>Group Reports</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div class="guide-step-body">
+              <strong>Create the group and mark inter-company accounts</strong>
+              <p>Under <strong>Accounting → Group Reports</strong>, create a group and add companies you administer. In each company, mark the accounts that are loans or balances with another group company as inter-company.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div class="guide-step-body">
+              <strong>Run the group reports</strong>
+              <p>The group trial balance, profit and loss and balance sheet combine the companies by account code, with a column per company, an eliminations column and the group total. If the two sides of an inter-company balance disagree, the difference shows as "Unreconciled inter-company difference". You need access to every company in the group.</p>
+            </div>
+          </div>
+
+          <div class="guide-callout guide-callout--warn">
+            <strong>Scope</strong>
+            <p>Group reports combine the books and remove inter-company balances. They are not a full IFRS 10 consolidation: there are no entries for investments, goodwill, non-controlling interests or unrealised profit in stock.</p>
+          </div>
+
+          <h2>Reports Available</h2>
+          <p>Under <strong>Finance → Financial Reports</strong> you will find, among others:</p>
+          <div class="compare-table-wrapper">
+            <table class="compare-table">
+              <thead>
+                <tr><th>Report</th><th>What it shows</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Trial Balance</td><td>Debit and credit balance per account</td></tr>
+                <tr><td>Profit &amp; Loss</td><td>Income and expenses for the period</td></tr>
+                <tr><td>Balance Sheet</td><td>Assets, liabilities and equity, including current year earnings</td></tr>
+                <tr><td>GL Account Summary</td><td>Net movement per GL account</td></tr>
+                <tr><td>AR Aging / AP Aging</td><td>Open customer and supplier balances by age</td></tr>
+                <tr><td>Cash Flow</td><td>Cash received against cash paid for the period (a cash summary, not a ledger cash flow statement)</td></tr>
+                <tr><td>Fixed Asset Register</td><td>Assets, cost and depreciation</td></tr>
+                <tr><td>VAT201 Return, EMP201 Declaration, EMP501 &amp; IRP5</td><td>SARS returns prepared from the ledger and payroll</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Reports show the selected period only; prior-period comparatives are not yet available.</p>
+
           <h2>Related Modules</h2>
           <div class="guide-grid">
-            <a href="stock.html" class="guide-card" style="text-decoration:none;color:inherit">
-              <h4>Stock &amp; Inventory</h4>
-              <p>Inventory valuation adjustments (FIFO layer updates, standard cost variances) post directly to GL accounts configured in the Stock module's accounting rules.</p>
-            </a>
-            <a href="production.html" class="guide-card" style="text-decoration:none;color:inherit">
-              <h4>Production &amp; Manufacturing</h4>
-              <p>Work order variances — material usage, labour rate, and overhead absorption — post to variance GL accounts for manufacturing cost analysis.</p>
-            </a>
-            <a href="crm-sales.html" class="guide-card" style="text-decoration:none;color:inherit">
-              <h4>CRM &amp; Sales</h4>
-              <p>Revenue recognition rules can be configured per sales order with deferred revenue schedules and milestone-based recognition.</p>
+            <a href="accounting-rules.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Accounting Policies &amp; Tax Treatment</h4>
+              <p>The journal entries, VAT201 field mapping and known limitations behind every step in this guide.</p>
             </a>
             <a href="compliance.html" class="guide-card" style="text-decoration:none;color:inherit">
               <h4>Compliance &amp; Governance</h4>
-              <p>VAT control accounts in the GL are automatically reconciled against VAT return totals during period-end close.</p>
+              <p>Preparing the VAT201, payroll declarations, the audit trail and user access.</p>
+            </a>
+            <a href="procurement.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>Procurement &amp; Supply Chain</h4>
+              <p>Purchase orders and goods received that feed supplier bills and the payables ledger.</p>
+            </a>
+            <a href="hr-payroll.html" class="guide-card" style="text-decoration:none;color:inherit">
+              <h4>HR &amp; Payroll</h4>
+              <p>Payslips post salaries, PAYE, UIF and SDL to the ledger.</p>
             </a>
           </div>
 
         </div>
-
       </div>
     </div>
   </section>
 
-  <section class="cta-section">
-    <div class="dot-grid"></div>
-    <div class="cta-orb cta-orb--blue"></div>
-    <div class="cta-orb cta-orb--teal"></div>
-    <div class="container cta-content">
-      <h2 class="reveal">Need more help?</h2>
-      <p class="reveal delay-2">Get in touch with our team. We're here to help you get the most out of InnoVisions.</p>
-      <a href="../contact.html" class="btn btn-primary reveal delay-3">Contact Support →</a>
-    </div>
-  </section>
+  </main>
 
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="/" class="logo">
-            <div class="logo-mark">IV</div>
+          <a href="../index.html" class="logo">
             <span class="logo-text" style="color:#fff">InnoVisions</span>
+            <span class="logo-slogan">From Vision to Innovation</span>
           </a>
-          <p>One platform for your entire business. Customers, inventory, jobs, finance, and support — deeply integrated.</p>
+          <p>Accounting, stock, jobs and payroll in one ledger, built for South African tax rules.</p>
         </div>
         <div class="footer-col">
           <h4>Platform</h4>
           <a href="../features.html">Features</a>
-        <a href="../pricing.html">Pricing</a>
         <a href="../compare.html">Compare</a>
-        <a href="../about.html">About</a>
           <a href="index.html">Guides</a>
-          <a href="../contact.html">Contact</a>
-        </div>
-        <div class="footer-col">
-          <h4>Product</h4>
-          <a href="https://app.innvisions.co.za/register">Get Started</a>
-          <a href="https://app.innvisions.co.za/login">Sign In</a>
-          <a href="index.html">Documentation</a>
-          <a href="../contact.html">Support</a>
         </div>
         <div class="footer-col">
           <h4>Legal</h4>
@@ -516,11 +352,10 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2026 InnoVisions ERP. All rights reserved.</span>
+        <span>&copy; 2026 InnoVisions. All rights reserved.</span>
         <span>Built in South Africa 🇿🇦</span>
       </div>
     </div>
-  </main>
   </footer>
 
   <script src="../js/main.js"></script>
